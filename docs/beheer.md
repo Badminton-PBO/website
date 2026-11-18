@@ -58,6 +58,13 @@ Open het bericht, zet **Uitgelicht** aan en publiceer. Het bericht staat dan bov
 
 Is de titel lang, vul dan **Korte titel voor de home** in. Er staat altijd maar één bericht bovenaan: het nieuwste dat uitgelicht is. Zet **Uitgelicht** weer uit als het niet meer actueel is.
 
+## Oude nieuwsberichten (beheerders)
+
+In **Nieuws** staan enkel de berichten van de laatste maanden. Oudere berichten blijven op de site op hetzelfde adres, maar staan in `src/content/nieuws/archief/` en niet meer in het beheer. Zo opent de lijst snel: het beheer haalt elk bericht apart op bij GitHub, en dat duurde met ruim 800 berichten enkele minuten.
+
+- Een oud bericht toch aanpassen: verplaats het bestand in GitHub van `src/content/nieuws/archief/` naar `src/content/nieuws/`. Het staat dan weer in het beheer.
+- Het archief aanvullen: `npm run archiveer` verplaatst alles wat ouder is dan zes maanden en commit je daarna. Uitgelichte berichten blijven staan. Eens per jaar volstaat.
+
 ## Afbeelding in een nieuwsbericht (beheerders)
 
 Zet de cursor op een lege regel, klik op **+** boven de tekst en kies **Image**. Kies een bestand van je computer: het komt in `public/uploads/nieuws` en staat mee op de site.

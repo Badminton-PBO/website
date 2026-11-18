@@ -381,7 +381,9 @@ const nieuwsCollectie = {
   name: 'nieuws',
   label: 'Nieuws',
   label_singular: 'bericht',
-  description: 'Nieuwsberichten. Het nieuwste bericht met "Uitgelicht" staat bovenaan het nieuws en als link op de home.',
+  description:
+    'Nieuwsberichten van de laatste maanden. Het nieuwste bericht met "Uitgelicht" staat bovenaan het nieuws en als link op de home. Oudere berichten blijven op de site, maar staan niet meer in deze lijst.',
+  // Enkel de bestanden in de map zelf: Decap laadt elk bericht apart, src/content/nieuws/archief/ slaat het over.
   folder: 'src/content/nieuws',
   extension: 'md',
   format: 'frontmatter',

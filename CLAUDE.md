@@ -22,6 +22,7 @@ Een **gewone user** mag enkel **uitslagen/rankings van de jeugdcuptour** toevoeg
 ```
 src/content/
   nieuws/<slug>.md          title, date, category, excerpt, legacyUrl?
+  nieuws/archief/<slug>.md  berichten ouder dan zes maanden: op de site, niet in het beheer (`npm run archiveer`)
   kalender/<seizoen>.yaml   seizoen, haltes: datum, club, sporthal?, adres?, start?, toernooilink?, inschrijvenTot?, prijsuitreiking?
                             (één bestand per seizoen, zodat beheerders haltes in bulk toevoegen en schrappen;
                             id van een halte = <datum>-<club> in slug-vorm, seizoen volgt uit de datum)
@@ -35,6 +36,7 @@ src/content/
                             (gelezen via src/data/site.ts; menu en Google-agenda blijven in de code)
 ```
 
+- Decap haalt elk bericht in `nieuws/` apart op bij GitHub en slaat submappen over; met alle 809 berichten duurde de lijst minuten. `scripts/archiveer-nieuws.mjs` verplaatst daarom oude berichten naar `nieuws/archief/`. Het id van een bericht is de bestandsnaam, in beide mappen (`nieuwsId` in `src/content.config.ts`), dus het adres `/nieuws/<slug>` verandert niet. Scripts die nieuws lezen, lezen beide mappen (`legacyUrls()`).
 - Een ranking is de **tussenstand** na dat toernooi, zoals berekend in Excel. De site telt niets op: per categorie, jongens en meisjes apart, toont ze de stand van het laatste toernooi in dat kalenderjaar.
 - Een stand is tekst met tabs (rechtstreeks geplakt uit Excel): positie, naam, club, punten. Getallen tussen club en totaal (lidnummer, punten per halte) negeert de parser, dus de hele Excel-rij mag mee. Eén speler per rij (geen dubbels). Parser: `src/lib/stand.ts`.
 - Een reeks die leeg blijft (of zonder herkende rijen) telt niet mee: de site toont dan de stand van het toernooi ervoor. Twee bestanden voor hetzelfde toernooi (Decap maakt `<id>-1.yaml`): het laatste wint per reeks (`alleStanden()`).

@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { basename } from 'node:path';
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
@@ -125,9 +127,21 @@ const paginas = defineCollection({
     }),
 });
 
+/**
+ * Het id van een bericht is de bestandsnaam, ook in archief/ (scripts/archiveer-nieuws.mjs): zo blijft het adres
+ * /nieuws/<id> na het archiveren. Krijgt een nieuw bericht de naam van een gearchiveerd bericht (Decap ziet het
+ * archief niet), dan houdt het oude zijn adres en krijgt het nieuwe een volgnummer.
+ */
+function nieuwsId({ entry, base }: { entry: string; base: URL }) {
+  const naam = basename(entry, '.md');
+  let id = naam;
+  if (!entry.includes('/')) for (let n = 2; existsSync(new URL(`archief/${id}.md`, base)); n++) id = `${naam}-${n}`;
+  return id;
+}
+
 /** Nieuws. Berichten uit WordPress hebben een legacyUrl (oude adres, voor redirects). */
 const nieuws = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/nieuws' }),
+  loader: glob({ pattern: '{,archief/}*.md', base: './src/content/nieuws', generateId: nieuwsId }),
   schema: z.object({
     title: z.string(),
     date: isoDatum,

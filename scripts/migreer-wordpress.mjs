@@ -5,7 +5,7 @@
  *   node scripts/migreer-wordpress.mjs [--bron https://testsite.badminton-pbo.be] [--zonder-uploads | --enkel-uploads]
  *
  * - Haalt alle berichten op via de WP REST API en schrijft ze naar src/content/nieuws/<slug>.md
- *   (frontmatter: title, date, category, excerpt, legacyUrl).
+ *   (frontmatter: title, date, category, excerpt, legacyUrl), of naar archief/ als het bericht daar al staat.
  * - Herschrijft links: oude domeinen (ook pbo.kwal.org) worden relatieve paden, oude bericht-URL's
  *   worden /nieuws/<slug>, oude pagina's de nieuwe routes.
  * - Downloadt elke gelinkte upload (pdf, afbeelding, Excel ...) uit berichten én pagina's naar
@@ -308,7 +308,9 @@ async function main() {
       legacyUrl: decodeURI(new URL(p.link).pathname),
     };
     const body = naarMarkdown(p.content.rendered, slug);
-    await writeFile(join(ROOT, 'src/content/nieuws', `${slug}.md`), `${frontmatter(data)}\n${body}\n`);
+    // Een bericht dat al in het archief staat (scripts/archiveer-nieuws.mjs) blijft daar.
+    const gearchiveerd = await bestaat(join(ROOT, 'src/content/nieuws/archief', `${slug}.md`));
+    await writeFile(join(ROOT, 'src/content/nieuws', gearchiveerd ? 'archief' : '', `${slug}.md`), `${frontmatter(data)}\n${body}\n`);
   }
   console.log(`berichten: ${posts.length} geschreven`);
 

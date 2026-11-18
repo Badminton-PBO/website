@@ -3,7 +3,7 @@
  * Gebruikt door htaccess.mjs, controleer-redirects.mjs en migreer-wordpress.mjs.
  */
 import { readdir, readFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 
@@ -37,13 +37,13 @@ export async function uploadLinks() {
   return links;
 }
 
-/** [slug, legacyUrl] van elk nieuwsbericht dat uit WordPress komt. */
+/** [slug, legacyUrl] van elk nieuwsbericht dat uit WordPress komt, ook uit archief/. */
 export async function legacyUrls() {
   const map = join(ROOT, 'src/content/nieuws');
   const lijst = [];
-  for (const bestand of (await readdir(map)).filter((f) => f.endsWith('.md'))) {
+  for (const bestand of (await readdir(map, { recursive: true })).filter((f) => f.endsWith('.md'))) {
     const { legacyUrl } = leesFrontmatter(await readFile(join(map, bestand), 'utf8')).data;
-    if (legacyUrl) lijst.push([bestand.replace(/\.md$/, ''), legacyUrl]);
+    if (legacyUrl) lijst.push([basename(bestand, '.md'), legacyUrl]);
   }
   return lijst;
 }
