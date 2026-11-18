@@ -13,19 +13,21 @@ Iedereen logt in met een eigen GitHub-account. Dat account heeft schrijfrechten 
 
 Let op: GitHub kent geen rechten per map. Een gewone user ziet in `/admin/jeugdcup/` enkel de rankings, maar kan technisch via GitHub of `/admin` ook andere bestanden aanpassen. Bij een klein, vertrouwd team is dat aanvaardbaar. Elke wijziging staat met naam in de geschiedenis en is terug te draaien.
 
-## Stand toevoegen na een jeugdcup
+## Standen toevoegen na een jeugdcup
+
+Eén item per toernooi, met de tien standen erna: Minibad, U11, U13, U15 en U17+U19, telkens jongens en meisjes.
 
 1. Ga naar `/admin/jeugdcup/` en log in met GitHub.
-2. Klik op **+ stand**.
-3. Kies het toernooi, de categorie en jongens of meisjes.
-4. Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler (de kopregel mag mee). Kopieer en plak ze in **Stand plakken**.
+2. Klik op **+ ranking** en kies het toernooi.
+3. Selecteer in Excel de rijen van een stand, van de eerste tot de laatste speler (de kopregel mag mee). Kopieer en plak ze in het veld van die reeks, bv. **U13 jongens**. Doe dat voor elke reeks.
    - Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom.
    - Een gedeelde plaats: laat de positie leeg, dan krijgt de speler de positie van de rij erboven.
-5. Rechts zie je meteen de tabel zoals ze op de site komt. Klopt het aantal rijen?
-6. Optioneel: voeg de pdf toe.
-7. Klik **Publiceer → Publiceer nu**. Herhaal voor de andere categorieën, jongens en meisjes: tien standen per halte (tip: **Publiceer en dupliceer item** houdt het toernooi al ingevuld).
+   - Een reeks zonder spelers laat je leeg. De site toont daar de stand van het toernooi ervoor.
+4. Rechts zie je meteen elke tabel zoals ze op de site komt, en bovenaan welke reeksen nog leeg zijn. Klopt het aantal rijen?
+5. Optioneel: voeg de pdf met alle standen toe.
+6. Klik **Publiceer → Publiceer nu**. Alle standen staan in één keer online.
 
-De site toont per categorie, jongens en meisjes apart, altijd de stand van het laatste toernooi in dat kalenderjaar. Een fout verbeteren: open de stand, pas aan en publiceer opnieuw.
+De site toont per categorie, jongens en meisjes apart, altijd de stand van het laatste toernooi in dat kalenderjaar. Een fout verbeteren of een reeks later aanvullen: open het toernooi in de lijst, pas aan en publiceer opnieuw. Maak geen tweede item voor hetzelfde toernooi.
 
 ## Jeugdcupkalender (beheerders)
 

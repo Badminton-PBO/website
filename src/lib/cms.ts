@@ -65,52 +65,61 @@ function toernooiOpties(toernooien: Toernooi[]) {
 }
 
 /**
- * Rankings. Het toernooi is een keuzelijst die bij elke build uit de kalender komt (nieuwste eerst).
+ * Het toernooi van een ranking is een keuzelijst die bij elke build uit de kalender komt (nieuwste eerst).
  * Geen relation-widget: die vraagt de kalendercollectie in de config, en gewone users mogen de kalender niet zien.
+ */
+const plakHint =
+  'Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler, en plak ze hier. Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom. Rechts zie je hoe het op de site komt. Een reeks zonder spelers laat je leeg.';
+
+/**
+ * Eén item per toernooi met de tien standen erna (per categorie een veld voor jongens en een voor meisjes):
+ * één keer openen, tien keer plakken, één keer publiceren. De uitleg staat enkel onder het eerste plakveld.
  */
 export const rankingsCollectie = async () => ({
   name: 'rankings',
   label: 'Jeugdcup-rankings',
-  label_singular: 'stand',
+  label_singular: 'ranking',
   description:
-    'Na elke jeugdcup: kies het toernooi, de categorie en jongens of meisjes, plak de stand uit Excel en klik op Publiceren. Een paar minuten later staat ze op de site.',
+    'Na elke jeugdcup: klik op "+ ranking", kies het toernooi en plak per categorie de stand van de jongens en de meisjes uit Excel. Eén keer publiceren zet alle standen online; een paar minuten later staan ze op de site.',
   folder: 'src/content/rankings',
   extension: 'yaml',
   format: 'yaml',
   create: true,
   delete: true,
   identifier_field: 'toernooi',
-  // Zonder 'fields.': Decap maakt van elke punt in path een streepje.
-  path: '{{toernooi}}/{{categorie}}-{{geslacht}}',
-  summary: '{{toernooi}} · {{categorie}} {{geslacht}}',
-  sortable_fields: ['toernooi', 'categorie', 'geslacht'],
-  view_groups: [{ label: 'Toernooi', field: 'toernooi' }],
-  view_filters: categorieen.map((c) => ({ label: c.label, field: 'categorie', pattern: c.id })),
+  slug: '{{toernooi}}',
+  summary: 'Standen na {{toernooi}}',
+  sortable_fields: [{ field: 'toernooi', default_sort: 'desc' }],
   fields: [
     {
-      label: '1. Toernooi',
+      label: 'Toernooi',
       name: 'toernooi',
       widget: 'select',
       options: toernooiOpties(await alleToernooien()),
-      hint: 'De stand na dit toernooi. Staat het er niet bij? Dan staat het nog niet op de kalender: vraag het aan een beheerder.',
+      hint: 'De standen na dit toernooi. Staat het er niet bij? Dan staat het nog niet op de kalender: vraag het aan een beheerder. Staat het al in de lijst met rankings? Open het daar en vul aan.',
     },
-    { label: '2. Categorie', name: 'categorie', widget: 'select', options: opties(categorieen) },
-    { label: '3. Jongens of meisjes', name: 'geslacht', widget: 'select', options: opties(geslachten) },
+    ...categorieen.map((c, i) => ({
+      label: c.label,
+      name: c.id,
+      widget: 'object',
+      required: false,
+      fields: geslachten.map((g, j) => ({
+        label: `${c.label} ${g.label.toLowerCase()}`,
+        name: g.id,
+        widget: 'text',
+        required: false,
+        ...(i === 0 && j === 0 && { hint: plakHint }),
+      })),
+    })),
     {
-      label: '4. Stand plakken',
-      name: 'stand',
-      widget: 'text',
-      hint: 'Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler, en plak ze hier. Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom. Rechts zie je hoe het op de site komt.',
-    },
-    {
-      label: 'Pdf van de stand',
+      label: 'Pdf van de standen',
       name: 'pdf',
       widget: 'file',
       required: false,
       media_folder: '/public/documenten/jeugdcuptour',
       public_folder: '/documenten/jeugdcuptour',
       choose_url: false,
-      hint: 'Verschijnt als downloadlink onder de tabel.',
+      hint: 'Eén pdf met alle standen. Verschijnt als downloadlink onder elke tabel.',
     },
   ],
 });

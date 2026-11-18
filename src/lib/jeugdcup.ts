@@ -3,7 +3,7 @@ import { dagMaand, plusDagen, vandaag, weekdagDagMaand } from './datum';
 import { leesStand, type Rij } from './stand';
 
 export * from './jeugdcup-labels';
-import type { CategorieId, GeslachtId } from './jeugdcup-labels';
+import { categorieen, geslachten, type CategorieId, type GeslachtId } from './jeugdcup-labels';
 
 /** Vaste pagina Jeugdcuptour: de geboortejaren (ingevuld voor één kalenderjaar) en het archief met eindstanden. */
 const jeugdcuptour = (await getEntry('paginas', 'jeugdcuptour'))?.data;
@@ -151,15 +151,26 @@ export interface Stand {
 /** Sleutel van een stand binnen een jaar: "u13-jongens". */
 export const standSleutel = (categorie: string, geslacht: string) => `${categorie}-${geslacht}`;
 
+/**
+ * Eén bestand per toernooi met alle standen erna (src/content/rankings/<toernooi-id>.yaml). Een reeks die leeg bleef
+ * of waar de parser geen rijen in vindt, telt niet mee: de site toont dan de stand van het toernooi ervoor.
+ */
 export async function alleStanden(): Promise<Stand[]> {
   const haltes = await alleToernooien();
   const opId = new Map(haltes.map((t) => [t.id, t]));
   const opDatum = new Map(haltes.map((t) => [t.datum, t]));
-  return (await getCollection('rankings')).map((r) => {
+  // Op bestandsnaam: voor een toernooi dat er twee keer in staat, maakt Decap <id>-1.yaml. Het laatste bestand wint.
+  const bestanden = (await getCollection('rankings')).sort((a, b) => a.id.localeCompare(b.id));
+  return bestanden.flatMap((r) => {
     // Op datum als terugval: een verbeterde clubnaam verandert het id van de halte.
     const toernooi = opId.get(r.data.toernooi) ?? opDatum.get(r.data.toernooi.slice(0, 10));
     if (!toernooi) throw new Error(`Stand ${r.id}: halte "${r.data.toernooi}" staat niet (meer) in de kalender (src/content/kalender/).`);
-    return { toernooi, categorie: r.data.categorie, geslacht: r.data.geslacht, rijen: leesStand(r.data.stand), pdf: r.data.pdf };
+    return categorieen.flatMap((c) =>
+      geslachten.flatMap((g) => {
+        const rijen = leesStand(r.data[c.id]?.[g.id] ?? '');
+        return rijen.length ? [{ toernooi, categorie: c.id, geslacht: g.id, rijen, pdf: r.data.pdf }] : [];
+      }),
+    );
   });
 }
 
@@ -173,7 +184,8 @@ export async function rankingPerJaar() {
     const per = jaren.get(rankingJaar(s.toernooi)) ?? new Map<string, Stand>();
     const sleutel = standSleutel(s.categorie, s.geslacht);
     const eerder = per.get(sleutel);
-    if (!eerder || s.toernooi.datum > eerder.toernooi.datum) per.set(sleutel, s);
+    // Bij twee bestanden voor hetzelfde toernooi wint het laatste (zie alleStanden).
+    if (!eerder || s.toernooi.datum >= eerder.toernooi.datum) per.set(sleutel, s);
     jaren.set(rankingJaar(s.toernooi), per);
   }
   return [...jaren.entries()]

@@ -2,6 +2,9 @@
 /**
  * Lege pagina waarin Decap CMS opstart. De config komt uit src/lib/cms.ts.
  * Decap staat vast op een versie; bij een update eerst lokaal testen.
+ * Voorlopig 3.16.2: in 3.16.3 tot en met 3.17.3 blijft de miniatuur van een afbeeldingsveld leeg bij een
+ * bestaande waarde (bestuursfoto's, sponsorlogo's, affiche PK). Gekend bij Decap (issue #8055), opgelost
+ * in PR #8057 (17 november 2026): updaten kan vanaf de eerste versie na 3.17.3.
  */
 import { u } from '../lib/url';
 
@@ -22,9 +25,16 @@ const { config, title } = Astro.props;
     <title>{title}</title>
     <link rel="icon" type="image/png" href={u('/favicon.png')} />
     <link href={u(config)} type="text/yaml" rel="cms-config-url" />
+    <style is:inline>
+      /* Een geplakte stand telt tientallen regels: het veld scrolt, zodat de tien standen van een toernooi overzichtelijk onder elkaar blijven. */
+      textarea {
+        max-height: 15em;
+        overflow-y: auto !important;
+      }
+    </style>
   </head>
   <body>
-    <script is:inline src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+    <script is:inline src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js"></script>
     <script>
       import '../scripts/admin-preview';
       import '../scripts/admin-plakken';

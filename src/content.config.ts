@@ -1,7 +1,6 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { categorieen, geslachten } from './lib/jeugdcup-labels';
 import { nieuwsCategorieen } from './lib/nieuws-labels';
 
 /** YAML leest 2026-09-26 als datum; Decap schrijft soms een string. Altijd terug naar YYYY-MM-DD. */
@@ -70,15 +69,22 @@ const pk = defineCollection({
     .superRefine((p, ctx) => inschrijving('PK', p, ctx)),
 });
 
+/** De geplakte standen van één categorie. Een reeks zonder spelers blijft leeg. */
+const stand = z.preprocess(leeg, z.string().optional());
+const reeksen = z.preprocess(leeg, z.object({ jongens: stand, meisjes: stand }).optional());
+
+/** Eén bestand per toernooi met de tien standen erna, zodat je ze in één keer plakt en publiceert. */
 const rankings = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/rankings' }),
+  loader: glob({ pattern: '*.yaml', base: './src/content/rankings' }),
   schema: z.object({
     /** Id van de halte (<datum>-<club>). Vindt de site dat id niet, dan zoekt ze op de datum. */
     toernooi: z.string(),
-    categorie: z.enum(categorieen.map((c) => c.id)),
-    geslacht: z.enum(geslachten.map((g) => g.id)),
-    stand: z.string(),
-    pdf: z.string().optional(),
+    pdf: z.preprocess(leeg, z.string().optional()),
+    minibad: reeksen,
+    u11: reeksen,
+    u13: reeksen,
+    u15: reeksen,
+    'u17-u19': reeksen,
   }),
 });
 

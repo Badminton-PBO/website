@@ -25,8 +25,9 @@ src/content/
   kalender/<seizoen>.yaml   seizoen, haltes: datum, club, sporthal?, adres?, start?, toernooilink?, inschrijvenTot?, prijsuitreiking?
                             (één bestand per seizoen, zodat beheerders haltes in bulk toevoegen en schrappen;
                             id van een halte = <datum>-<club> in slug-vorm, seizoen volgt uit de datum)
-  rankings/<toernooi-id>/<categorie>-<geslacht>.yaml
-                            toernooi, categorie, geslacht (jongens/meisjes), stand (geplakt uit Excel), pdf?
+  rankings/<toernooi-id>.yaml
+                            toernooi, pdf?, per categorie (minibad, u11, ...): jongens?, meisjes? (stand geplakt uit Excel)
+                            (één bestand per toernooi, zodat een user de tien standen in één keer plakt en publiceert)
   paginas/<pagina>.md       vaste pagina's: title, lead, description, lijsten (bestuur, documenten, ...) + lopende tekst
   pk/pk.md                  provinciaal kampioenschap: tonen (blok op de home), datum, datumTot?, plaats, sporthal?,
                             adres?, organisatie?, toernooilink?, inschrijvenTot?, affiche? + tekst (reeksen, uurschema)
@@ -35,8 +36,9 @@ src/content/
 ```
 
 - Een ranking is de **tussenstand** na dat toernooi, zoals berekend in Excel. De site telt niets op: per categorie, jongens en meisjes apart, toont ze de stand van het laatste toernooi in dat kalenderjaar.
-- `stand` is tekst met tabs (rechtstreeks geplakt uit Excel): positie, naam, club, punten. Getallen tussen club en totaal (lidnummer, punten per halte) negeert de parser, dus de hele Excel-rij mag mee. Eén speler per rij (geen dubbels). Parser: `src/lib/stand.ts`.
-- Optioneel een pdf van de stand (`pdf`), getoond als downloadlink naast de tabel.
+- Een stand is tekst met tabs (rechtstreeks geplakt uit Excel): positie, naam, club, punten. Getallen tussen club en totaal (lidnummer, punten per halte) negeert de parser, dus de hele Excel-rij mag mee. Eén speler per rij (geen dubbels). Parser: `src/lib/stand.ts`.
+- Een reeks die leeg blijft (of zonder herkende rijen) telt niet mee: de site toont dan de stand van het toernooi ervoor. Twee bestanden voor hetzelfde toernooi (Decap maakt `<id>-1.yaml`): het laatste wint per reeks (`alleStanden()`).
+- Optioneel één pdf met alle standen van het toernooi (`pdf`), getoond als downloadlink bij elke tabel.
 - Een stand vindt haar halte op id, en anders op datum (een verbeterde clubnaam verandert het id).
 - Elk toernooi (halte of PK) heeft twee data: `datum` (speeldag) en `inschrijvenTot` (laatste dag om in te schrijven). `toernooilink` is de tournamentsoftware-pagina; met een link is `inschrijvenTot` verplicht (schema in `src/content.config.ts`). De knop heet "Inschrijven tot ..." tot en met `inschrijvenTot`, dan "Wedstrijden" tot en met de speeldag, en daarna "Uitslagen". Zonder inschrijfdatum nooit "Inschrijven". Op de home staan de latere haltes waarvoor inschrijven open is (`tijdlijn().inschrijven`) naast de volgende halte (telefoon: eronder), met een potloodstip op het lijnplan (`lijnStatussen()`) en in "Daarna" een markering (`toernooiLink()` in `src/lib/toernooi.ts`, gedeeld door jeugdcup en PK; het PK hangt niet af van `jeugdcup.ts`).
 - Regels en zinnen van de jeugdcup die op meerdere pagina's staan (volgende halte, volgende stand, rankingjaar, `tijdlijn()` voor de home) staan in `src/lib/jeugdcup.ts`, niet in de pagina's.
@@ -126,8 +128,8 @@ De ontwerpen gebruiken nog voorlopige kleuren (donkerblauw). De site gebruikt de
 
 ## Beslissingen (oktober 2026)
 
-- Ranking: tabel uit data, met optionele pdf per stand. Archief 2011–2025 blijft pdf.
-- Aanlevering: tussenstand uit Excel plakken (positie, naam, club, punten), per categorie voor jongens en meisjes.
+- Ranking: tabel uit data, met optionele pdf per toernooi. Archief 2011–2025 blijft pdf.
+- Aanlevering: tussenstand uit Excel plakken (positie, naam, club, punten), per categorie voor jongens en meisjes. In het beheer één item per toernooi met de tien plakvelden (november 2026: tien aparte items was te veel klikken).
 - Login: GitHub-account voor iedereen. Gewone users publiceren rechtstreeks, zonder goedkeuring (geen editorial workflow). Het team is klein en niet technisch: geen complexe flows.
 - Meerdere beheerders met dezelfde rechten beheren nieuws en vaste pagina's.
 - Recreanten & G-sport: inhoud van de huidige site, herschreven.
