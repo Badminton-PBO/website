@@ -94,6 +94,8 @@ Decap heeft een kleine loginhelper nodig: `public/admin/auth/index.php`. Die moe
 
 De testversie op GitHub Pages gebruikt dezelfde loginhelper (variabele `CMS_AUTH_URL`, standaard `https://www.badminton-pbo.be`). Inloggen op de testversie lukt dus pas als de helper op de hosting staat.
 
+Zolang de PBO-hosting geen PHP heeft, kan de helper tijdelijk op een andere server staan: zet de drie bestanden uit `public/admin/auth/` daar in `<map>/admin/auth/` (`config.example.php` als `config.php`, met Client ID en secret ingevuld), zet de callback-URL van de OAuth App op `https://<server>/<map>/admin/auth/` en de variabele `CMS_AUTH_URL` op `https://<server>/<map>`.
+
 ## Lokaal testen zonder GitHub
 
 ```sh

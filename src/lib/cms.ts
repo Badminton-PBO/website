@@ -13,8 +13,14 @@ import { alleToernooien, type Toernooi } from './jeugdcup';
 import { lang, vandaag } from './datum';
 
 const repo = 'Badminton-PBO/website';
-/** Waar de PHP-loginhelper staat (public/admin/auth/). Op GitHub Pages wijst dit naar de echte hosting. */
-const authUrl = (process.env.CMS_AUTH_URL || 'https://www.badminton-pbo.be').replace(/\/+$/, '');
+/**
+ * Waar de PHP-loginhelper staat (public/admin/auth/). Op GitHub Pages wijst dit naar de echte hosting.
+ * Mag een submap zijn (bv. https://voorbeeld.be/pbo). Decap vergelijkt `base_url` met de origin van de
+ * popup, dus het pad hoort in `auth_endpoint`.
+ */
+const auth = new URL(process.env.CMS_AUTH_URL || 'https://www.badminton-pbo.be');
+const authUrl = auth.origin;
+const authEndpoint = `${auth.pathname.replace(/^\/+|\/+$/g, '')}/admin/auth/`.replace(/^\/+/, '');
 
 const opties = (lijst: readonly { id: string; label: string }[]) => lijst.map((x) => ({ label: x.label, value: x.id }));
 
@@ -486,7 +492,7 @@ export function cmsConfig({ site, collections }: { site: URL; collections: objec
       repo,
       branch: 'main',
       base_url: authUrl,
-      auth_endpoint: 'admin/auth/',
+      auth_endpoint: authEndpoint,
       commit_messages: {
         create: 'Nieuw in {{collection}}: {{slug}}',
         update: 'Aangepast in {{collection}}: {{slug}}',
