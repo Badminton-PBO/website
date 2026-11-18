@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import markLight from '../assets/logo/pbo-mark-light.png';
+import { u } from '../lib/url';
+import { mail, social, competitie } from '../data/site';
+
+const columns = [
+  {
+    title: 'Contact',
+    links: [
+      { href: `mailto:${mail.secretariaat}`, label: mail.secretariaat },
+      { href: `mailto:${mail.jeugdcup}`, label: mail.jeugdcup },
+      { href: `mailto:${mail.recreanten}`, label: mail.recreanten },
+      { href: `mailto:${mail.voorzitter}`, label: mail.voorzitter },
+    ],
+  },
+  {
+    title: 'PBO vzw',
+    links: [
+      { href: u('/bestuur'), label: 'Bestuur' },
+      { href: u('/vacatures'), label: 'Vacatures' },
+      { href: u('/bestuur#kalender'), label: 'PBO-kalender' },
+    ],
+  },
+  {
+    title: 'Competitie',
+    links: [
+      { href: competitie.agenda, label: 'Competitieagenda' },
+      { href: competitie.uitslagen, label: 'Uitslagen en standen' },
+    ],
+  },
+  {
+    title: 'Volg ons',
+    links: social.map((s) => ({ href: s.link, label: s.naam })),
+  },
+].filter((col) => col.links.length > 0);
+---
+
+<footer class="wrap mt-16 pb-10 md:mt-[72px]">
+  <div class="on-ink rounded-[28px] bg-ink px-6 py-8 text-white md:rounded-panel md:px-14 md:py-12">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] lg:gap-x-12">
+      <div class="flex items-start gap-4">
+        <Image src={markLight} alt="" height={64} densities={[1, 2]} class="h-14 w-auto md:h-16" />
+        <div>
+          <div class="font-display text-2xl font-extrabold md:text-[28px]">PBO vzw</div>
+          <div class="text-mist">Provinciale Badmintonraad Oost-Vlaanderen</div>
+        </div>
+      </div>
+
+      {
+        columns.map((col) => (
+          <div>
+            <h2 class="label mb-2 font-sans text-accent">{col.title}</h2>
+            <ul>
+              {col.links.map((l) => (
+                <li>
+                  <a href={l.href} class="inline-flex min-h-11 items-center [overflow-wrap:anywhere] hover:text-accent">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <p class="pt-6 text-center text-sm text-muted">PBO vzw · Badminton Oost-Vlaanderen</p>
+</footer>

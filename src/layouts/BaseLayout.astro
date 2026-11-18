@@ -1,0 +1,68 @@
+---
+import { u } from '../lib/url';
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/instrument-sans';
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'PBO vzw, de Provinciale Badmintonraad Oost-Vlaanderen: kalender en ranking van de jeugdcuptour, competitie, PBO-selectie en provinciaal kampioenschap.',
+} = Astro.props;
+
+const fullTitle = title ? `${title} · PBO vzw` : 'PBO vzw · Badminton Oost-Vlaanderen';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+// Testversies (GitHub Pages, een testsubdomein) niet laten indexeren, enkel de echte site.
+const indexeren = Astro.site?.hostname === 'www.badminton-pbo.be';
+---
+
+<!doctype html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {!indexeren && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/png" href={u('/favicon.png')} />
+    <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={u('/sitemap-index.xml')} />
+    <meta name="theme-color" content="#f3f4ef" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_BE" />
+    <meta property="og:site_name" content="PBO vzw" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(u('/icon-512.png'), Astro.site)} />
+  </head>
+  <body class="flex flex-col">
+    <!-- Buiten beeld tot hij focus krijgt; geen sr-only, want not-sr-only zet de padding op 0. -->
+    <a
+      href="#inhoud"
+      class="fixed top-3 left-3 z-50 -translate-y-[calc(100%+1rem)] rounded-full bg-ink px-5 py-3 font-semibold text-white focus:translate-y-0"
+      >Naar de inhoud</a
+    >
+    <SiteHeader />
+    <main id="inhoud" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
+    <!-- Periode (src/components/Periode.astro): de build koos met haar eigen datum, de browser kiest met vandaag. -->
+    <script is:inline>
+      {
+        const nu = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Brussels' }).format(new Date());
+        for (const el of document.querySelectorAll('[data-van], [data-tot]')) {
+          el.hidden = nu < (el.dataset.van ?? '') || nu > (el.dataset.tot ?? '9999');
+        }
+      }
+    </script>
+  </body>
+</html>

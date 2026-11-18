@@ -1,0 +1,82 @@
+---
+import { u } from '../../../lib/url';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import LinkCard from '../../../components/LinkCard.astro';
+import { mail } from '../../../data/site';
+import { pagina } from '../../../lib/paginas';
+import { alleToernooien, categorieen, geboortejaren, huidigSeizoen, laatsteRanking, tijdlijn, volgendeHalteZin } from '../../../lib/jeugdcup';
+import { vandaag } from '../../../lib/datum';
+
+const seizoen = await huidigSeizoen();
+const ranking = await laatsteRanking();
+const jaar = Number(vandaag().slice(0, 4));
+const { title, lead, description, documenten, Content } = await pagina('jeugdcuptour');
+// Volgende halte als intro, per halte die nog komt (Periode); na de laatste de vaste intro.
+const intro = tijdlijn(await alleToernooien()).map(({ van, tot, volgende }) => ({
+  van,
+  tot,
+  tekst: volgende ? volgendeHalteZin(volgende) : lead,
+}));
+---
+
+<BaseLayout title={title} description={description}>
+  <PageIntro
+    title={title}
+    lead={intro}
+    crumbs={[{ href: u('/jeugd'), label: 'Jeugd' }, { label: 'Jeugdcuptour' }]}
+  />
+
+  <section class="wrap mt-8 grid gap-3 md:mt-10 md:grid-cols-2 lg:gap-5">
+    <LinkCard href={u('/jeugd/jeugdcuptour/kalender')} icon="kalender" title={`Kalender ${seizoen}`} text="Data, clubs en sporthallen" />
+    <LinkCard
+      href={u('/jeugd/jeugdcuptour/ranking')}
+      icon="ranking"
+      title={`Ranking ${ranking?.jaar ?? jaar}`}
+      text={ranking ? `Stand na ${ranking.laatste.club}. Zoek je naam per categorie.` : 'Zoek je naam per categorie.'}
+    />
+  </section>
+
+  <section class="wrap mt-14 grid gap-10 md:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16">
+    <div class="prose-pbo px-2 md:px-0">
+      <Content />
+    </div>
+
+    <div>
+      <h2 class="mb-1 px-2 text-[28px] leading-tight font-extrabold md:px-0">Categorieën {jaar}</h2>
+      <p class="mb-4 px-2 text-muted md:px-0">Op basis van je geboortejaar.</p>
+      <table class="w-full overflow-hidden rounded-card bg-paper text-left">
+        <caption class="sr-only">Leeftijdscategorieën en geboortejaren voor kalenderjaar {jaar}</caption>
+        <thead>
+          <tr class="label text-muted">
+            <th scope="col" class="px-6 pt-5 pb-3 font-semibold">Categorie</th>
+            <th scope="col" class="px-6 pt-5 pb-3 font-semibold">Geboren in</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            categorieen.map((c) => (
+              <tr class="border-t border-wash">
+                <th scope="row" class="px-6 py-4 font-display text-lg font-bold">{c.label}</th>
+                <td class="num px-6 py-4">{geboortejaren(c.id, jaar)}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+
+      <h2 class="mt-10 mb-1 px-2 text-[28px] leading-tight font-extrabold md:px-0">Reglement</h2>
+      <p class="mb-4 px-2 text-muted md:px-0">Hoe de toernooien verlopen en hoe de punten verdeeld worden.</p>
+      <div class="flex flex-col gap-3">
+        {documenten.map((d) => <LinkCard href={u(d.bestand)} icon="document" title={d.titel} text={d.tekst} />)}
+      </div>
+      {
+        documenten.some((d) => !d.bestand) && (
+          <p class="mt-3 px-2 text-[15px] leading-normal text-muted md:px-0">
+            Nog niet online? Vraag het via <a class="link" href={`mailto:${mail.jeugdcup}?subject=${encodeURIComponent('Reglement jeugdcuptour')}`}>{mail.jeugdcup}</a>.
+          </p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

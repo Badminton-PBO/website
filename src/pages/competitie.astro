@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import LinkCard from '../components/LinkCard.astro';
+import { competitie, mail } from '../data/site';
+import { pagina } from '../lib/paginas';
+
+const { title, lead, description, Content } = await pagina('competitie');
+---
+
+<BaseLayout title={title} description={description}>
+  <PageIntro title={title} lead={lead} />
+
+  <section class="wrap mt-8 grid gap-3 md:mt-10 md:grid-cols-2 lg:gap-5">
+    <LinkCard
+      href={competitie.agenda}
+      icon="kalender"
+      title="Competitieagenda"
+      text="Koppel de wedstrijden van je ploeg aan je eigen agenda"
+      external
+    />
+    <LinkCard
+      href={competitie.uitslagen}
+      icon="competitie"
+      title="Uitslagen en standen"
+      text="Alle reeksen van de provinciale competitie bij Badminton Vlaanderen"
+      external
+    />
+  </section>
+
+  <section class="wrap mt-14 grid gap-10 md:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] lg:gap-16">
+    <div class="prose-pbo px-2 md:px-0">
+      <Content />
+    </div>
+
+    <aside class="h-fit rounded-card bg-accent-soft p-6 md:p-8">
+      <h2 class="text-2xl leading-tight font-extrabold">Vragen over de competitie?</h2>
+      <p class="mt-2 leading-normal">
+        In het bestuur is Toon Bouchier verantwoordelijk voor de competitie. Stuur je vraag naar
+        <a class="link [overflow-wrap:anywhere]" href={`mailto:${mail.secretariaat}`}>{mail.secretariaat}</a>.
+      </p>
+      <a href={`mailto:${mail.secretariaat}`} class="btn mt-5 w-full bg-ink px-5 text-white">Mail het secretariaat</a>
+    </aside>
+  </section>
+</BaseLayout>

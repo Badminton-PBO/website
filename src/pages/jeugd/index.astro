@@ -1,0 +1,98 @@
+---
+import { u } from '../../lib/url';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import LinkCard from '../../components/LinkCard.astro';
+import { ipjoLink } from '../../data/site';
+import { huidigSeizoen, laatsteRanking } from '../../lib/jeugdcup';
+import { pagina } from '../../lib/paginas';
+
+const seizoen = await huidigSeizoen();
+const ranking = await laatsteRanking();
+const { title, lead, description, trainers, Content } = await pagina('jeugd');
+---
+
+<BaseLayout title={title} description={description}>
+  <PageIntro title={title} lead={lead} />
+
+  <section class="wrap mt-8 md:mt-10" aria-labelledby="jeugdcuptour">
+    <div class="on-ink grid gap-6 rounded-[28px] bg-ink p-6 text-white md:rounded-panel md:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:items-center lg:gap-12">
+      <div>
+        <h2 id="jeugdcuptour" class="text-[30px] leading-[1.08] font-extrabold tracking-[-0.01em] md:text-[44px]">
+          Victor Jeugdcuptour <span class="text-accent">by PBO</span>
+        </h2>
+        <p class="mt-3 max-w-[52ch] text-mist md:mt-4 md:text-lg">
+          Laagdrempelige toernooien van Minibad tot U19. Je speelt minstens drie wedstrijden tegen leeftijdsgenoten en verzamelt punten voor de ranking van het kalenderjaar.
+        </p>
+        <a href={u('/jeugd/jeugdcuptour')} class="btn mt-6 w-full bg-accent text-ink sm:w-auto">Alles over de jeugdcuptour</a>
+      </div>
+      <div class="flex flex-col gap-3 text-ink">
+        <LinkCard href={u('/jeugd/jeugdcuptour/kalender')} icon="kalender" title={`Kalender ${seizoen}`} text="Data, clubs en sporthallen" />
+        <LinkCard
+          href={u('/jeugd/jeugdcuptour/ranking')}
+          icon="ranking"
+          title={ranking ? `Ranking ${ranking.jaar}` : 'Ranking'}
+          text={ranking ? `Stand na ${ranking.laatste.club}` : 'Per categorie, jongens en meisjes'}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap mt-14 grid gap-10 md:mt-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-16">
+    <div class="prose-pbo px-2 md:px-0">
+      <Content />
+    </div>
+
+    <div>
+      <h2 id="trainers" class="mb-4 px-2 text-[28px] leading-tight font-extrabold md:px-0">Trainers</h2>
+      <ul class="rounded-card bg-paper p-2">
+        {
+          trainers.map((t) => (
+            <li class="flex items-baseline justify-between gap-4 border-b border-wash px-4 py-4 last:border-b-0">
+              <span class="font-semibold">{t.naam}</span>
+              <span class="text-right text-[15px] text-muted">{t.diploma}</span>
+            </li>
+          ))
+        }
+      </ul>
+      {
+        trainers.some((t) => t.diploma.includes('VTS')) && (
+          <p class="mt-3 px-2 text-[15px] text-muted md:px-0">VTS: Vlaamse Trainersschool, de opleiding voor sporttrainers in Vlaanderen.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="wrap mt-14 grid gap-3 md:mt-20 lg:grid-cols-2 lg:gap-5">
+    <article class="rounded-card bg-paper p-6 md:p-9" aria-labelledby="ipjo">
+      <h2 id="ipjo" class="text-[28px] leading-tight font-extrabold">IPJO</h2>
+      <p class="mt-1 text-sm font-semibold text-brand">Interprovinciale jeugdontmoeting</p>
+      <div class="prose-pbo mt-4 text-base">
+        <p>
+          De vijf Vlaamse provincies spelen tegen elkaar op een tweedaags teamevenement. Per leeftijdscategorie (U11, U13, U15 en U17)
+          worden vijf disciplines gespeeld: enkel en dubbel voor jongens en voor meisjes, en gemengd dubbel (HE, DE, HD, DD en GD). Wie de
+          meeste categorieën wint, wint de ontmoeting.
+        </p>
+        <p>
+          De eerste IPJO was op 14 en 15 januari 1989 in De Panne. Sinds de vijfde editie wordt er met veren shuttles gespeeld.
+        </p>
+        <p><a href={ipjoLink}>Cijfers en weetjes bij Badminton Vlaanderen</a></p>
+      </div>
+    </article>
+
+    <article class="rounded-card bg-paper p-6 md:p-9" aria-labelledby="kyu">
+      <h2 id="kyu" class="text-[28px] leading-tight font-extrabold">KYU</h2>
+      <p class="mt-1 text-sm font-semibold text-brand">Ontwikkelingstraject voor beginners</p>
+      <div class="prose-pbo mt-4 text-base">
+        <p>
+          KYU begeleidt jonge, beginnende badmintonners met gekleurde bandjes, van beginner tot gevorderde speler. Het volgt het
+          LTAD-model (Long Term Athlete Development), met de speler in het midden.
+        </p>
+        <p>
+          Elk traject steunt op zes pijlers: theoretische kennis, algemene coördinatie en transferbewegingen, slagtechniek, keuzes en
+          accenten, functionele houdingen, en footwork en tactiek.
+        </p>
+      </div>
+    </article>
+  </section>
+</BaseLayout>
