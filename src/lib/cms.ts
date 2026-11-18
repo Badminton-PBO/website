@@ -505,7 +505,8 @@ export function cmsConfig({ site, collections }: { site: URL; collections: objec
     local_backend: true,
     site_url: site.href,
     display_url: site.href,
-    logo_url: new URL('icon-512.png', site).href,
+    // Met een slash erachter, anders valt het basispad (/website) weg bij het oplossen.
+    logo_url: new URL('icon-512.png', site.href.replace(/\/*$/, '/')).href,
     media_folder: 'public/uploads',
     public_folder: '/uploads',
     slug: { encoding: 'ascii', clean_accents: true },
