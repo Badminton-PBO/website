@@ -56,6 +56,12 @@ Open het bericht, zet **Uitgelicht** aan en publiceer. Het bericht staat dan bov
 
 Is de titel lang, vul dan **Korte titel voor de home** in. Er staat altijd maar één bericht bovenaan: het nieuwste dat uitgelicht is. Zet **Uitgelicht** weer uit als het niet meer actueel is.
 
+## Afbeelding in een nieuwsbericht (beheerders)
+
+Zet de cursor op een lege regel, klik op **+** boven de tekst en kies **Image**. Kies een bestand van je computer: het komt in `public/uploads/nieuws` en staat mee op de site.
+
+Een afbeelding plakken of naar de tekst slepen kan niet: je krijgt dan een melding onderaan het scherm. Plak je tekst waar een afbeelding in zit, dan komt enkel de tekst mee.
+
 ## Provinciaal kampioenschap (beheerders)
 
 Het PK heeft een eigen pagina (`/pk`) en een blok op de home. Je hoeft er geen nieuwsbericht voor te maken.

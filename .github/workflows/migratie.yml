@@ -10,6 +10,10 @@ on:
         description: WordPress-site om uit te lezen
         default: https://testsite.badminton-pbo.be
         required: true
+      enkel_uploads:
+        description: Enkel ontbrekende uploads (pdf's, afbeeldingen) ophalen; berichten niet overschrijven
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,7 +31,7 @@ jobs:
 
       - run: npm ci
 
-      - run: node scripts/migreer-wordpress.mjs --bron "${{ inputs.bron }}"
+      - run: node scripts/migreer-wordpress.mjs --bron "${{ inputs.bron }}" ${{ inputs.enkel_uploads && '--enkel-uploads' || '' }}
 
       - name: Controleren of de site nog bouwt
         run: npm run build

@@ -1,0 +1,4 @@
+/* Stijl van de site voor het voorbeeld rechts in Decap (src/scripts/admin-preview.ts). */
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/instrument-sans/index.css";
+@import "./global.css";

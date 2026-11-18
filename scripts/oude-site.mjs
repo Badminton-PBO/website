@@ -22,6 +22,21 @@ export function leesFrontmatter(bron) {
   return { data: YAML.parse(fm) ?? {}, body };
 }
 
+/**
+ * Alle /wp-content/uploads/-links in de content, zoals ze er staan (URL-gecodeerd).
+ * Links naar het oude /pbo/wp/-pad van pbo.kwal.org en naar andere sites tellen niet mee.
+ */
+export async function uploadLinks() {
+  const map = join(ROOT, 'src/content');
+  const links = new Set();
+  for (const bestand of await readdir(map, { recursive: true })) {
+    if (!/\.(md|ya?ml)$/.test(bestand)) continue;
+    const tekst = await readFile(join(map, bestand), 'utf8');
+    for (const m of tekst.matchAll(/(?<![\w/])\/wp-content\/uploads\/[^\s)"'<>\\]+/g)) links.add(m[0]);
+  }
+  return links;
+}
+
 /** [slug, legacyUrl] van elk nieuwsbericht dat uit WordPress komt. */
 export async function legacyUrls() {
   const map = join(ROOT, 'src/content/nieuws');

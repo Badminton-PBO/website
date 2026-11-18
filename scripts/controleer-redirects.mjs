@@ -7,9 +7,7 @@
  * Leest legacyUrl uit src/content/nieuws en alle /wp-content/uploads/-links uit de content.
  * Toont enkel wat misloopt, plus een samenvatting.
  */
-import { readdir, readFile } from 'node:fs/promises';
-import { join } from 'node:path';
-import { OUDE_PAGINAS, ROOT, legacyUrls } from './oude-site.mjs';
+import { OUDE_PAGINAS, legacyUrls, uploadLinks } from './oude-site.mjs';
 
 const i = process.argv.indexOf('--site');
 const SITE = (i > -1 ? process.argv[i + 1] : 'https://www.badminton-pbo.be').replace(/\/+$/, '');
@@ -19,14 +17,7 @@ const controles = [
   ...(await legacyUrls()).map(([slug, legacy]) => [legacy, `/nieuws/${slug}`]),
 ];
 
-const uploads = new Set();
-for (const map of ['src/content/nieuws', 'src/content/paginas']) {
-  for (const f of await readdir(join(ROOT, map), { recursive: true })) {
-    if (!f.endsWith('.md')) continue;
-    const tekst = await readFile(join(ROOT, map, f), 'utf8');
-    for (const m of tekst.matchAll(/\/wp-content\/uploads\/[^\s)"'<>]+/g)) uploads.add(m[0]);
-  }
-}
+const uploads = await uploadLinks();
 
 let fout = 0;
 const pool = async (lijst, fn) => {

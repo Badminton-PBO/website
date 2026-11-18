@@ -127,6 +127,8 @@ const kalenderCollectie = {
   label: 'Jeugdcup-kalender',
   label_singular: 'seizoen',
   description: 'Eén kalender per seizoen (augustus tot juli). Zet alle haltes in de lijst en publiceer één keer.',
+  // Geen voorbeeld: zonder eigen sjabloon toont Decap enkel een ruwe opsomming van de velden.
+  editor: { preview: false },
   folder: 'src/content/kalender',
   extension: 'yaml',
   format: 'yaml',
