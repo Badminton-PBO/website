@@ -10,7 +10,7 @@
 import { categorieen, geslachten } from './jeugdcup-labels';
 import { nieuwsCategorieen } from './nieuws-labels';
 import { alleToernooien, type Toernooi } from './jeugdcup';
-import { lang, vandaag } from './datum';
+import { lang } from './datum';
 import { branch, repo } from './repo';
 
 /**
@@ -56,12 +56,12 @@ const paginaVelden = [
 
 const tekst = { label: 'Tekst', name: 'body', widget: 'markdown', required: false, buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'bulleted-list', 'numbered-list'], editor_components: [], modes: ['rich_text'] };
 
-/** Gespeelde toernooien eerst (recentste bovenaan), daarna de komende. Typen filtert de lijst. */
+/**
+ * Alle toernooien op datum, nieuwste bovenaan: zoals de lijst met rankings, en los van de dag van de build
+ * (een halte die net gespeeld is, staat op dezelfde plaats als ervoor). Typen filtert de lijst.
+ */
 function toernooiOpties(toernooien: Toernooi[]) {
-  const nu = vandaag();
-  const gespeeld = toernooien.filter((t) => t.datum <= nu).reverse();
-  const komend = toernooien.filter((t) => t.datum > nu);
-  return [...gespeeld, ...komend].map((t) => ({ label: `${lang(t.datum)} · ${t.club}`, value: t.id }));
+  return [...toernooien].reverse().map((t) => ({ label: `${lang(t.datum)} · ${t.club}`, value: t.id }));
 }
 
 /**
