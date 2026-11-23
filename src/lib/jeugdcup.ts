@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
-import { dagMaand, plusDagen, vandaag, weekdagDagMaand } from './datum';
+import { dagMaand, lang, plusDagen, vandaag, weekdagDagMaand } from './datum';
 import { leesStand, type Rij } from './stand';
 import { leesStandenPdf, type PdfJs, type PdfStanden } from './stand-pdf';
 
@@ -13,7 +13,7 @@ const jeugdcuptour = (await getEntry('paginas', 'jeugdcuptour'))?.data;
 const indeling = jeugdcuptour?.geboortejaren;
 if (!jeugdcuptour || !indeling) throw new Error('Geboortejaren ontbreken in src/content/paginas/jeugdcuptour.md');
 
-/** Eindstanden van vroeger (pdf), nieuwste eerst. */
+/** Standen van vroeger (pdf), nieuwste eerst: eindstanden, en met een `datum` de tussenstand na de halte van die dag. */
 export const archief = jeugdcuptour.archief;
 
 /** Andere jaren schuiven mee: U11 is in 2026 geboren in 2016, in 2027 in 2017. */
@@ -235,6 +235,28 @@ export async function rankingPerJaar() {
       const laatste = [...per.values()].reduce((a, b) => (b.toernooi.datum > a.toernooi.datum ? b : a)).toernooi;
       return { jaar, per, laatste };
     });
+}
+
+/**
+ * Wat er naast de stand van `jaar` (na `laatste`) nog te vinden is. `eerder`: de tussenstanden van datzelfde jaar,
+ * nieuwste eerst, uit het archief (pdf met de datum van de halte) en van de site zelf (elke halte voor `laatste` met
+ * een pdf). `ander`: de eindstanden uit het archief. Een tussenstand van een ander jaar staat op de pagina van dat
+ * jaar; heeft dat jaar geen pagina (`jaren`), dan staat hij bij `ander`, met zijn datum erbij.
+ */
+export async function eerdereStanden(jaar?: number, laatste?: Toernooi, jaren: number[] = []) {
+  const jaarVan = (datum: string) => Number(datum.slice(0, 4));
+  // Op halte: bij twee bestanden voor hetzelfde toernooi wint het laatste (zie alleStanden).
+  const eigen = new Map(
+    (await alleStanden())
+      .filter((s) => s.pdf && laatste && rankingJaar(s.toernooi) === jaar && s.toernooi.datum < laatste.datum)
+      .map((s) => [s.toernooi.id, { label: `Na ${s.toernooi.club}`, bestand: s.pdf!, datum: s.toernooi.datum }]),
+  );
+  const uitArchief = archief.flatMap((a) => (a.datum && jaarVan(a.datum) === jaar ? [{ ...a, datum: a.datum }] : []));
+  const ander = archief.flatMap(({ label, bestand, datum }) => {
+    if (!datum) return [{ label, bestand }];
+    return jaarVan(datum) === jaar || jaren.includes(jaarVan(datum)) ? [] : [{ label: `${label}, ${lang(datum)}`, bestand }];
+  });
+  return { eerder: [...uitArchief, ...eigen.values()].sort((a, b) => b.datum.localeCompare(a.datum)), ander };
 }
 
 /** Laatst gepubliceerde stand: het jaar en de halte waarna ze berekend is. */

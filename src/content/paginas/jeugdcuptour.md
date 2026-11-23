@@ -8,20 +8,27 @@ documenten:
   - titel: Bijlagen
     tekst: Wedstrijdindeling, puntenverdeling en reekshoofden (pdf)
 archief:
-  - label: Ranking na BC De Pluimplukkers
+  - label: Na BC De Pluimplukkers
     bestand: /wp-content/uploads/2026/05/6.-Jeugdcuptour-2026-ranking-na-BC-De-Pluimplukkers.pdf
-  - label: Ranking na BC Temse
+    datum: 2026-05-24
+  - label: Na BC Temse
     bestand: /wp-content/uploads/2026/04/5.-Jeugdcuptour-2026-ranking-na-BC-Temse.pdf
-  - label: Ranking na Latem-De Pinte
+    datum: 2026-04-26
+  - label: Na BC Latem-De Pinte
     bestand: /wp-content/uploads/2026/03/4.-Jeugdcuptour-2026-ranking-na-Latem-DePinte.pdf
-  - label: Ranking na BC Landegem
+    datum: 2026-03-29
+  - label: Na BC Landegem
     bestand: /wp-content/uploads/2026/03/3.-Jeugdcuptour-2026-ranking-na-BC-Landegem.pdf
-  - label: Ranking na Wit Wit Ronse
+    datum: 2026-03-15
+  - label: Na Wit-Wit Ronse
     bestand: /wp-content/uploads/2026/02/2.-Jeugdcuptour-2026-ranking-na-Wit-Wit.pdf
-  - label: Ranking na PK Jeugd
+    datum: 2026-02-21
+  - label: Na PK Jeugd
     bestand: /wp-content/uploads/2026/02/13.-Jeugdcuptour-2026-ranking-na-PK-jeugd.pdf
-  - label: Ranking na Denderleeuw
+    datum: 2026-02-07
+  - label: Na BC Denderleeuw
     bestand: /wp-content/uploads/2026/02/1.-Jeugdcuptour-2026-ranking-na-Denderleeuw.pdf
+    datum: 2026-01-24
   - label: Eindstand kalenderjaar 2025
     bestand: /wp-content/uploads/2026/01/13.-Jeugdcuptour-2025-ranking-na-Buggenhout.pdf
   - label: Eindstand kalenderjaar 2024

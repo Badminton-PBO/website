@@ -116,7 +116,8 @@ const paginas = defineCollection({
       // jeugd
       trainers: z.array(z.object({ naam: z.string(), diploma: z.string() })).default([]),
       // jeugdcuptour
-      archief: z.array(z.object({ label: z.string(), bestand: z.string() })).default([]),
+      /** Met `datum` (speeldag van de halte): een tussenstand van dat jaar. Zonder: een eindstand. */
+      archief: z.array(z.object({ label: z.string(), bestand: z.string(), datum: z.preprocess(leeg, isoDatum.optional()) })).default([]),
       /** Ingevuld voor één kalenderjaar; src/lib/jeugdcup.ts schuift ze op naar andere jaren. */
       geboortejaren: z
         .object({ jaar: z.number().int(), minibad: jaren, u11: jaren, u13: jaren, u15: jaren, 'u17-u19': jaren })

@@ -1,41 +1,66 @@
 ---
+import { u } from '../lib/url';
 import Icon from './Icon.astro';
+import { dagMaand } from '../lib/datum';
+import { eerdereStanden, type Toernooi } from '../lib/jeugdcup';
 
 interface Props {
-  items: { label: string; href: string; pdf?: boolean }[];
+  /** Het jaar van de stand op deze pagina en de halte waarna ze berekend is. Zonder: er staat nog geen stand online. */
+  jaar?: number;
+  laatste?: Toernooi;
+  /** Jaren met een eigen rankingpagina, nieuwste eerst. */
+  jaren?: number[];
 }
 
-const { items } = Astro.props;
-// De recentste standen meteen zichtbaar, de rest (tot 2010) achter één klik.
+const { jaar, laatste, jaren = [] } = Astro.props;
+const { eerder, ander } = await eerdereStanden(jaar, laatste, jaren);
+
+const jaarHref = (j: number) => u(j === jaren[0] ? '/jeugd/jeugdcuptour/ranking' : `/jeugd/jeugdcuptour/ranking/${j}`);
+const anderen = [
+  ...jaren.filter((j) => j !== jaar).map((j) => ({ label: `Ranking ${j}`, href: jaarHref(j), pdf: false })),
+  ...ander.map((a) => ({ label: a.label, href: u(a.bestand), pdf: true })),
+];
+// De recentste jaren meteen zichtbaar, de rest (tot 2012) achter één klik.
 const ZICHTBAAR = 6;
-const eerst = items.slice(0, ZICHTBAAR);
-const ouder = items.slice(ZICHTBAAR);
+const groepen = [anderen.slice(0, ZICHTBAAR), anderen.slice(ZICHTBAAR)];
+
+const rooster = 'grid gap-2 sm:grid-cols-2 lg:grid-cols-3';
 const link = 'flex min-h-14 items-center gap-3 rounded-2xl bg-paper px-4 py-3 font-semibold transition-colors hover:bg-wash';
+const kop = 'mb-3 px-2 text-xl leading-tight font-bold md:px-0 md:text-2xl';
 ---
 
 {
-  items.length > 0 && (
+  eerder.length + anderen.length > 0 && (
     <div>
-      <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {eerst.map((a) => (
-          <li>
-            <a href={a.href} class={link}>
-              <Icon name={a.pdf ? 'document' : 'ranking'} size={20} class="shrink-0 text-brand" />
-              <span class="min-w-0 flex-1">{a.label}</span>
-              {a.pdf && <span class="text-sm font-normal text-muted">pdf</span>}
-            </a>
-          </li>
-        ))}
-      </ul>
-      {ouder.length > 0 && (
-        <details class="group mt-2">
-          <summary class="inline-flex min-h-12 cursor-pointer list-none items-center gap-2 rounded-full px-4 font-semibold text-brand hover:bg-wash [&::-webkit-details-marker]:hidden">
-            <Icon name="omlaag" size={18} stroke={2.2} class="transition-transform group-open:rotate-180" />
-            <span class="group-open:hidden">Oudere standen ({ouder.length})</span>
-            <span class="hidden group-open:inline">Minder tonen</span>
-          </summary>
-          <ul class="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {ouder.map((a) => (
+      <h2 class="mb-1 px-2 text-[28px] leading-tight font-extrabold md:px-0 md:text-4xl">Eerdere standen</h2>
+      <p class="px-2 text-muted md:px-0">De ranking loopt per kalenderjaar. In januari begint een nieuwe stand.</p>
+
+      {/* De tussenstanden van dit jaar, na elke eerdere halte: nieuwste eerst, met de speeldag. */}
+      {eerder.length > 0 && (
+        <>
+          <h3 class:list={[kop, 'mt-6']}>Eerder in {jaar}</h3>
+          <ol class={rooster}>
+            {eerder.map((s) => (
+              <li>
+                <a href={u(s.bestand)} class={link}>
+                  <Icon name="document" size={20} class="shrink-0 text-brand" />
+                  <span class="min-w-0 flex-1 leading-snug">
+                    <span class="block">{s.label}</span>
+                    <span class="num block text-[15px] font-normal text-muted">{dagMaand(s.datum)}</span>
+                  </span>
+                  <span class="text-sm font-normal text-muted">pdf</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+
+      {anderen.length > 0 && (
+        <>
+          <h3 class:list={[kop, eerder.length > 0 ? 'mt-8' : 'mt-6']}>{jaar ? 'Andere jaren' : 'Eindstanden'}</h3>
+          <ul class={rooster}>
+            {groepen[0].map((a) => (
               <li>
                 <a href={a.href} class={link}>
                   <Icon name={a.pdf ? 'document' : 'ranking'} size={20} class="shrink-0 text-brand" />
@@ -45,7 +70,27 @@ const link = 'flex min-h-14 items-center gap-3 rounded-2xl bg-paper px-4 py-3 fo
               </li>
             ))}
           </ul>
-        </details>
+          {groepen[1].length > 0 && (
+            <details class="group mt-2">
+              <summary class="inline-flex min-h-12 cursor-pointer list-none items-center gap-2 rounded-full px-4 font-semibold text-brand hover:bg-wash [&::-webkit-details-marker]:hidden">
+                <Icon name="omlaag" size={18} stroke={2.2} class="transition-transform group-open:rotate-180" />
+                <span class="group-open:hidden">Oudere jaren ({groepen[1].length})</span>
+                <span class="hidden group-open:inline">Minder tonen</span>
+              </summary>
+              <ul class:list={[rooster, 'mt-2']}>
+                {groepen[1].map((a) => (
+                  <li>
+                    <a href={a.href} class={link}>
+                      <Icon name="document" size={20} class="shrink-0 text-brand" />
+                      <span class="min-w-0 flex-1">{a.label}</span>
+                      <span class="text-sm font-normal text-muted">pdf</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </>
       )}
     </div>
   )

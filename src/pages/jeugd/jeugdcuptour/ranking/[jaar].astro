@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const jaren = await rankingPerJaar();
   return jaren.slice(1).map((j) => ({
     params: { jaar: String(j.jaar) },
-    props: { ...j, jaren: jaren.map((x) => x.jaar), nieuwste: jaren[0].jaar },
+    props: { ...j, jaren: jaren.map((x) => x.jaar) },
   }));
 }
 

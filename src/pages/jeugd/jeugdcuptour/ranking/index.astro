@@ -6,7 +6,6 @@ import RankingView from '../../../../components/RankingView.astro';
 import RankingArchief from '../../../../components/RankingArchief.astro';
 import {
   alleToernooien,
-  archief,
   komende,
   rankingJaar,
   rankingPerJaar,
@@ -41,14 +40,11 @@ const over = wachtOpStand(toernooien, volgende, recent?.laatste) ?? volgende;
       <RankingView
         {...recent}
         jaren={jaren.map((j) => j.jaar)}
-        nieuwste={recent.jaar}
         volgendeStand={over && rankingJaar(over) === recent.jaar ? volgendeStand : undefined}
       />
     ) : (
       <section class="wrap mt-8">
-        <h2 class="mb-1 px-2 text-[28px] leading-tight font-extrabold md:px-0 md:text-4xl">Eerdere standen</h2>
-        <p class="mb-5 px-2 text-muted md:px-0">De ranking loopt per kalenderjaar. In januari begint een nieuwe stand.</p>
-        <RankingArchief items={archief.map((a) => ({ label: a.label, href: u(a.bestand), pdf: true }))} />
+        <RankingArchief />
       </section>
     )
   }

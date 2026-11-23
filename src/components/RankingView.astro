@@ -4,7 +4,6 @@ import Icon from './Icon.astro';
 import RankingArchief from './RankingArchief.astro';
 import { mail } from '../data/site';
 import {
-  archief,
   categorieen,
   categorieLabel,
   geboortejaren,
@@ -23,20 +22,13 @@ interface Props {
   jaar: number;
   per: Map<string, Stand>;
   laatste: Toernooi;
-  /** Andere jaren met data, nieuwste eerst. */
+  /** Alle jaren met data, nieuwste eerst. */
   jaren: number[];
-  nieuwste: number;
   /** "De volgende stand komt na ..." of "De stand na ... volgt nog." (volgendeStandZin). Enkel bij de lopende ranking. */
   volgendeStand?: string;
 }
 
-const { jaar, per, laatste, jaren, nieuwste, volgendeStand } = Astro.props;
-
-const jaarHref = (j: number) => u(j === nieuwste ? '/jeugd/jeugdcuptour/ranking' : `/jeugd/jeugdcuptour/ranking/${j}`);
-const anderen = [
-  ...jaren.filter((j) => j !== jaar).map((j) => ({ label: `Ranking ${j}`, href: jaarHref(j) })),
-  ...archief.map((a) => ({ label: a.label, href: u(a.bestand), pdf: true })),
-];
+const { jaar, per, laatste, jaren, volgendeStand } = Astro.props;
 
 // Elke categorie, jongens en meisjes apart, met haar stand als die er is.
 const borden = categorieen.flatMap((c) => geslachten.map((g) => ({ c, g, s: per.get(standSleutel(c.id, g.id)) })));
@@ -295,15 +287,7 @@ const segment =
 </section>
 
 <section class="wrap mt-14 md:mt-16">
-  {
-    anderen.length > 0 && (
-      <>
-        <h2 class="mb-1 px-2 text-[28px] leading-tight font-extrabold md:px-0 md:text-4xl">Eerdere standen</h2>
-        <p class="mb-5 px-2 text-muted md:px-0">De ranking loopt per kalenderjaar. In januari begint een nieuwe stand.</p>
-        <RankingArchief items={anderen} />
-      </>
-    )
-  }
+  <RankingArchief jaar={jaar} laatste={laatste} jaren={jaren} />
   <p class="mt-8 max-w-[640px] px-2 leading-normal text-muted md:px-0">
     Klopt er iets niet? Mail naar <a class="link" href={`mailto:${mail.jeugdcup}`}>{mail.jeugdcup}</a> en we passen het aan.
   </p>

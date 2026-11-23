@@ -268,13 +268,17 @@ const paginasCollectie = {
         { ...tekst, label: 'Tekst "Zo werkt het"' },
         { ...documenten, label: 'Reglement en bijlagen' },
         {
-          label: 'Archief eindstanden (pdf)',
+          label: 'Archief standen (pdf)',
           name: 'archief',
           widget: 'list',
           required: false,
           summary: '{{fields.label}}',
-          hint: 'Nieuwste eerst, bv. "Eindstand 2025".',
-          fields: [{ label: 'Naam', name: 'label', widget: 'string' }, { ...bestand('Pdf'), required: true }],
+          hint: 'Nieuwste eerst. Een eindstand: "Eindstand kalenderjaar 2025", zonder datum. Een tussenstand: "Na BC Temse", met de datum van de halte.',
+          fields: [
+            { label: 'Naam', name: 'label', widget: 'string' },
+            { ...bestand('Pdf'), required: true },
+            { ...datum, label: 'Datum van de halte', name: 'datum', required: false, default: '', hint: 'Enkel bij een tussenstand: de site zet hem dan op datum bij de standen van dat jaar. Leeg bij een eindstand.' },
+          ],
         },
         {
           label: 'Geboortejaren per categorie',

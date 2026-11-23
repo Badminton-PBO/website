@@ -83,6 +83,8 @@ Een gespeelde halte met standen niet verwijderen: dan lukt publiceren niet meer 
 
 **Vaste pagina's** bevat per pagina de titel, de intro, de lopende tekst en de lijsten: bestuursleden met foto, medewerkers, provinciale bijdrage, documenten, trainers, vacatures, reglement en archief van de jeugdcuptour. De opmaak eromheen (kaarten, knoppen, kalender) zit in de code.
 
+Bij **Jeugdcuptour** staat het **archief standen**: de pdf's onder "Eerdere standen" op de rankingpagina. Een eindstand ("Eindstand kalenderjaar 2025") krijgt geen datum en komt bij "Andere jaren". Een tussenstand van voor de standen op de site stonden ("Na BC Temse") krijgt de datum van de halte: de site zet hem dan op datum bij "Eerder in 2026". Standen die je via Jeugdcup-rankings uploadt, komen daar vanzelf bij.
+
 Bij **Jeugdcuptour** staan ook de **geboortejaren per categorie**. Ze komen in de tabel "Categorieën" en bij de filters van de ranking. Vul ze in voor één kalenderjaar, bijvoorbeeld 2026: U13 van 2014 tot en met 2015. Het jaar erna schuift de site ze zelf op (U13 in 2027: 2015 en 2016). Enkel aanpassen als de leeftijdsgrenzen veranderen. Minibad heeft geen "tot en met": leeg betekent "of later". De categorieën zelf (Minibad, U11, ...) zitten in de code, want de standen verwijzen ernaar.
 
 ## Nieuws bovenaan de home (beheerders)
