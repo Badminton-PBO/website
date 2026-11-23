@@ -344,10 +344,10 @@ const voorClubs = [
     )
   }
 
-  <!-- Provinciaal kampioenschap, zolang het aanstaat in het beheer -->
+  <!-- Provinciaal kampioenschap, zolang het aanstaat in het beheer en tot twee weken na het PK (pk.homeTot) -->
   {
-    pk.tonen && (
-      <section class="wrap mt-3 lg:mt-5" aria-labelledby="pk-titel">
+    pk.tonen && pk.homeTot >= vandaag() && (
+      <Periode as="section" tot={pk.homeTot} class="wrap mt-3 lg:mt-5" aria-labelledby="pk-titel">
         <div class="grid gap-5 rounded-card bg-accent-soft px-6 py-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10 lg:px-10 lg:py-9">
           <div class="min-w-0">
             <h2 id="pk-titel" class="text-[28px] leading-[1.1] font-extrabold lg:text-4xl">
@@ -362,7 +362,7 @@ const voorClubs = [
             </a>
           </div>
         </div>
-      </section>
+      </Periode>
     )
   }
 
@@ -381,14 +381,17 @@ const voorClubs = [
           )
         }{' '}
         {
-          momenten.map(
-            ({ van, tot, volgende }) =>
-              volgende && (
+          // Per moment: komt de stand na de volgende halte, of volgt die van de vorige nog? Ook na de laatste halte.
+          momenten.map(({ van, tot, volgende }) => {
+            const zin = volgendeStandZin(toernooien, volgende, ranking?.laatste);
+            return (
+              zin && (
                 <Periode as="span" van={van} tot={tot}>
-                  {volgendeStandZin(volgende, ranking?.jaar)}
+                  {zin}
                 </Periode>
-              ),
-          )
+              )
+            );
+          })
         }
       </p>
       {

@@ -23,7 +23,7 @@ Zie `docs/beheer.md`, "Eenmalig instellen": OAuth App op GitHub, secrets `OAUTH_
    - variabelen `FTP_SERVER`, `FTP_SERVER_DIR` (de map van het subdomein, met `/` op het einde), `SITE_URL` = `https://nieuw.badminton-pbo.be`
    - eventueel `FTP_PROTOCOL` (`ftps` is standaard, `ftp` als de hosting geen FTPS kent)
    - secrets `FTP_USERNAME`, `FTP_PASSWORD`
-3. Zet de callback-URL van de OAuth App tijdelijk op `https://nieuw.badminton-pbo.be/admin/auth/`, en de variabele `CMS_AUTH_URL` op `https://nieuw.badminton-pbo.be` (dan werkt ook de login op GitHub Pages).
+3. Zet de callback-URL van de OAuth App tijdelijk op `https://nieuw.badminton-pbo.be/admin/auth/`, en de variabele `CMS_AUTH_URL` op `https://nieuw.badminton-pbo.be` (dan werkt ook de login op GitHub Pages). De deploy zet het subdomein uit `SITE_URL` zelf bij de sites die mogen inloggen (`origins` in `admin/auth/config.php`).
 4. Run **Deploy naar de hosting** (of push naar `main`).
 5. Test:
    - de site, de ranking (filters, zoeken), het nieuws (zoeken)

@@ -162,9 +162,16 @@ export async function alleStanden(): Promise<Stand[]> {
   // Op bestandsnaam: voor een toernooi dat er twee keer in staat, maakt Decap <id>-1.yaml. Het laatste bestand wint.
   const bestanden = (await getCollection('rankings')).sort((a, b) => a.id.localeCompare(b.id));
   return bestanden.flatMap((r) => {
-    // Op datum als terugval: een verbeterde clubnaam verandert het id van de halte.
-    const toernooi = opId.get(r.data.toernooi) ?? opDatum.get(r.data.toernooi.slice(0, 10));
-    if (!toernooi) throw new Error(`Stand ${r.id}: halte "${r.data.toernooi}" staat niet (meer) in de kalender (src/content/kalender/).`);
+    // Een verbeterde clubnaam of datum verandert het id van de halte. Terugval: eerst op de datum, dan op de club
+    // (de halte van die club in hetzelfde seizoen, het dichtst bij de oude datum).
+    const [datum, club] = [r.data.toernooi.slice(0, 10), r.data.toernooi.slice(11)];
+    const dagen = (t: Toernooi) => Math.abs(Date.parse(t.datum) - Date.parse(datum));
+    const zelfdeClub = haltes.filter((t) => t.id.slice(11) === club && seizoenVan(t.datum) === seizoenVan(datum));
+    const toernooi = opId.get(r.data.toernooi) ?? opDatum.get(datum) ?? zelfdeClub.sort((a, b) => dagen(a) - dagen(b)).at(0);
+    if (!toernooi)
+      throw new Error(
+        `De standen "${r.id}" horen bij een halte die niet meer in de kalender staat (${r.data.toernooi}). Zet de halte terug in Jeugdcup-kalender, of verwijder die standen in Jeugdcup-rankings.`,
+      );
     return categorieen.flatMap((c) =>
       geslachten.flatMap((g) => {
         const rijen = leesStand(r.data[c.id]?.[g.id] ?? '');
@@ -205,12 +212,30 @@ export async function laatsteRanking() {
 export const standNaZin = (t: Toernooi) => `Stand na ${t.club}, ${weekdagDagMaand(t.datum)}.`;
 
 /**
- * Wanneer de volgende stand komt. Ligt de volgende halte in een ander kalenderjaar dan de laatste stand (`jaar`),
- * dan begint daar een nieuwe ranking. Zonder stand: de eerste.
+ * De laatst gespeelde halte waarvan de stand nog niet online staat. Gespeeld: alles voor `volgende`, of alle haltes als
+ * er geen meer komt. `laatste` is de halte van de laatst gepubliceerde stand. De stand komt meestal enkele dagen na de
+ * halte: tot dan loopt de ranking achter.
  */
-export function volgendeStandZin(volgende: Toernooi, jaar?: number) {
+export function wachtOpStand(toernooien: Toernooi[], volgende?: Toernooi, laatste?: Toernooi) {
+  const gespeeld = volgende ? toernooien.filter((t) => t.datum < volgende.datum).at(-1) : toernooien.at(-1);
+  return gespeeld && (!laatste || gespeeld.datum > laatste.datum) ? gespeeld : undefined;
+}
+
+/**
+ * Wanneer de volgende stand komt. Is er sinds de laatste stand (na `laatste`) al een halte gespeeld, dan volgt die
+ * stand nog. Anders komt ze na de volgende halte; ligt die in een ander kalenderjaar, dan begint daar een nieuwe
+ * ranking. Zonder stand: de eerste. Niets te melden: undefined.
+ */
+export function volgendeStandZin(toernooien: Toernooi[], volgende?: Toernooi, laatste?: Toernooi) {
+  const wacht = wachtOpStand(toernooien, volgende, laatste);
+  if (wacht) {
+    const na = `na ${wacht.club} (${dagMaand(wacht.datum)})`;
+    const nieuwJaar = !laatste || rankingJaar(wacht) !== rankingJaar(laatste);
+    return nieuwJaar ? `De eerste stand van ${rankingJaar(wacht)}, ${na}, volgt nog.` : `De stand ${na} volgt nog.`;
+  }
+  if (!volgende) return undefined;
   const waar = `${volgende.club} op ${dagMaand(volgende.datum)}`;
-  if (jaar === undefined) return `De eerste stand komt na ${waar}.`;
-  if (rankingJaar(volgende) !== jaar) return `De ranking ${rankingJaar(volgende)} begint bij ${waar}.`;
+  if (!laatste) return `De eerste stand komt na ${waar}.`;
+  if (rankingJaar(volgende) !== rankingJaar(laatste)) return `De ranking ${rankingJaar(volgende)} begint bij ${waar}.`;
   return `De volgende stand komt na ${waar}.`;
 }

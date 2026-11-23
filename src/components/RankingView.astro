@@ -12,7 +12,6 @@ import {
   geslachtLabel,
   geslachten,
   standSleutel,
-  volgendeStandZin,
   type Stand,
   type Toernooi,
 } from '../lib/jeugdcup';
@@ -27,11 +26,11 @@ interface Props {
   /** Andere jaren met data, nieuwste eerst. */
   jaren: number[];
   nieuwste: number;
-  /** Volgende halte, voor "de volgende stand komt na ...". Enkel bij de lopende ranking. */
-  volgende?: Toernooi;
+  /** "De volgende stand komt na ..." of "De stand na ... volgt nog." (volgendeStandZin). Enkel bij de lopende ranking. */
+  volgendeStand?: string;
 }
 
-const { jaar, per, laatste, jaren, nieuwste, volgende } = Astro.props;
+const { jaar, per, laatste, jaren, nieuwste, volgendeStand } = Astro.props;
 
 const jaarHref = (j: number) => u(j === nieuwste ? '/jeugd/jeugdcuptour/ranking' : `/jeugd/jeugdcuptour/ranking/${j}`);
 const anderen = [
@@ -145,7 +144,7 @@ const segment =
         <li>
           In de ranking {jaar} staan alleen spelers die dit kalenderjaar al punten haalden. Deze stand is van na {laatste.club} ({dagMaand(laatste.datum)}).
         </li>
-        {volgende && <li>{volgendeStandZin(volgende, jaar)}</li>}
+        {volgendeStand && <li>{volgendeStand}</li>}
       </ul>
       <p class="mt-5 leading-normal">Je speelde wel mee en je staat er niet in? Laat het ons weten, dan zoeken we het uit.</p>
       <a
@@ -205,7 +204,7 @@ const segment =
               </h2>
               <p class="mt-3 rounded-card bg-paper p-6 leading-normal text-muted md:p-8">
                 Nog geen stand voor {c.label} {g.id} in {jaar}.
-                {volgende && ` ${volgendeStandZin(volgende, jaar)}`}
+                {volgendeStand && ` ${volgendeStand}`}
               </p>
             </div>
           );

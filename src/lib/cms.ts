@@ -11,8 +11,8 @@ import { categorieen, geslachten } from './jeugdcup-labels';
 import { nieuwsCategorieen } from './nieuws-labels';
 import { alleToernooien, type Toernooi } from './jeugdcup';
 import { lang, vandaag } from './datum';
+import { branch, repo } from './repo';
 
-const repo = 'Badminton-PBO/website';
 /**
  * Waar de PHP-loginhelper staat (public/admin/auth/). Op GitHub Pages wijst dit naar de echte hosting.
  * Mag een submap zijn (bv. https://voorbeeld.be/pbo). Decap vergelijkt `base_url` met de origin van de
@@ -171,7 +171,7 @@ const kalenderCollectie = {
           pattern: ['^https://\\S+$', 'Volledige link, beginnend met https://'],
           hint: 'De pagina van het toernooi op tournamentsoftware. Vul dan ook "Inschrijven tot" in. De knop op de kalender past zich aan: eerst "Inschrijven", dan "Wedstrijden", na de halte "Uitslagen".',
         },
-        { ...datum, label: 'Inschrijven tot', name: 'inschrijvenTot', required: false, default: '', hint: 'Laatste dag om in te schrijven. Verplicht bij een toernooilink, anders bouwt de site niet. Daarna toont de kalender "Wedstrijden".' },
+        { ...datum, label: 'Inschrijven tot', name: 'inschrijvenTot', required: false, default: '', hint: 'Laatste dag om in te schrijven, voor de speeldag. Verplicht bij een toernooilink: zonder kan je niet publiceren. Daarna toont de kalender "Wedstrijden".' },
         { label: 'Prijsuitreiking', name: 'prijsuitreiking', widget: 'boolean', required: false, default: false },
       ],
     },
@@ -310,7 +310,7 @@ const paginasCollectie = {
           widget: 'boolean',
           required: false,
           default: false,
-          hint: 'Aan: een blok op de home met de data, de plaats en de inschrijfknop. Zet het uit na het PK of zolang het volgende niet vastligt. De pagina /pk blijft bestaan.',
+          hint: 'Aan: een blok op de home met de data, de plaats en de inschrijfknop. Twee weken na het PK verdwijnt het vanzelf. Zet het uit zolang het volgende PK niet vastligt. De pagina /pk blijft bestaan.',
         },
         {
           label: 'Naam',
@@ -334,7 +334,7 @@ const paginasCollectie = {
           pattern: ['^https://\\S+$', 'Volledige link, beginnend met https://'],
           hint: 'De pagina van het PK op tournamentsoftware. Vul dan ook "Inschrijven tot" in. De knop past zich aan: eerst "Inschrijven", dan "Wedstrijden", na het PK "Uitslagen".',
         },
-        { ...datum, label: 'Inschrijven tot', name: 'inschrijvenTot', required: false, default: '', hint: 'Laatste dag om in te schrijven. Staat op de knop. Verplicht bij een toernooilink, anders bouwt de site niet.' },
+        { ...datum, label: 'Inschrijven tot', name: 'inschrijvenTot', required: false, default: '', hint: 'Laatste dag om in te schrijven, voor de eerste speeldag. Staat op de knop. Verplicht bij een toernooilink: zonder kan je niet publiceren.' },
         {
           label: 'Affiche',
           name: 'affiche',
@@ -503,9 +503,12 @@ export function cmsConfig({ site, collections }: { site: URL; collections: objec
     backend: {
       name: 'github',
       repo,
-      branch: 'main',
+      branch,
       base_url: authUrl,
       auth_endpoint: authEndpoint,
+      // De repo is publiek: het logintoken hoeft niet aan de privérepo's van de beheerder te kunnen (standaard: `repo`).
+      // Wordt de repo ooit privé, zet dit dan terug op 'repo', anders kan niemand nog publiceren.
+      auth_scope: 'public_repo',
       commit_messages: {
         create: 'Nieuw in {{collection}}: {{slug}}',
         update: 'Aangepast in {{collection}}: {{slug}}',

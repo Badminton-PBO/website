@@ -4,17 +4,29 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageIntro from '../../../../components/PageIntro.astro';
 import RankingView from '../../../../components/RankingView.astro';
 import RankingArchief from '../../../../components/RankingArchief.astro';
-import { archief, komende, rankingJaar, rankingPerJaar, standNaZin, volgendeStandZin } from '../../../../lib/jeugdcup';
+import {
+  alleToernooien,
+  archief,
+  komende,
+  rankingJaar,
+  rankingPerJaar,
+  standNaZin,
+  volgendeStandZin,
+  wachtOpStand,
+} from '../../../../lib/jeugdcup';
 
 const jaren = await rankingPerJaar();
+const toernooien = await alleToernooien();
 const [volgende] = await komende();
 const recent = jaren[0];
 const crumbs = [{ href: u('/jeugd'), label: 'Jeugd' }, { href: u('/jeugd/jeugdcuptour'), label: 'Jeugdcuptour' }, { label: 'Ranking' }];
 
 // "Stand na BC De Mintons, zaterdag 26 september. De volgende stand komt na Gentse BC op 11 oktober."
-const lead = [recent ? standNaZin(recent.laatste) : 'Er staat nog geen stand online.', volgende && volgendeStandZin(volgende, recent?.jaar)]
-  .filter(Boolean)
-  .join(' ');
+// Is Gentse BC al gespeeld en staat die stand nog niet online: "De stand na Gentse BC (11 oktober) volgt nog."
+const volgendeStand = volgendeStandZin(toernooien, volgende, recent?.laatste);
+const lead = [recent ? standNaZin(recent.laatste) : 'Er staat nog geen stand online.', volgendeStand].filter(Boolean).join(' ');
+// Bij de tabellen enkel als die zin over deze ranking gaat, niet over die van het volgende kalenderjaar.
+const over = wachtOpStand(toernooien, volgende, recent?.laatste) ?? volgende;
 ---
 
 <BaseLayout
@@ -30,7 +42,7 @@ const lead = [recent ? standNaZin(recent.laatste) : 'Er staat nog geen stand onl
         {...recent}
         jaren={jaren.map((j) => j.jaar)}
         nieuwste={recent.jaar}
-        volgende={volgende && rankingJaar(volgende) === recent.jaar ? volgende : undefined}
+        volgendeStand={over && rankingJaar(over) === recent.jaar ? volgendeStand : undefined}
       />
     ) : (
       <section class="wrap mt-8">

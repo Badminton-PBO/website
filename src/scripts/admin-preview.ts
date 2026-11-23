@@ -10,6 +10,7 @@ import { categorieen, geslachten } from '../lib/jeugdcup-labels';
 import { categorieNaam } from '../lib/nieuws-labels';
 import { lang } from '../lib/datum';
 import { metBasispad } from './admin-basispad';
+import { toernooiNaam } from './admin-toernooien';
 
 type H = (tag: unknown, props?: Record<string, unknown> | null, ...children: unknown[]) => unknown;
 interface Entry {
@@ -129,7 +130,7 @@ function StandenVoorbeeld({ entry }: { entry: Entry }) {
   return h(
     'div',
     { style: { color: kleur.ink, padding: 24 } },
-    h('h2', { style: { margin: '0 0 4px', fontSize: 24, fontWeight: 800 } }, toernooi ? `Standen na ${toernooi}` : 'Kies eerst een toernooi.'),
+    h('h2', { style: { margin: '0 0 4px', fontSize: 24, fontWeight: 800 } }, toernooi ? `Standen na ${toernooiNaam(toernooi)}` : 'Kies eerst een toernooi.'),
     h(
       'p',
       { style: { margin: 0, padding: 16, borderRadius: 12, background: leeg.length ? kleur.zacht : 'transparent', paddingLeft: leeg.length ? 16 : 0 } },

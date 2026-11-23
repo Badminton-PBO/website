@@ -4,6 +4,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { nieuwsCategorieen } from './lib/nieuws-labels';
+import { inschrijfFouten } from './lib/toernooi';
 
 /** YAML leest 2026-09-26 als datum; Decap schrijft soms een string. Altijd terug naar YYYY-MM-DD. */
 const isoDatum = z
@@ -16,11 +17,10 @@ const leeg = (v: unknown) => (v === '' || v === null ? undefined : v);
 /**
  * Een toernooi heeft twee data: de speeldag (`datum`) en de laatste dag om in te schrijven (`inschrijvenTot`).
  * Met een toernooilink is die laatste verplicht: zonder weet de site niet tot wanneer de knop "Inschrijven" klopt.
+ * Het beheer houdt dezelfde fouten al tegen bij het publiceren (inschrijfFouten in src/lib/toernooi.ts).
  */
 function inschrijving(wie: string, t: { datum: string; toernooilink?: string; inschrijvenTot?: string }, ctx: z.RefinementCtx) {
-  const fout = (message: string) => ctx.addIssue({ code: 'custom', path: ['inschrijvenTot'], message: `${wie}: ${message}` });
-  if (t.toernooilink && !t.inschrijvenTot) fout('vul "Inschrijven tot" in bij de toernooilink.');
-  if (t.inschrijvenTot && t.inschrijvenTot >= t.datum) fout(`"Inschrijven tot" (${t.inschrijvenTot}) moet voor de speeldag (${t.datum}) liggen.`);
+  for (const fout of inschrijfFouten(t)) ctx.addIssue({ code: 'custom', path: ['inschrijvenTot'], message: `${wie}: ${fout}` });
 }
 
 /** Eén halte van de jeugdcuptour. Het id (<datum>-<club>) leidt src/lib/jeugdcup.ts af. */

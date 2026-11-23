@@ -15,12 +15,20 @@ $config = is_file(__DIR__ . '/config.php') ? require __DIR__ . '/config.php' : [
 $clientId = $config['client_id'] ?? '';
 $clientSecret = $config['client_secret'] ?? '';
 
-// Sites die het token mogen ontvangen: de echte site en de testversie op GitHub Pages.
+// Sites die het token mogen ontvangen: de echte site en de testversie op GitHub Pages, plus de sites in
+// config.php ('origins'). De deploy zet daar het testsubdomein uit SITE_URL in: zonder kan /admin daar niet inloggen.
+// Bewust een vaste lijst en geen "elk subdomein": wie op zo'n site een pagina kan zetten, krijgt het token.
 $origins = [
     'https://www.badminton-pbo.be',
     'https://badminton-pbo.be',
     'https://badminton-pbo.github.io',
 ];
+foreach ((array)($config['origins'] ?? []) as $origin) {
+    $origin = rtrim((string)$origin, '/');
+    if (preg_match('#^https://[a-z0-9.-]+(:\d+)?$#i', $origin) && !in_array($origin, $origins, true)) {
+        $origins[] = $origin;
+    }
+}
 
 header('Cache-Control: no-store');
 header('X-Robots-Tag: noindex');

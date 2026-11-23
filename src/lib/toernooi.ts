@@ -2,7 +2,7 @@
  * Wat een jeugdcuphalte en het PK delen: een pagina op tournamentsoftware en een sporthal.
  * Los van jeugdcup.ts, zodat het PK niet van de jeugdcup afhangt.
  */
-import { dagMaand, plusDagen, vandaag } from './datum';
+import { dagMaand, lang, plusDagen, vandaag } from './datum';
 
 /**
  * Toernooi met een pagina op tournamentsoftware en twee data: `inschrijvenTot`, de laatste dag om in te schrijven, en
@@ -12,6 +12,19 @@ export interface Toernooipagina {
   datum: string;
   toernooilink?: string;
   inschrijvenTot?: string;
+}
+
+/**
+ * Wat er niet klopt aan de twee data van een toernooi; leeg als alles in orde is. De regel staat op twee plaatsen:
+ * het beheer weigert zo'n toernooi te publiceren (src/scripts/admin-controle.ts), en het schema houdt de build tegen
+ * als het er toch door raakt, bv. met een wijziging rechtstreeks in GitHub (src/content.config.ts).
+ */
+export function inschrijfFouten(t: Partial<Toernooipagina>): string[] {
+  const fouten: string[] = [];
+  if (t.toernooilink && !t.inschrijvenTot) fouten.push('vul "Inschrijven tot" in bij de toernooilink.');
+  if (t.inschrijvenTot && t.datum && t.inschrijvenTot >= t.datum)
+    fouten.push(`"Inschrijven tot" (${lang(t.inschrijvenTot)}) moet voor de speeldag (${lang(t.datum)}) liggen.`);
+  return fouten;
 }
 
 /**

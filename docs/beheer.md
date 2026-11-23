@@ -13,6 +13,25 @@ Iedereen logt in met een eigen GitHub-account. Dat account heeft schrijfrechten 
 
 Let op: GitHub kent geen rechten per map. Een gewone user ziet in `/admin/jeugdcup/` enkel de rankings, maar kan technisch via GitHub of `/admin` ook andere bestanden aanpassen. Bij een klein, vertrouwd team is dat aanvaardbaar. Elke wijziging staat met naam in de geschiedenis en is terug te draaien.
 
+## Staat mijn wijziging online?
+
+Linksonder in het beheer staat een blokje met de laatste publicatie. Klik erop voor meer uitleg.
+
+| Blokje | Betekenis |
+|---|---|
+| **Bezig met publiceren …** | Je wijziging is bewaard, de site wordt opnieuw gebouwd. Dat duurt een paar minuten; je mag verder werken. |
+| **Online sinds vandaag om 14:05** | De laatste wijziging staat op de site. Zie je ze nog niet? Wacht een paar minuten en herlaad de pagina. |
+| **Publiceren mislukt** (rood) | De site toont nog de vorige versie, en ook wat je daarna publiceert komt niet online tot dit opgelost is. In het blokje staat wat er misliep en welke wijziging het was. |
+
+Bij **Publiceren mislukt**: verbeter in het beheer wat het blokje aangeeft en publiceer opnieuw. Voorbeelden:
+
+- "De standen ... horen bij een halte die niet meer in de kalender staat": zet de halte terug in **Jeugdcup-kalender**.
+- Een melding over een veld (bv. `mail.secretariaat`): open dat item en vul het veld juist in.
+
+Kom je er niet uit, verwittig dan de webbeheerder; de link **Technische details op GitHub** toont het volledige verslag.
+
+De meeste fouten houdt het beheer al tegen als je op **Publiceer** klikt: een verplicht veld dat leeg is, of een toernooilink zonder "Inschrijven tot". Je krijgt dan een melding en er wordt niets gepubliceerd.
+
 ## Standen toevoegen na een jeugdcup
 
 Eén item per toernooi, met de tien standen erna: Minibad, U11, U13, U15 en U17+U19, telkens jongens en meisjes.
@@ -36,12 +55,12 @@ De kalender heeft één item per seizoen (augustus tot juli), met een lijst halt
 - **Nieuw seizoen:** **Jeugdcup-kalender → + seizoen**, vul het seizoen in (bv. `2027-2028`) en klik bij **Haltes** zo vaak als nodig op **+ halte**. Publiceer één keer.
 - **Haltes toevoegen of schrappen:** open het seizoen, voeg toe of verwijder met het kruisje bij de halte, en publiceer. De volgorde maakt niet uit: de site zet ze op datum.
 - **Per halte:** datum, club, sporthal, adres en beginuur (voor de routelink), prijsuitreiking, en zodra het toernooi op tournamentsoftware staat de **toernooilink** en **Inschrijven tot**.
-- **Twee data per toernooi:** de **datum** is de speeldag, **Inschrijven tot** de laatste dag om in te schrijven. Bij een toernooilink is "Inschrijven tot" verplicht: zonder die datum bouwt de site niet en blijft de vorige versie online.
+- **Twee data per toernooi:** de **datum** is de speeldag, **Inschrijven tot** de laatste dag om in te schrijven. Bij een toernooilink is "Inschrijven tot" verplicht, en die datum ligt voor de speeldag. Klopt dat niet, dan publiceert het beheer niet en zegt het bij welke halte het misloopt.
 - **Toernooilink:** één link per halte, die je nooit hoeft te vervangen. De knop op de home en de kalender past zich aan: **Inschrijven tot ...** tot en met de datum bij **Inschrijven tot**, daarna **Wedstrijden** tot en met de speeldag, en na de halte **Uitslagen**.
 - **Inschrijvingen open:** op de home staan onder de volgende halte alle latere haltes waarvoor je nu kan inschrijven, elk tot de laatste inschrijfdag. Bij de volgende halte zelf staat "inschrijvingen afgesloten" zodra die datum voorbij is. Een halte komt er vanzelf bij zodra ze een toernooilink en "Inschrijven tot" heeft.
 - Een nieuwe halte verschijnt in de keuzelijst bij de rankings na de volgende build, binnen een paar minuten.
 
-Een gespeelde halte met standen niet verwijderen, anders bouwt de site niet meer. De datum, de club of de sporthal verbeteren mag wel. Een seizoen verwijderen kan niet in het beheer.
+Een gespeelde halte met standen niet verwijderen: dan lukt publiceren niet meer (zie "Staat mijn wijziging online?"). De datum, de club of de sporthal verbeteren mag wel; verbeter de datum en de club niet in één keer, want dan vindt de site de standen van die halte niet terug. Een seizoen verwijderen kan niet in het beheer.
 
 ## Vaste pagina's (beheerders)
 
@@ -69,6 +88,8 @@ In **Nieuws** staan enkel de berichten van de laatste maanden. Oudere berichten 
 
 Zet de cursor op een lege regel, klik op **+** boven de tekst en kies **Image**. Kies een bestand van je computer: het komt in `public/uploads/nieuws` en staat mee op de site.
 
+Een foto recht van je telefoon mag, je hoeft ze niet eerst te verkleinen: de site maakt er zelf een lichte versie van (hoogstens 1600 pixels breed) en zet een foto die op haar kant ligt recht. Het origineel blijft bewaard.
+
 Een afbeelding plakken of naar de tekst slepen kan niet: je krijgt dan een melding onderaan het scherm. Plak je tekst waar een afbeelding in zit, dan komt enkel de tekst mee.
 
 ## Provinciaal kampioenschap (beheerders)
@@ -82,7 +103,7 @@ Het PK heeft een eigen pagina (`/pk`) en een blok op de home. Je hoeft er geen n
 
 Hetzelfde blok dient ook voor het **PK Jeugd en Veteranen** in februari: verander de **Naam** (het jaar zet de site er zelf achter) en vul de gegevens van dat PK in. De twee PK's lopen niet tegelijk.
 
-De knop past zich aan zoals bij de jeugdcupkalender: **Inschrijven tot ...**, daarna **Wedstrijden**, na het PK **Uitslagen**. Zet **Tonen op de home** uit wanneer het PK voorbij is. De pagina `/pk` blijft bestaan met de info van het laatste PK, tot je ze het jaar erna overschrijft.
+De knop past zich aan zoals bij de jeugdcupkalender: **Inschrijven tot ...**, daarna **Wedstrijden**, na het PK **Uitslagen**. Twee weken na de laatste speeldag verdwijnt het blok vanzelf van de home; uitzetten hoeft niet. Vul je de gegevens van het volgende PK in, dan staat het er weer. De pagina `/pk` blijft bestaan met de info van het laatste PK, tot je ze het jaar erna overschrijft.
 
 ## Site-instellingen (beheerders)
 
@@ -106,6 +127,10 @@ Decap heeft een kleine loginhelper nodig: `public/admin/auth/index.php`. Die moe
    - secrets `OAUTH_CLIENT_ID` en `OAUTH_CLIENT_SECRET` (uit de OAuth App)
    - secrets `FTP_USERNAME`, `FTP_PASSWORD` en variabelen `FTP_SERVER`, `FTP_SERVER_DIR` (van de hostingprovider)
 3. De workflow **Deploy naar de hosting** schrijft bij elke deploy `admin/auth/config.php` met die geheimen.
+
+Het beheer vraagt GitHub enkel toegang tot publieke repo's (`auth_scope: public_repo` in `src/lib/cms.ts`), niet tot de privérepo's van wie inlogt. Wie al ingelogd was met de ruimere toegang, krijgt de beperkte na uitloggen en opnieuw inloggen. Wordt deze repo ooit privé, zet die instelling dan op `repo`.
+
+De helper geeft het logintoken enkel aan `www.badminton-pbo.be`, de testversie op GitHub Pages en het adres in de variabele `SITE_URL` (een testsubdomein). Draait `/admin` op nog een ander adres, zet dat dan in `config.php` onder `origins`; anders blijft het loginvenster hangen op "Ingelogd. Dit venster sluit vanzelf."
 
 De testversie op GitHub Pages gebruikt dezelfde loginhelper (variabele `CMS_AUTH_URL`, standaard `https://www.badminton-pbo.be`). Inloggen op de testversie lukt dus pas als de helper op de hosting staat.
 
