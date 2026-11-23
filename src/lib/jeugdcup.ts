@@ -1,6 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import { dagMaand, plusDagen, vandaag, weekdagDagMaand } from './datum';
 import { leesStand, type Rij } from './stand';
+import { leesStandenPdf, type PdfJs, type PdfStanden } from './stand-pdf';
 
 export * from './jeugdcup-labels';
 import { categorieen, geslachten, type CategorieId, type GeslachtId } from './jeugdcup-labels';
@@ -151,9 +154,37 @@ export interface Stand {
 /** Sleutel van een stand binnen een jaar: "u13-jongens". */
 export const standSleutel = (categorie: string, geslacht: string) => `${categorie}-${geslacht}`;
 
+const pdfs = new Map<string, Promise<PdfStanden['standen']>>();
+
 /**
- * Eén bestand per toernooi met alle standen erna (src/content/rankings/<toernooi-id>.yaml). Een reeks die leeg bleef
- * of waar de parser geen rijen in vindt, telt niet mee: de site toont dan de stand van het toernooi ervoor.
+ * De standen uit de pdf van een toernooi (`pad` zoals in het bestand, bv. /documenten/jeugdcuptour/x.pdf: het bestand
+ * staat in public/). Eén keer gelezen per build. Een pdf die ontbreekt of niet te lezen is, breekt de build niet:
+ * die reeksen tellen dan niet mee, zoals een leeg plakveld. Het beheer weigert zo'n pdf al bij het publiceren
+ * (src/scripts/admin-controle.ts).
+ */
+function standenUitPdf(pad: string) {
+  let belofte = pdfs.get(pad);
+  if (!belofte) {
+    belofte = (async () => {
+      try {
+        const pdfjs = (await import('pdfjs-dist/legacy/build/pdf.mjs')) as unknown as PdfJs;
+        const { standen } = await leesStandenPdf(pdfjs, new Uint8Array(await readFile(join(process.cwd(), 'public', pad))));
+        return standen;
+      } catch (fout) {
+        console.warn(`Jeugdcup-ranking: de pdf ${pad} is niet gelezen (${fout instanceof Error ? fout.message : fout}).`);
+        return {};
+      }
+    })();
+    pdfs.set(pad, belofte);
+  }
+  return belofte;
+}
+
+/**
+ * Eén bestand per toernooi met alle standen erna (src/content/rankings/<toernooi-id>.yaml). De standen komen uit de
+ * pdf van het toernooi (src/lib/stand-pdf.ts); een reeks die in het bestand geplakt is (`geplakt`), gaat voor op de
+ * pdf. Een reeks die nergens staat of waar de parser geen rijen in vindt, telt niet mee: de site toont dan de stand
+ * van het toernooi ervoor.
  */
 export async function alleStanden(): Promise<Stand[]> {
   const haltes = await alleToernooien();
@@ -161,7 +192,7 @@ export async function alleStanden(): Promise<Stand[]> {
   const opDatum = new Map(haltes.map((t) => [t.datum, t]));
   // Op bestandsnaam: voor een toernooi dat er twee keer in staat, maakt Decap <id>-1.yaml. Het laatste bestand wint.
   const bestanden = (await getCollection('rankings')).sort((a, b) => a.id.localeCompare(b.id));
-  return bestanden.flatMap((r) => {
+  const perBestand = bestanden.map(async (r) => {
     // Een verbeterde clubnaam of datum verandert het id van de halte. Terugval: eerst op de datum, dan op de club
     // (de halte van die club in hetzelfde seizoen, het dichtst bij de oude datum).
     const [datum, club] = [r.data.toernooi.slice(0, 10), r.data.toernooi.slice(11)];
@@ -172,13 +203,16 @@ export async function alleStanden(): Promise<Stand[]> {
       throw new Error(
         `De standen "${r.id}" horen bij een halte die niet meer in de kalender staat (${r.data.toernooi}). Zet de halte terug in Jeugdcup-kalender, of verwijder die standen in Jeugdcup-rankings.`,
       );
+    const uitPdf = r.data.pdf ? await standenUitPdf(r.data.pdf) : {};
     return categorieen.flatMap((c) =>
       geslachten.flatMap((g) => {
-        const rijen = leesStand(r.data[c.id]?.[g.id] ?? '');
+        const geplakt = leesStand(r.data.geplakt?.[`${c.id}-${g.id}`] ?? '');
+        const rijen = geplakt.length ? geplakt : (uitPdf[`${c.id}-${g.id}`] ?? []);
         return rijen.length ? [{ toernooi, categorie: c.id, geslacht: g.id, rijen, pdf: r.data.pdf }] : [];
       }),
     );
   });
+  return (await Promise.all(perBestand)).flat();
 }
 
 /**

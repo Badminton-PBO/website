@@ -7,7 +7,7 @@
  *
  * Velden moeten overeenkomen met src/content.config.ts.
  */
-import { categorieen, geslachten } from './jeugdcup-labels';
+import { categorieen, reeksen } from './jeugdcup-labels';
 import { nieuwsCategorieen } from './nieuws-labels';
 import { alleToernooien, type Toernooi } from './jeugdcup';
 import { lang } from './datum';
@@ -69,18 +69,19 @@ function toernooiOpties(toernooien: Toernooi[]) {
  * Geen relation-widget: die vraagt de kalendercollectie in de config, en gewone users mogen de kalender niet zien.
  */
 const plakHint =
-  'Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler, en plak ze hier. Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom. Rechts zie je hoe het op de site komt. Een reeks zonder spelers laat je leeg.';
+  'Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler, en plak ze hier. Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom. Kopieer uit Excel zelf, niet uit de pdf.';
 
 /**
- * Eén item per toernooi met de tien standen erna (per categorie een veld voor jongens en een voor meisjes):
- * één keer openen, tien keer plakken, één keer publiceren. De uitleg staat enkel onder het eerste plakveld.
+ * Eén item per toernooi: het toernooi kiezen, de pdf met de rankings uploaden, publiceren. De site leest de tien
+ * standen uit de pdf (src/lib/stand-pdf.ts). De tien plakvelden (één per reeks) zijn de uitweg als dat niet lukt:
+ * ze zitten samen in één dichtgeklapt blok onder de pdf, en een geplakte stand gaat voor op de pdf.
  */
 export const rankingsCollectie = async () => ({
   name: 'rankings',
   label: 'Jeugdcup-rankings',
   label_singular: 'ranking',
   description:
-    'Na elke jeugdcup: klik op "+ ranking", kies het toernooi en plak per categorie de stand van de jongens en de meisjes uit Excel. Eén keer publiceren zet alle standen online; een paar minuten later staan ze op de site.',
+    'Na elke jeugdcup: klik op "+ ranking", kies het toernooi en upload de pdf met de rankings. De site leest er de standen uit: rechts zie je ze voor je publiceert. Een paar minuten na het publiceren staan ze op de site.',
   folder: 'src/content/rankings',
   extension: 'yaml',
   format: 'yaml',
@@ -96,30 +97,32 @@ export const rankingsCollectie = async () => ({
       name: 'toernooi',
       widget: 'select',
       options: toernooiOpties(await alleToernooien()),
-      hint: 'De standen na dit toernooi. Staat het er niet bij? Dan staat het nog niet op de kalender: vraag het aan een beheerder. Staat het al in de lijst met rankings? Open het daar en vul aan.',
+      hint: 'De halte waarna deze standen gelden. Staat ze er niet bij? Vraag een beheerder om ze op de kalender te zetten.',
     },
-    ...categorieen.map((c, i) => ({
-      label: c.label,
-      name: c.id,
-      widget: 'object',
-      required: false,
-      fields: geslachten.map((g, j) => ({
-        label: `${c.label} ${g.label.toLowerCase()}`,
-        name: g.id,
-        widget: 'text',
-        required: false,
-        ...(i === 0 && j === 0 && { hint: plakHint }),
-      })),
-    })),
     {
-      label: 'Pdf van de standen',
+      // Verplicht in het beheer (het schema laat een ranking zonder pdf wel toe): de pdf is de gewone weg.
+      label: 'Pdf met de rankings',
       name: 'pdf',
       widget: 'file',
-      required: false,
       media_folder: '/public/documenten/jeugdcuptour',
       public_folder: '/documenten/jeugdcuptour',
       choose_url: false,
-      hint: 'Eén pdf met alle standen. Verschijnt als downloadlink onder elke tabel.',
+      hint: 'De rankings uit Excel, opgeslagen als pdf (Bestand → Opslaan als → PDF). Klik op "Kies een bestand", dan op "Nieuwe uploaden" en daarna op "Gebruik selectie". Rechts zie je welke standen de site erin vindt.',
+    },
+    {
+      label: 'Standen plakken',
+      name: 'geplakt',
+      widget: 'object',
+      required: false,
+      collapsed: true,
+      hint: 'Enkel nodig als de site een stand niet uit de pdf haalt. Klap open en plak die stand uit Excel: ze gaat voor op de pdf.',
+      fields: reeksen.map((r, i) => ({
+        label: r.titel,
+        name: r.sleutel,
+        widget: 'text',
+        required: false,
+        ...(i === 0 && { hint: plakHint }),
+      })),
     },
   ],
 });

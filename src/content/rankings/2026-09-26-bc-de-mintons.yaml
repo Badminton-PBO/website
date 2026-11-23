@@ -1,7 +1,7 @@
 toernooi: 2026-09-26-bc-de-mintons
 pdf: /documenten/jeugdcuptour/7.-Jeugdcuptour-2026-ranking-na-BC-De-Mintons.pdf
-minibad:
-  jongens: |
+geplakt:
+  minibad-jongens: |
     1	Jules Hesters	PLUIMPLUKKERS BC	650
     2	Simon Derese	PLUIMPLUKKERS BC	280
     3	Bas Vancoppenolle	PLUIMPLUKKERS BC	275
@@ -25,13 +25,12 @@ minibad:
     21	David Rijcken	LOKERSE BC	67
     22	Jakin Aerens	WIT-WIT BC	0
     23	Elie Van Den Heede	WIT-WIT BC	0
-  meisjes: |
+  minibad-meisjes: |
     1	Eline Herssens	LOKERSE BC	85
     2	Liss Deroover	BC DENDERLEEUW	80
     3	Nore Defrère	BC DENDERLEEUW	75
     4	Jackie Van De Velde	PLUIMPLUKKERS BC	62
-u11:
-  jongens: |
+  u11-jongens: |
     1	Wolf Van Hoeymissen	PLUIMPLUKKERS BC	615
     2	Jean Van Praet	WIT-WIT BC	420
     3	Dries Schelfhout	TEMSE BC	317
@@ -48,7 +47,7 @@ u11:
     14	Floris Bockstael	Badmintonclub Latem-De Pinte	75
     15	Jasper De Saegher	badmintonclub De Mintons Sint-Niklaas	75
     16	Sassi Amin	EIKENLO BC	67
-  meisjes: |
+  u11-meisjes: |
     1	Nyncke Dauw	FLEE SHUTTLE BK	437
     2	Lisa De Cuyper	WIT-WIT BC	427
     3	Juune Deroover	BC DENDERLEEUW	392
@@ -56,8 +55,7 @@ u11:
     5	Morgane Stevens	GULLEGEM BC	70
     6	Anna De Donder	LOKERSE BC	50
     7	Meilin Li	PLUIMPLUKKERS BC	50
-u13:
-  jongens: |
+  u13-jongens: |
     1	Jack Vuye	DE NIEUWE SNAAR BC	740
     2	Ferre Minnebo	VAG EVERGEM BC	590
     3	Timo Boeykens	LANDEGEM BC	515
@@ -96,7 +94,7 @@ u13:
     36	Nand Soenen	VAG EVERGEM BC	50
     37	Victor Dekeyser	PLUIMPLUKKERS BC	50
     38	Antoine Lemarcq	WIT-WIT BC	50
-  meisjes: |
+  u13-meisjes: |
     1	Lotte Baekelandt	PLUIMPLUKKERS BC	340
     2	Eleana Bisschop	DENDERMONDSE BC	325
     3	Anna De Donder	LOKERSE BC	295
@@ -113,8 +111,7 @@ u13:
     14	Lotte Cabus	PLUIMPLUKKERS BC	50
     15	Ina Buckens Tong	PLUIMPLUKKERS BC	50
     16	Yinte Verhelst	PLUIMPLUKKERS BC	50
-u15:
-  jongens: |
+  u15-jongens: |
     1	Joppe Bogaerts	LOKERSE BC	675
     2	Lowie De Muynck	DE NIEUWE SNAAR BC	655
     3	Elias Van De Velde	DE NIEUWE SNAAR BC	650
@@ -179,7 +176,7 @@ u15:
     62	Bram Vandemoortele	PLUIMPLUKKERS BC	42
     63	Yuvan Vijayanand	PLUIMPLUKKERS BC	42
     64	Redzep Azizi	badmintonclub De Mintons Sint-Niklaas	0
-  meisjes: |
+  u15-meisjes: |
     1	Sarah Goemaere	DE NIEUWE SNAAR BC	500
     2	Laura Geeroms	GENTSE BC	285
     3	Mona De Beule	PLUIMPLUKKERS BC	245
@@ -202,8 +199,7 @@ u15:
     20	Helena De Bontridder	BADMINTON BUGGENHOUT VZW	50
     21	Aurélie Baekelandt	PLUIMPLUKKERS BC	50
     22	Lisa Devos	BC DENDERLEEUW	50
-u17-u19:
-  jongens: |
+  u17-u19-jongens: |
     1	Simon De Meyer	DE NIEUWE SNAAR BC	720
     2	Simon De Coen	DE NIEUWE SNAAR BC	585
     3	Lukas Iyavoo	DE NIEUWE SNAAR BC	545
@@ -311,7 +307,7 @@ u17-u19:
     105	Milan Laforce	LANDEGEM BC	0
     106	Liam Verhaege	LOKERSE BC	0
     107	Kasper Grauwels	DROPSHOT VZW	0
-  meisjes: |
+  u17-u19-meisjes: |
     1	Chayenne Ghellinck	WIT-WIT BC	430
     2	Helena Montoye	Badmintonclub Latem-De Pinte	275
     3	Jolien Raman	FLEE SHUTTLE BK	270

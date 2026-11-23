@@ -34,19 +34,36 @@ De meeste fouten houdt het beheer al tegen als je op **Publiceer** klikt: een ve
 
 ## Standen toevoegen na een jeugdcup
 
-Eén item per toernooi, met de tien standen erna: Minibad, U11, U13, U15 en U17+U19, telkens jongens en meisjes.
+Eén item per toernooi. Je uploadt de pdf met de rankings en de site leest er de tien standen uit: Minibad, U11, U13, U15 en U17+U19, telkens jongens en meisjes.
 
-1. Ga naar `/admin/jeugdcup/` en log in met GitHub.
-2. Klik op **+ ranking** en kies het toernooi.
-3. Selecteer in Excel de rijen van een stand, van de eerste tot de laatste speler (de kopregel mag mee). Kopieer en plak ze in het veld van die reeks, bv. **U13 jongens**. Doe dat voor elke reeks.
-   - Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom.
-   - Een gedeelde plaats: laat de positie leeg, dan krijgt de speler de positie van de rij erboven.
-   - Een reeks zonder spelers laat je leeg. De site toont daar de stand van het toernooi ervoor.
-4. Rechts zie je meteen elke tabel zoals ze op de site komt, en bovenaan welke reeksen nog leeg zijn. Klopt het aantal rijen?
-5. Optioneel: voeg de pdf met alle standen toe.
-6. Klik **Publiceer → Publiceer nu**. Alle standen staan in één keer online.
+1. Sla de rankings in Excel op als pdf (Bestand → Opslaan als → PDF), zoals altijd.
+2. Ga naar `/admin/jeugdcup/` en log in met GitHub.
+3. Klik op **+ ranking** en kies het toernooi.
+4. Klik bij **Pdf met de rankings** op **Kies een bestand**, dan op **Nieuwe uploaden**, kies de pdf en klik op **Gebruik selectie**.
+5. Rechts staan na een paar seconden de tien reeksen, elk met het aantal spelers en wie op kop staat. Klik op een reeks voor de volledige stand. Vergelijk met Excel.
+6. Klik **Publiceer → Publiceer nu**. Alle standen staan in één keer online, en bezoekers kunnen de pdf downloaden onder elke tabel.
 
-De site toont per categorie, jongens en meisjes apart, altijd de stand van het laatste toernooi in dat kalenderjaar. Een fout verbeteren of een reeks later aanvullen: open het toernooi in de lijst, pas aan en publiceer opnieuw. Maak geen tweede item voor hetzelfde toernooi.
+Wat je rechts kan zien:
+
+| Melding | Wat je doet |
+|---|---|
+| **10 standen gevonden** | Nakijken en publiceren. |
+| **8 van de 10 standen gevonden** | Speelde er in de andere reeksen nog niemand, dan klopt dat: voor die reeksen verandert er niets op de site. Ontbreekt er een stand, plak ze dan (zie hieronder). |
+| **In de pdf staat "Na ...", maar je koos ...** | Je koos het verkeerde toernooi of de verkeerde pdf. Verbeter het links. |
+| **De site vindt geen standen in deze pdf** | Het is niet de pdf met de rankings, of de opmaak van de Excel is veranderd. Kies een ander bestand, of plak de standen. Publiceren lukt niet zolang er geen enkele stand is. |
+
+De site toont per categorie, jongens en meisjes apart, altijd de stand van het laatste toernooi in dat kalenderjaar. Een fout verbeteren: open het toernooi in de lijst, kies de verbeterde pdf en publiceer opnieuw. Maak geen tweede item voor hetzelfde toernooi.
+
+### Als de pdf niet lukt: standen plakken
+
+Onder de pdf staat het blok **Standen plakken**, met een veld per reeks. Een geplakte stand gaat voor op de pdf, voor die reeks alleen.
+
+- Selecteer in Excel de rijen van de stand, van de eerste tot de laatste speler (de kopregel mag mee), en plak ze in het veld van die reeks, bv. **U13 jongens**. Kopieer uit Excel zelf, niet uit de pdf: daar gaan de kolommen verloren.
+- Lidnummers en punten per halte mogen mee: de site neemt positie, naam, club en het totaal in de laatste kolom.
+- Een gedeelde plaats: laat de positie leeg, dan krijgt de speler de positie van de rij erboven.
+- Rechts staat bij die reeks **geplakt**, en **kijk na** als de site regels oversloeg.
+
+De site leest de pdf op de plaats van elke cel: de reeks rechtsboven op de pagina ("Jongens U13"), en per rij de positie, de naam, de club en het totaal in de laatste kolom. Verandert de opmaak van de Excel grondig, verwittig dan de webbeheerder (`src/lib/stand-pdf.ts`).
 
 ## Jeugdcupkalender (beheerders)
 

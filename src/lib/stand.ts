@@ -16,7 +16,8 @@ export interface Rij {
   punten: number;
 }
 
-const getal = (s: string) => {
+/** "12", "87,5" of "1 250" als getal; al de rest is tekst (undefined). */
+export const getal = (s: string) => {
   const t = s.replace(/\s/g, '').replace(',', '.');
   return /^-?\d+(\.\d+)?$/.test(t) ? Number(t) : undefined;
 };

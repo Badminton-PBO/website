@@ -3,16 +3,23 @@
  * "Inschrijven tot", of met een inschrijfdatum op of na de speeldag. Decap toont de melding en publiceert niet,
  * zodat je het meteen verbetert. Zonder deze controle bouwt de site niet meer en blijft de vorige versie online.
  * Dezelfde regel als in het schema: inschrijfFouten in src/lib/toernooi.ts.
+ *
+ * Ook een ranking met een pdf waar de site geen standen in vindt, houdt dit tegen (pdfFouten). Dat breekt de build
+ * niet, maar er zou niets op de site komen.
  */
 import { inschrijfFouten } from '../lib/toernooi';
+import { leesStand } from '../lib/stand';
+import { reeksen } from '../lib/jeugdcup-labels';
+import { pdfBronnen, standenUitPdf, type MediaBestand } from './admin-pdf';
 
 interface Entry {
   get(sleutel: 'collection' | 'slug'): string;
   get(sleutel: 'data'): { toJS(): Record<string, unknown> };
+  get(sleutel: 'mediaFiles'): { toJS(): MediaBestand[] } | undefined;
 }
 
 const w = window as unknown as {
-  CMS?: { registerEventListener(l: { name: string; handler(a: { entry: Entry }): void }): void };
+  CMS?: { registerEventListener(l: { name: string; handler(a: { entry: Entry }): void | Promise<void> }): void };
 };
 
 /** Decap geeft een datum als "2026-10-11" (of met een uur erachter); leeg is geen datum. */
@@ -37,10 +44,27 @@ function fouten(collectie: string, slug: string, data: Record<string, unknown>):
   return [];
 }
 
+/**
+ * Een ranking met een pdf waar de site geen enkele stand in vindt (verkeerde pdf, of een ander sjabloon), en zonder
+ * geplakte stand: publiceren zou niets op de site zetten, zonder dat je het merkt.
+ */
+async function pdfFouten(entry: Entry, data: Record<string, unknown>): Promise<string[]> {
+  const pdf = tekst(data.pdf);
+  if (entry.get('collection') !== 'rankings' || !pdf) return [];
+  const plakvelden = (data.geplakt ?? {}) as Record<string, unknown>;
+  if (reeksen.some((r) => leesStand(tekst(plakvelden[r.sleutel]) ?? '').length)) return [];
+  const standen = await standenUitPdf(pdfBronnen(pdf, entry.get('mediaFiles')?.toJS())).then(
+    (gelezen) => Object.keys(gelezen.standen).length,
+    () => 0,
+  );
+  return standen ? [] : ['De site vindt geen standen in de pdf. Kies de pdf met de rankings uit Excel, of plak de standen onder "Standen plakken".'];
+}
+
 w.CMS?.registerEventListener({
   name: 'preSave',
-  handler: ({ entry }) => {
-    const lijst = fouten(entry.get('collection'), entry.get('slug'), entry.get('data').toJS());
+  handler: async ({ entry }) => {
+    const data = entry.get('data').toJS();
+    const lijst = [...fouten(entry.get('collection'), entry.get('slug'), data), ...(await pdfFouten(entry, data))];
     if (!lijst.length) return;
     // Decap zet de fout achter "Opslaan mislukt:"; zonder naam staat er geen "Error:" voor.
     const fout = new Error(`${lijst.join(' ')} Niets is gepubliceerd: verbeter het en publiceer opnieuw.`);

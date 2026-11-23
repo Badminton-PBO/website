@@ -27,8 +27,9 @@ src/content/
                             (één bestand per seizoen, zodat beheerders haltes in bulk toevoegen en schrappen;
                             id van een halte = <datum>-<club> in slug-vorm, seizoen volgt uit de datum)
   rankings/<toernooi-id>.yaml
-                            toernooi, pdf?, per categorie (minibad, u11, ...): jongens?, meisjes? (stand geplakt uit Excel)
-                            (één bestand per toernooi, zodat een user de tien standen in één keer plakt en publiceert)
+                            toernooi, pdf (de site leest er de tien standen uit), geplakt?: per reeks (minibad-jongens,
+                            u13-meisjes, ...) een stand geplakt uit Excel, als uitweg
+                            (één bestand per toernooi: een user kiest het toernooi, uploadt de pdf en publiceert)
   paginas/<pagina>.md       vaste pagina's: title, lead, description, lijsten (bestuur, documenten, ...) + lopende tekst
   pk/pk.md                  provinciaal kampioenschap: tonen (blok op de home, tot twee weken na het PK), datum, datumTot?, plaats, sporthal?,
                             adres?, organisatie?, toernooilink?, inschrijvenTot?, affiche? + tekst (reeksen, uurschema)
@@ -38,10 +39,10 @@ src/content/
 
 - Decap haalt elk bericht in `nieuws/` apart op bij GitHub en slaat submappen over; met alle 809 berichten duurde de lijst minuten. `scripts/archiveer-nieuws.mjs` verplaatst daarom oude berichten naar `nieuws/archief/`. Het id van een bericht is de bestandsnaam, in beide mappen (`nieuwsId` in `src/content.config.ts`), dus het adres `/nieuws/<slug>` verandert niet. Scripts die nieuws lezen, lezen beide mappen (`legacyUrls()`).
 - Een ranking is de **tussenstand** na dat toernooi, zoals berekend in Excel. De site telt niets op: per categorie, jongens en meisjes apart, toont ze de stand van het laatste toernooi in dat kalenderjaar.
-- Een stand is tekst met tabs (rechtstreeks geplakt uit Excel): positie, naam, club, punten. Getallen tussen club en totaal (lidnummer, punten per halte) negeert de parser, dus de hele Excel-rij mag mee. Eén speler per rij (geen dubbels). Parser: `src/lib/stand.ts`.
-- Een reeks die leeg blijft (of zonder herkende rijen) telt niet mee: de site toont dan de stand van het toernooi ervoor. Twee bestanden voor hetzelfde toernooi (Decap maakt `<id>-1.yaml`): het laatste wint per reeks (`alleStanden()`).
+- De standen komen uit de pdf van het toernooi (Excel, opgeslagen als pdf; `pdf`, in `public/documenten/jeugdcuptour/`). `src/lib/stand-pdf.ts` leest ze met pdf.js op de plaats van elke cel: de reeks rechtsboven op de pagina ("Jongens U13"), per rij positie, naam, club en het totaal in de laatste kolom. De build leest de pdf (`alleStanden()` in `src/lib/jeugdcup.ts`), het beheer ook (`src/scripts/admin-pdf.ts`), met dezelfde lezer. Hangt af van het Excel-sjabloon van de jeugdcup: getest op alle pdf's van 2025 en 2026; de pdf's van 2023 en 2024 hebben een andere opmaak en lukken niet. De pdf staat ook als downloadlink bij elke tabel.
+- Uitweg per reeks: `geplakt.<reeks>` is tekst met tabs (rechtstreeks geplakt uit Excel): positie, naam, club, punten. Getallen tussen club en totaal (lidnummer, punten per halte) negeert de parser, dus de hele Excel-rij mag mee. Eén speler per rij (geen dubbels). Parser: `src/lib/stand.ts`. Een geplakte stand gaat voor op de pdf. Plakken uit een pdf werkt niet (geen tabs, en naam en club zijn dan niet te scheiden).
+- Een reeks die nergens staat (of zonder herkende rijen) telt niet mee: de site toont dan de stand van het toernooi ervoor. Een pdf die ontbreekt of niet te lezen is, breekt de build niet. Twee bestanden voor hetzelfde toernooi (Decap maakt `<id>-1.yaml`): het laatste wint per reeks (`alleStanden()`).
 - De stand komt meestal enkele dagen na de halte. Is er sinds de laatste stand al een halte gespeeld, dan zegt de site "De stand na … volgt nog" in plaats van "De volgende stand komt na …" (`volgendeStandZin()`, `wachtOpStand()`).
-- Optioneel één pdf met alle standen van het toernooi (`pdf`), getoond als downloadlink bij elke tabel.
 - Een stand vindt haar halte op id, en anders op datum (een verbeterde clubnaam verandert het id).
 - Elk toernooi (halte of PK) heeft twee data: `datum` (speeldag) en `inschrijvenTot` (laatste dag om in te schrijven). `toernooilink` is de tournamentsoftware-pagina; met een link is `inschrijvenTot` verplicht (schema in `src/content.config.ts`). De knop heet "Inschrijven tot ..." tot en met `inschrijvenTot`, dan "Wedstrijden" tot en met de speeldag, en daarna "Uitslagen". Zonder inschrijfdatum nooit "Inschrijven". Op de home staan de latere haltes waarvoor inschrijven open is (`tijdlijn().inschrijven`) naast de volgende halte (telefoon: eronder), met een potloodstip op het lijnplan (`lijnStatussen()`) en in "Daarna" een markering (`toernooiLink()` in `src/lib/toernooi.ts`, gedeeld door jeugdcup en PK; het PK hangt niet af van `jeugdcup.ts`).
 - Regels en zinnen van de jeugdcup die op meerdere pagina's staan (volgende halte, volgende stand, rankingjaar, `tijdlijn()` voor de home) staan in `src/lib/jeugdcup.ts`, niet in de pagina's.
@@ -52,6 +53,7 @@ src/content/
 - Decap laadt van unpkg met `integrity` (`src/components/DecapAdmin.astro`: bij een update de hash vervangen) en logt in met scope `public_repo` (de repo is publiek).
 - De lijst met rankings toont in Decap het id van de halte; `src/scripts/admin-toernooien.ts` zet er de naam voor in de plaats ("Standen na BC De Mintons, 26 september 2026").
 - Het voorbeeld rechts in Decap (nieuws en standen) komt uit `src/scripts/admin-preview.ts`, met de stijl van de site (`src/styles/admin-preview.css`). Collecties zonder eigen sjabloon tonen geen voorbeeld (`editor: { preview: false }`).
+- Bij een ranking leest het voorbeeld de pdf zodra hij gekozen is, nog voor het publiceren: een melding bovenaan (aantal standen gevonden, verkeerd toernooi als de titel "Na ..." in de pdf niet bij de gekozen halte past, geen standen gevonden) en de tien reeksen met aantal spelers en leider, open te klappen tot de volledige stand. `getAsset` van Decap geeft in het voorbeeld enkel het pad: `pdfBronnen()` haalt de pas gekozen pdf uit het concept (`entry.mediaFiles`), en anders van de site of van GitHub. `admin-controle.ts` weigert een ranking met een pdf zonder standen en zonder geplakte stand. In het beheer is de pdf verplicht, in het schema niet.
 - Markdown draait op Sätteri (Astro 7). `src/lib/markdown-basis.mjs` zet het basispad voor interne links in Markdown.
 
 - Nieuwscategorieën: `jeugd`, `selectie`, `evenement` (+ eventueel `competitie`, `recreanten`; WordPress-categorieën nog mappen)
@@ -136,7 +138,7 @@ De ontwerpen gebruiken nog voorlopige kleuren (donkerblauw). De site gebruikt de
 ## Beslissingen (oktober 2026)
 
 - Ranking: tabel uit data, met optionele pdf per toernooi. Archief 2011–2025 blijft pdf.
-- Aanlevering: tussenstand uit Excel plakken (positie, naam, club, punten), per categorie voor jongens en meisjes. In het beheer één item per toernooi met de tien plakvelden (november 2026: tien aparte items was te veel klikken).
+- Aanlevering: de pdf met de rankings uploaden; de site leest er de tien standen uit (november 2026: tien keer plakken was te veel werk, en plakken uit de pdf mislukte). In het beheer één item per toernooi. Plakken uit Excel per reeks blijft als uitweg.
 - Login: GitHub-account voor iedereen. Gewone users publiceren rechtstreeks, zonder goedkeuring (geen editorial workflow). Het team is klein en niet technisch: geen complexe flows.
 - Meerdere beheerders met dezelfde rechten beheren nieuws en vaste pagina's.
 - Recreanten & G-sport: inhoud van de huidige site, herschreven.

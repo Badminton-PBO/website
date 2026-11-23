@@ -4,6 +4,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { nieuwsCategorieen } from './lib/nieuws-labels';
+import { reeksen, type ReeksSleutel } from './lib/jeugdcup-labels';
 import { inschrijfFouten } from './lib/toernooi';
 
 /** YAML leest 2026-09-26 als datum; Decap schrijft soms een string. Altijd terug naar YYYY-MM-DD. */
@@ -71,22 +72,20 @@ const pk = defineCollection({
     .superRefine((p, ctx) => inschrijving('PK', p, ctx)),
 });
 
-/** De geplakte standen van één categorie. Een reeks zonder spelers blijft leeg. */
+/** Eén geplakte stand (tekst uit Excel). Een reeks die niet geplakt is, blijft leeg. */
 const stand = z.preprocess(leeg, z.string().optional());
-const reeksen = z.preprocess(leeg, z.object({ jongens: stand, meisjes: stand }).optional());
 
-/** Eén bestand per toernooi met de tien standen erna, zodat je ze in één keer plakt en publiceert. */
+/**
+ * Eén bestand per toernooi met de standen erna. De site leest ze uit de pdf (src/lib/stand-pdf.ts); `geplakt` is de
+ * uitweg per reeks ("u13-jongens") als dat niet lukt, en gaat voor op de pdf.
+ */
 const rankings = defineCollection({
   loader: glob({ pattern: '*.yaml', base: './src/content/rankings' }),
   schema: z.object({
     /** Id van de halte (<datum>-<club>). Vindt de site dat id niet, dan zoekt ze op de datum. */
     toernooi: z.string(),
     pdf: z.preprocess(leeg, z.string().optional()),
-    minibad: reeksen,
-    u11: reeksen,
-    u13: reeksen,
-    u15: reeksen,
-    'u17-u19': reeksen,
+    geplakt: z.preprocess(leeg, z.object(Object.fromEntries(reeksen.map((r) => [r.sleutel, stand])) as Record<ReeksSleutel, typeof stand>).optional()),
   }),
 });
 

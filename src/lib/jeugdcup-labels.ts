@@ -16,5 +16,18 @@ export const geslachten = [
 export type CategorieId = (typeof categorieen)[number]['id'];
 export type GeslachtId = (typeof geslachten)[number]['id'];
 
+/** Sleutel van een reeks: "u13-jongens". */
+export type ReeksSleutel = `${CategorieId}-${GeslachtId}`;
+
+/** De tien reeksen in de vaste volgorde, met hun sleutel en titel ("U13 jongens"). */
+export const reeksen = categorieen.flatMap((c) =>
+  geslachten.map((g) => ({
+    categorie: c.id,
+    geslacht: g.id,
+    sleutel: `${c.id}-${g.id}` as ReeksSleutel,
+    titel: `${c.label} ${g.label.toLowerCase()}`,
+  })),
+);
+
 export const categorieLabel = (id: string) => categorieen.find((c) => c.id === id)?.label ?? id;
 export const geslachtLabel = (id: string) => geslachten.find((g) => g.id === id)?.label ?? id;

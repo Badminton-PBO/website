@@ -19,5 +19,8 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    // pdf.js (ruim 500 kB) leest in het beheer de rankings uit de pdf. Het laadt enkel daar en pas als er een pdf
+    // gekozen is (src/scripts/admin-pdf.ts): geen waarschuwing over een groot bestand bij elke build.
+    build: { chunkSizeWarningLimit: 700 },
   },
 });
