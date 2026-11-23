@@ -6,7 +6,7 @@ excerpt: Vanaf nu kan je inschrijven voor de eerste ontmoeting, op 5 oktober 201
 legacyUrl: /2014/08/28/pbo-jeugdcuptour-2014-2015-inschrijvingen-challenge-wetteren-nu-open/
 ---
 
-![Wetteren](/pbo/wp/wp-content/uploads/2014/08/Wetteren-300x166.jpg)Vanaf nu kan je inschrijven voor de eerste ontmoeting, op 5 oktober 2014, in het kader van de PBO Jeugdcuptour 2014-2015.
+Vanaf nu kan je inschrijven voor de eerste ontmoeting, op 5 oktober 2014, in het kader van de PBO Jeugdcuptour 2014-2015.
 
 De eerste wedstrijden van de nieuwe PBO Jeugdcuptour worden gespeeld in sporthal De Warande in Wetteren. Je kan inschrijven voor enkel, dubbel en gemengd (maximum 2 disciplines per speler).
 

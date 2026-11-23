@@ -6,7 +6,7 @@ excerpt: De kalender voor het seizoen 2021-2020 van de gloednieuwe Victor Jeugdc
 legacyUrl: /2021/08/24/victor-jeugdcuptour-by-pbo-kalender-online-victor-jeugdcup-de-mintons/
 ---
 
-De kalender voor het seizoen 2021-2020 van de gloednieuwe Victor Jeugdcuptour by PBO staat online op [deze pagina.](/pbo-jeugdcuptour-kalender)
+De kalender voor het seizoen 2021-2020 van de gloednieuwe Victor Jeugdcuptour by PBO staat online op [deze pagina.](/jeugd/jeugdcuptour/kalender)
 
 ![](/wp-content/uploads/2021/08/IMG-20210715-WA0000.jpg)
 

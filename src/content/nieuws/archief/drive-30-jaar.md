@@ -6,7 +6,7 @@ excerpt: Drive BC bestaat al 30 jaar en moge Oost-Vlaanderen het geweten hebben 
 legacyUrl: /2011/08/15/drive-30-jaar/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2011/08/2011-07-27_20-27-24.jpg "2011-07-27_20-27-24")](/pbo/wp/wp-content/uploads/2011/08/2011-07-27_20-27-24.jpg)Drive BC bestaat al 30 jaar en moge Oost-Vlaanderen het geweten hebben !
+Drive BC bestaat al 30 jaar en moge Oost-Vlaanderen het geweten hebben !
 
 Op 10 september 2011 staat het 11de clubkampioenschap op de agenda.
 

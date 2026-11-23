@@ -6,7 +6,7 @@ excerpt: Afgelopen zondag hield de PBO Jeugdcuptour halt in Temse. We zagen mooi
 legacyUrl: /2013/04/26/pbo-jeugdcuptour-ranking-dubbel-na-temse/
 ---
 
-Afgelopen zondag hield de PBO Jeugdcuptour halt in Temse. We zagen mooie wedstrijden van enthousiaste spelers en dat leverde uiteraard een nieuwe rangschikking op voor dubbel en gemengd. Deze kan je [hier](/pbo/wp/wp-content/uploads/2013/04/Jeugdcupranking-2012-2013-na-Temse-dubbel-en-gemengd.pdf) terugvinden.
+Afgelopen zondag hield de PBO Jeugdcuptour halt in Temse. We zagen mooie wedstrijden van enthousiaste spelers en dat leverde uiteraard een nieuwe rangschikking op voor dubbel en gemengd. Deze kan je hier terugvinden.
 
 Nog 1 jeugdcup te gaan dit seizoen. Op 12 mei kan je spelen in enkel, dubbel en gemengd  bij de Pluimplukkers. Inschrijven is de boodschap.
 

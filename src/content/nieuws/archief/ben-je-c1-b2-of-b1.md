@@ -6,7 +6,7 @@ excerpt: Ben je C2 – C1 -B2 of B1 en onder de 21 jaar, dan heb je nu de unieke
 legacyUrl: /2012/10/07/ben-je-c1-b2-of-b1/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/10/p23-c-1_3.jpg "p23-c-1_3")](/pbo/wp/events/ben-je-c1-b2-of-b1/attachment/p23-c-1_3/)Ben je C2 – C1 -B2 of B1 en onder de 21 jaar, dan heb je nu de unieke kans om te trainen met en tegen onze beste U15 – U17 A-kern spelers.
+Ben je C2 – C1 -B2 of B1 en onder de 21 jaar, dan heb je nu de unieke kans om te trainen met en tegen onze beste U15 – U17 A-kern spelers.
 
 Gedurende 10 sessies richt PBO vzw Open speciale klassementstrainingen in die een hoge technische en intensieve oefeningsgraad mogen genieten. We gaan voluit in het leerproces en dompelen je onder in intensief badminton en hun tactisch spel, dit onder leiding van onze A-kern trainers.
 

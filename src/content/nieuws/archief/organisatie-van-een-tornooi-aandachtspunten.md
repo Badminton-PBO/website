@@ -12,4 +12,4 @@ Op een kaderdag die onlangs in Leuven doorging, werden een aantal aandachtspunte
 -   reekshoofden
 -   tijdens de controle van je file
 
-In [deze bijlage](/pbo/wp/wp-content/uploads/2012/09/checklist-tornooienpakket-2.2012.docx) kan je alvast de volledige lijst met aandachtspunten bekijken voor de organisatie van een tornooi.
+In deze bijlage kan je alvast de volledige lijst met aandachtspunten bekijken voor de organisatie van een tornooi.

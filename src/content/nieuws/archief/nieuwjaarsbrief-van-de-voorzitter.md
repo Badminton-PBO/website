@@ -6,7 +6,7 @@ excerpt: Beste bestuurder, beste speler, speelster, Het is een ware eer om u, al
 legacyUrl: /2012/01/03/nieuwjaarsbrief-van-de-voorzitter/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/01/Kerst-jeugd-2011.png "Kerst jeugd 2011")](/pbo/wp/wp-content/uploads/2012/01/Kerst-jeugd-2011.png)Beste bestuurder, beste speler, speelster,
+Beste bestuurder, beste speler, speelster,
 
 Het is een ware eer om u, als voorzitter van de Raad van Bestuur PBO, in naam van alle bestuurders een gelukkig en gezond nieuwjaar te mogen toewensen. Wij wensen u naast dit alles ook een super sportief jaar toe, gespaard van blessures en met vooral veel speelvreugde en ruimte voor sociaal contact. Dit voor al onze leden, zowel recreatief als competitief.
 

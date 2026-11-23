@@ -10,4 +10,4 @@ Op 6 oktober, aanstaande zondag, staat de eerste training binnen het OC Lokeren 
 
 Op dit moment zijn er nog voldoende plaatsen vrij om in te schrijven voor het OC bij Lokerse. Inschrijven is dus de boodschap.
 
-Meer info kan je [hier](/pbo/wp/organisatie-ocs/ "ORGANISATIE OC’s") vinden.
+Meer info kan je hier vinden.

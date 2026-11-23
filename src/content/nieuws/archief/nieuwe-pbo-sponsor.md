@@ -6,7 +6,7 @@ excerpt: Badminton in Oost-Vlaanderen nog meer op de kaart zetten is steeds de d
 legacyUrl: /2016/10/15/nieuwe-pbo-sponsor/
 ---
 
-Badminton in [![badmintonplanet-be](/pbo/wp/wp-content/uploads/2016/10/Badmintonplanet.be_-300x83.png)](http://www.badmintonplanet.be/)Oost-Vlaanderen nog meer op de kaart zetten is steeds de doelstelling geweest van PBO vzw. Om deze doelstelling te realiseren hebben we naast de hulp van de bij ons aangesloten clubs ook ondersteuning nodig van commerciële partners.  
+Badminton in Oost-Vlaanderen nog meer op de kaart zetten is steeds de doelstelling geweest van PBO vzw. Om deze doelstelling te realiseren hebben we naast de hulp van de bij ons aangesloten clubs ook ondersteuning nodig van commerciële partners.  
 In onze zoektocht hebben we een commerciële partner gevonden, die op zoek is naar meer zichtbaarheid in onze provincie.  
 Met enige trots kunnen we vandaag onze nieuwe partner, voor de komende drie jaar voorstellen.  
 Samen met Badmintonplanet.be zijn we er in geslaagd om een aanbod uit te werken waarbij zowel PBO vzw als Badmintonplanet.be wel bij zullen varen.  

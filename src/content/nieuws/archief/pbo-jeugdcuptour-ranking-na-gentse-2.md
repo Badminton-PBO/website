@@ -10,6 +10,6 @@ Afgelopen zondag vond de PBO Jeugdcuptour onderdak bij Gentse.
 Naast vele mooie wedstrijden, leverde dit ook een groot aantal punten op voor de ranking.  
 In vele reeksen is alles nog mogelijk.
 
-De meest recente ranking kan u [hier](/pbo/wp/wp-content/uploads/2014/03/Jeugdcup-2013-2014-na-Gentse.pdf) vinden.
+De meest recente ranking kan u hier vinden.
 
 Tot slot nog dit: spelers die afwezig zijn op de dag van de Jeugdcup, dienen dit niet alleen te melden aan de organisatie, maar moeten ook een doktersattest voorleggen aan PBO. Indien dit niet gebeurd, kan een speler worden geschorst (zie reglement).

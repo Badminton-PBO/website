@@ -7,7 +7,7 @@ legacyUrl: /2011/05/25/jeugdcup-einde-seizoen/
 ---
 
 [![](/wp-content/uploads/2011/07/jeugdicon1.png "jeugdicon")](/wp-content/uploads/2011/07/jeugdicon1.png)Het jeugdcup seizoen is ten einde en we mogen spreken over een overweldigend succes. Alle jeugdcups zaten goed volzet en veel jeugdcups konden dan ook maar tot 15 gespeeld worden. Volgend seizoen gaat het nieuwe bestuur de jeugdcups nog  verder uitbouwen en ondersteunen, we kunnen al een tipje van de sluier oplichten door te zeggen dat er een dubbel/mix jeugdcup circuit komt.  
-Alle clubs die deelnamen danken we van harte om hun beste organisatorisch talent boven te halen en de jeugdcups in goed banen te leiden. Het volledig puntenoverzicht vind je [hier](/pbo/index.php?option=com_docman&task=doc_download&gid=62&Itemid=63 "jeugdcup final ranking") en de winnaars kan je terugvinden door verder te lezen
+Alle clubs die deelnamen danken we van harte om hun beste organisatorisch talent boven te halen en de jeugdcups in goed banen te leiden. Het volledig puntenoverzicht vind je hier en de winnaars kan je terugvinden door verder te lezen
 
 PROFICIAT AAN DE WINNAARS en dank aan alle deelnemers voor hun sportieve inzet en tot volgend seizoen !
 

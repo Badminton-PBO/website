@@ -6,7 +6,7 @@ excerpt: Op 2 en 3 november vindt het provinciaal kampioenschap badminton voor O
 legacyUrl: /2019/09/28/pk-pbo-2019-inschrijvingen-open/
 ---
 
-![](/wp-content/uploads/2015/02/Logo-PBO-klein-300x242.jpg)Op 2 en 3 november vindt het provinciaal kampioenschap badminton voor Oost-Vlaanderen plaats in de sporthal van Sint-Gillis Dendermonde als samenwerking tussen Drive BC en PBO vzw.
+Op 2 en 3 november vindt het provinciaal kampioenschap badminton voor Oost-Vlaanderen plaats in de sporthal van Sint-Gillis Dendermonde als samenwerking tussen Drive BC en PBO vzw.
 
 Je kan inschrijven voor alle disciplines van A tem D.
 

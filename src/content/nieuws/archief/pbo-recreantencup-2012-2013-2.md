@@ -6,7 +6,7 @@ excerpt: Deze week werd de handleiding van de PBO Recreantencup 2012-2013 voorge
 legacyUrl: /2012/10/11/pbo-recreantencup-2012-2013-2/
 ---
 
-Deze week werd de handleiding van de PBO Recreantencup 2012-2013 voorgesteld. Niet minder dan 10 clubs stappen dit jaar reeds in. Om alles in goede banen te leiden werd een reglement opgesteld en een aantal bijlagen, zowel van belang voor organisatoren als voor deelnemers. Het reglement kan je [hier](/pbo/wp/wp-content/uploads/2012/10/Reglement.pdf) vinden, de bijlagen [hier](/pbo/wp/wp-content/uploads/2012/10/Bijlagen.pdf).
+Deze week werd de handleiding van de PBO Recreantencup 2012-2013 voorgesteld. Niet minder dan 10 clubs stappen dit jaar reeds in. Om alles in goede banen te leiden werd een reglement opgesteld en een aantal bijlagen, zowel van belang voor organisatoren als voor deelnemers. Het reglement kan je hier vinden, de bijlagen hier.
 
 Momenteel staan de inschrijvingen voor het eerste tornooi uit de PBO Recreantencup open. Dit tornooi gaat door bij Oudegem op 10 november en inschrijven kan je via [deze link](http://badmintonvlaanderen.toernooi.nl/sport/tournament.aspx?id=B7D3CC36-FAA7-4489-886F-27655F23B19B).
 

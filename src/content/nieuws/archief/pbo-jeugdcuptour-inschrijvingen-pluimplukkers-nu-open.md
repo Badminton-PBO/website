@@ -6,7 +6,7 @@ excerpt: Er staan nog twee jeugdcups in het kader van de PBO Jeugdcuptour op het
 legacyUrl: /2013/03/26/pbo-jeugdcuptour-inschrijvingen-pluimplukkers-nu-open/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2013/03/Banner-De-Pluimplukkers.jpg "Banner De Pluimplukkers")](/pbo/wp/jeugd/pbo-jeugdcuptour-inschrijvingen-pluimplukkers-nu-open/attachment/banner-de-pluimplukkers/)Er staan nog twee jeugdcups in het kader van de PBO Jeugdcuptour op het programma. De voorlaatste is dubbel en gemengd bij BC Temse, maar de afsluiter van het seizoen is nu ook in zicht.
+Er staan nog twee jeugdcups in het kader van de PBO Jeugdcuptour op het programma. De voorlaatste is dubbel en gemengd bij BC Temse, maar de afsluiter van het seizoen is nu ook in zicht.
 
 Vanaf nu kan je inschrijven voor de PBO Jeugdcup bij de Pluimplukkers op zondag 12 mei 2013. Opgelet: dit is een bijzondere jeugdcup. Er kan ingeschreven worden in enkel, dubbel en gemengd. Op het einde van elke discipline zal er een prijsuitreiking zijn voor de eerste drie plaatsen uit de ranking. Uiteraard blijft de afzonderlijke enkel en dubbelranking behouden.
 

@@ -14,4 +14,4 @@ Wil je een tof kamp waar je de laatste nieuwe kneepjes in het badminton kan aanl
 
 [INSCHRIJVEN KAN HIER](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dFZvODZLT3d2cEtQdy0tTHhOLUNlWlE6MA#gid=0)
 
-[![](/pbo/wp/wp-content/uploads/2011/11/witwitkerstkamp.jpg)](/pbo/wp/wp-content/uploads/2011/11/witwitkerstkamp.jpg) [](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dFZvODZLT3d2cEtQdy0tTHhOLUNlWlE6MA#gid=0)
+ [](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dFZvODZLT3d2cEtQdy0tTHhOLUNlWlE6MA#gid=0)

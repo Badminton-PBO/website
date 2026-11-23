@@ -30,7 +30,7 @@ dubbel dames/heren & gemengd dubbel met licht- en geluidspektakel verzorgd door 
 Mail het aantal personen door naar davbauwens@gmail.com .  
 In een bevestigingsmail ontvangt u dan de wijze van betaling. Bestellen kan tot uiterlijk 19 november.
 
-Alle info kan u vinden op onze website [www.vkbadminton.be](/www.vkbadminton.be)
+Alle info kan u vinden op onze website [www.vkbadminton.be](http://www.vkbadminton.be)
 
 Omdat het een uniek moment is zoveel topspelers te zien in Oost-Vlaanderen hopen wij jullie massaal te mogen verwelkomen op dit evenement!  
 Tot dan!

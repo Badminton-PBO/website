@@ -6,7 +6,7 @@ excerpt: Op zaterdag 3 september zal er in Brecht een 1 dags-opleiding plaatsvin
 legacyUrl: /2011/08/02/core-stability-opleiding-door-aad-van-zeijl/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2011/08/uitnodigingcorestabi-212x300.png "uitnodigingcorestabi")](/pbo/wp/wp-content/uploads/2011/08/uitnodigingcorestabi.png)Op zaterdag 3 september zal er in Brecht een 1 dags-opleiding plaatsvinden rond het thema CORE STABILITY.  
+Op zaterdag 3 september zal er in Brecht een 1 dags-opleiding plaatsvinden rond het thema CORE STABILITY.  
 Sinds jaren is deze manier van trainen aan een heuse opmars bezig en vandaag kan je eigenlijk niet meer zonder. Zo is een goede core stability een must voor je aan kracht training kan beginnen !
 
 Het nut van core stability is al langer bewezen voor klachten in de onderrug en de onderste ledematen en heeft nu ook volop zijn intrek genomen in de (top)sport.

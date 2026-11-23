@@ -6,8 +6,6 @@ excerpt: "Opgelet: helaas gaat de training op donderdag 26 juli uitzonderlijk NI
 legacyUrl: /2012/06/25/badminton-summerworkout/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/06/badmintonworkout.png "badmintonworkout")](/pbo/wp/jeugd/badminton-summerworkout/attachment/badmintonworkout/)
-
 Opgelet: helaas gaat de training op **donderdag 26 juli uitzonderlijk NIET** door.
 
 Door organisatorische problemen gaan de looptrainingen in juli niet door. Eerstvolgende training op 2 augustus in Erpe-Mere.

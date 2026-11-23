@@ -6,7 +6,7 @@ excerpt: Op zondag 11 september 2016 start de PBO Jeugdcuptour 2016. Nog tot het
 legacyUrl: /2016/08/17/pbo-jeugdcuptour-2016-gentse-inschrijvingen-open/
 ---
 
-[![01-Gentse](/pbo/wp/wp-content/uploads/2016/08/01-Gentse-300x167.jpg)](http://www.badmintonvlaanderen.be/sport/tournament.aspx?id=D6FDABB4-078C-48DD-ACB8-9D92374894A7)Op zondag 11 september 2016 start de PBO Jeugdcuptour 2016. Nog tot het einde van het jaar kunnen onze jeugdspelers strijden voor een titel in het eindklassement.
+Op zondag 11 september 2016 start de PBO Jeugdcuptour 2016. Nog tot het einde van het jaar kunnen onze jeugdspelers strijden voor een titel in het eindklassement.
 
 Vanaf dit seizoen werken we per kalenderjaar, om niet meer in conflict te komen met de leeftijdsregeling die op elk jeugdtornooi wordt gebruikt.
 

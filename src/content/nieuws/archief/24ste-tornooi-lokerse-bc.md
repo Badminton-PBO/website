@@ -6,7 +6,7 @@ excerpt: Op zaterdag 27 en zondag 28 april 2013 organiseert Lokerse BC voor de 2
 legacyUrl: /2013/02/17/24ste-tornooi-lokerse-bc/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2013/02/24ste-Internationaal-ABCD-Tornooi-Lokeren-small.jpg "24ste Internationaal ABCD Tornooi Lokeren (small)")](/pbo/wp/events/24ste-tornooi-lokerse-bc/attachment/24ste-internationaal-abcd-tornooi-lokeren-small/)Op zaterdag 27 en zondag 28 april 2013 organiseert Lokerse BC voor de 24ste keer hun ABCD-tornooi. Op niet minder dan 16 banen kunnen alle klassementen strijden in een fijne omgeving. Op zaterdagavond kan je, naast het terrein, je beentjes nog even extra strekken op de fuif. Meer informatie en inschrijvingen kan je [hier](http://badmintonvlaanderen.toernooi.nl/sport/tournament.aspx?id=02D6DA2B-FF6A-47CD-B5E0-FB0929E014F5) vinden.
+Op zaterdag 27 en zondag 28 april 2013 organiseert Lokerse BC voor de 24ste keer hun ABCD-tornooi. Op niet minder dan 16 banen kunnen alle klassementen strijden in een fijne omgeving. Op zaterdagavond kan je, naast het terrein, je beentjes nog even extra strekken op de fuif. Meer informatie en inschrijvingen kan je [hier](http://badmintonvlaanderen.toernooi.nl/sport/tournament.aspx?id=02D6DA2B-FF6A-47CD-B5E0-FB0929E014F5) vinden.
 
 Hieronder meer informatie van de club over hun tornooi:
 

@@ -6,7 +6,7 @@ excerpt: Op zaterdag 10 september 2011 organiseert de Lokerse BadmintonClub zijn
 legacyUrl: /2011/08/23/lokerse-bc-bestaat-25-jaar/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2011/08/Affiche-clubdag-2011-bis-300x227.jpg "Affiche-clubdag-2011-bis")](/pbo/wp/wp-content/uploads/2011/08/Affiche-clubdag-2011-bis.jpeg)Op **zaterdag 10 september 2011** organiseert de **Lokerse BadmintonClub** zijn jaarlijkse **clubdag** (vroeger kampioenenviering genaamd). Deze gaat opnieuw door in de parochiezaal Ter Oude Kerke op de Spoele in Lokeren.  
+Op **zaterdag 10 september 2011** organiseert de **Lokerse BadmintonClub** zijn jaarlijkse **clubdag** (vroeger kampioenenviering genaamd). Deze gaat opnieuw door in de parochiezaal Ter Oude Kerke op de Spoele in Lokeren.  
 Deze clubdag is er eentje met een **gouden randje** want in september **bestaat onze club exact 25 jaar**!!!!Vandaar dat we enkele *speciallekes* in elkaar gaan steken.
 
 Als dagactiviteit organiseren we dit jaar een **SUPERTEAM**.

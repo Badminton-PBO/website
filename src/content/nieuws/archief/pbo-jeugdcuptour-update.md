@@ -17,4 +17,4 @@ Wat is er dan wel aangepast?
 -   Deelname aan andere tornooien en/of competitie op dezelfde dag als een Jeugdcup zijn niet langer toegelaten
 -   Aantal reekshoofden is aangepast en de verdeling ervan verbeterd, idem voor de verdeling van de bye’s in de eindronde.
 
-Meer informatie kan je terugvinden op [deze pagina](/pbo/wp/pbo-jeugdcuptour-praktisch/ "PBO JEUGDCUPTOUR – PRAKTISCH").
+Meer informatie kan je terugvinden op [deze pagina](/jeugd/jeugdcuptour "PBO JEUGDCUPTOUR – PRAKTISCH").

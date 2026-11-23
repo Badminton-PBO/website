@@ -12,4 +12,4 @@ Van 10 tot 16uur, op 27-28 en 29 december. Wil je kwaliteitsvolle trainingen en 
 
 [inschrijven tot  en met 23 december en kan je Hier !](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dHV3WHdiQjNYa0VEaFo0eEVnTk9Ddnc6MA#gid=0)
 
- [](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dHV3WHdiQjNYa0VEaFo0eEVnTk9Ddnc6MA#gid=0)[![](/pbo/wp/wp-content/uploads/2011/11/danlie-kerstkamp2.jpg "Malaysia's Lee prepares to return a shot to Denmark's Gade during the 2010 Badminton World Federation Super Series finals in New Taipei City")](/pbo/wp/wp-content/uploads/2011/11/danlie-kerstkamp2.jpg)
+ [](https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dHV3WHdiQjNYa0VEaFo0eEVnTk9Ddnc6MA#gid=0)

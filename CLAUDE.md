@@ -76,7 +76,7 @@ src/content/
 - Oude URL's `/YYYY/MM/DD/<slug>/` → `/nieuws/<slug>` via `public/.htaccess` (301).
 - `/jeugd/jeugdcup/pbo-jeugdcuptour-ranking/` → `/jeugd/jeugdcuptour/ranking`, idem voor `pbo-jeugdcuptour-kalender`.
 - Pdf's uit `wp-content/uploads/` **op hetzelfde pad** bewaren in `public/`, zodat externe links blijven werken. Archiefrankings 2011–2025 blijven voorlopig pdf.
-- Sommige oude links wijzen naar `pbo.kwal.org`: opsporen en vervangen.
+- Oude links naar `pbo.kwal.org` (paden onder `/pbo/wp/`) zijn dood: van die site is er geen back-up. `node scripts/dode-links.mjs` toont dode interne links en afbeeldingen in `src/content`; met `--verwijder` haalt het ze weg (de linktekst blijft) en schrijft het `scripts/uitvoer/dode-links.md`. Na een nieuwe migratie opnieuw draaien.
 - De WordPress-site zelf niet aanpassen.
 - `dist/.htaccess` wordt bij elke build gegenereerd door `scripts/htaccess.mjs` (301's, https/www, 404). Na een deploy: `node scripts/controleer-redirects.mjs --site <url>`.
 - Stappenplan voor de switch: `docs/domeinswitch.md`.

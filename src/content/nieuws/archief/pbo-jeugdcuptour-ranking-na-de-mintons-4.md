@@ -10,4 +10,4 @@ Afgelopen zaterdag vond de ontmoeting van de PBO Jeugdcuptour bij De Mintons in 
 
 We mogen terugkijken op veel knappe wedstrijden en knappe resultaten voor alle reeksen.
 
-De nieuwe ranking kan u alvast [hier](/pbo/wp/wp-content/uploads/2016/03/20160306-Ranking-na-De-Mintons.pdf) vinden.
+De nieuwe ranking kan u alvast hier vinden.

@@ -23,4 +23,4 @@ Op 13 mei 2014 organiseert de beroepscommissie een infomoment op het Dienstencen
 Bij interesse neem je contact op met Jonas Maes, voorzitter van de beroepscommissie Badminton Vlaanderen. (via 0474270939 of  
 jonas@maessport.be)
 
-Meer info: in [dit document](/pbo/wp/wp-content/uploads/2014/03/Vacature-rechter-in-beroepscommissie-Badminton-Vlaanderen.docx)
+Meer info: in dit document

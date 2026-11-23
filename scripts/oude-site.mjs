@@ -13,6 +13,8 @@ export const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const OUDE_PAGINAS = {
   '/jeugd/jeugdcup/pbo-jeugdcuptour-ranking': '/jeugd/jeugdcuptour/ranking',
   '/jeugd/jeugdcup/pbo-jeugdcuptour-kalender': '/jeugd/jeugdcuptour/kalender',
+  // Adres van de kalender voor ze onder /jeugd/jeugdcup/ stond; oude berichten linken er nog naar.
+  '/pbo-jeugdcuptour-kalender': '/jeugd/jeugdcuptour/kalender',
   '/jeugd/jeugdcup': '/jeugd/jeugdcuptour',
 };
 

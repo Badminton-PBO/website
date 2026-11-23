@@ -6,7 +6,7 @@ excerpt: Op 11 en 12 februari ging IPJO 2012 door. Dit jaar waren alle Vlaamse p
 legacyUrl: /2012/02/16/ipjo-2012-het-resultaat/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/01/ipjosmall.jpg "ipjosmall")](/pbo/wp/wp-content/uploads/2012/01/ipjosmall.jpg)Op 11 en 12 februari ging IPJO 2012 door. Dit jaar waren alle Vlaamse provincies te gast in sporthal Dommelhof in Neerpelt.
+Op 11 en 12 februari ging IPJO 2012 door. Dit jaar waren alle Vlaamse provincies te gast in sporthal Dommelhof in Neerpelt.
 
 We kunnen terugkijken op een mooie editie, een prachtige organisatie door Limburg en….we mogen Limburg feliciteren met de overwinning.
 

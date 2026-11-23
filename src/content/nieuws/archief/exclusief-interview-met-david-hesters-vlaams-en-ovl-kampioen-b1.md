@@ -6,7 +6,7 @@ excerpt: Wie is DAVID HESTERS ? Tot net voor zijn verjaardag, nota bene op de fi
 legacyUrl: /2011/12/12/exclusief-interview-met-david-hesters-vlaams-en-ovl-kampioen-b1/
 ---
 
-### [![](/pbo/wp/wp-content/uploads/2011/12/V.B.L.-Vlaamse-Badminton-Liga-vzw.jpg "V.B.L. - Vlaamse Badminton Liga vzw")](/pbo/wp/wp-content/uploads/2011/12/V.B.L.-Vlaamse-Badminton-Liga-vzw.jpg)
+### 
 
 ### Wie is DAVID HESTERS ?
 

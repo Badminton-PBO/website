@@ -12,4 +12,4 @@ Hoewel de meeste sportopleidingen zich focussen op het verbeteren van de fysieke
 
 De workshop zal plaatshebben op donderdag 11 december van 20u tot 22u in CC Palethe, Jeugdlaan 2, 3900 Overpelt. De workshop zal zich niet richten tot één specifieke sporttak dus we hopen een groot aantal trainers en bestuursleden van clubs uit verschillende sporttakken te mogen verwelkomen. Ook ouders en andere geïnteresseerden zijn meer dan welkom.
 
-Meer info kan u vinden in de uitnodiging [in bijlage](/pbo/wp/wp-content/uploads/2014/11/uitnodiging-workshop-omgaan-met-de-mentale-diversiteit-van-kinderen.pdf). Inschrijven kan door een mailtje te sturen naar dit e-mail adres ([bokkerijderoverpelt@gmail.com](mailto:bokkerijderoverpelt@gmail.com)) en dit tot woensdag 3 december.
+Meer info kan u vinden in de uitnodiging in bijlage. Inschrijven kan door een mailtje te sturen naar dit e-mail adres ([bokkerijderoverpelt@gmail.com](mailto:bokkerijderoverpelt@gmail.com)) en dit tot woensdag 3 december.

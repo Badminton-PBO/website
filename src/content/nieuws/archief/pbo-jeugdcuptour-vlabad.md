@@ -6,7 +6,7 @@ excerpt: Op dit moment staan de inschrijvingen nog even open voor de jeugdcup in
 legacyUrl: /2012/12/14/pbo-jeugdcuptour-vlabad/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/12/Banner-VLABAD.jpg "Banner VLABAD")](/pbo/wp/jeugd/pbo-jeugdcuptour-vlabad/attachment/banner-vlabad/)Op dit moment staan de inschrijvingen nog even open voor de jeugdcup in Buggenhout (tot en met 15 december 2012). Ook voor de jeugdcup bij Latem kan je nog inschrijven.
+Op dit moment staan de inschrijvingen nog even open voor de jeugdcup in Buggenhout (tot en met 15 december 2012). Ook voor de jeugdcup bij Latem kan je nog inschrijven.
 
 Toch kan je ook nu reeds inschrijven voor de tweede jeugdcup van het nieuwe jaar, met name die bij VLABAD op 10 februari 2013. Dit is de tweede dubbel en gemengd jeugdcup van het seizoen, en er zijn dus weerom veel punten te rapen voor het eindklassement (afzonderlijk van het enkel klassement).
 

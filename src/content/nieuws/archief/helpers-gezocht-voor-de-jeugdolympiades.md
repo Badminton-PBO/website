@@ -6,7 +6,7 @@ excerpt: 2012 is meer dan ooit een badmintonjaar. Dit jaar is badminton immers �
 legacyUrl: /2012/02/11/helpers-gezocht-voor-de-jeugdolympiades/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/02/Bloso_mascotte_HR-214-hoog.png "Bloso_mascotte_HR 214 hoog")](/pbo/wp/wp-content/uploads/2012/02/Bloso_mascotte_HR-214-hoog.png)2012 is meer dan ooit een badmintonjaar. Dit jaar is badminton immers “Sporttak in de Kijker” en dat zullen we geweten hebben.
+2012 is meer dan ooit een badmintonjaar. Dit jaar is badminton immers “Sporttak in de Kijker” en dat zullen we geweten hebben.
 
 Badminton Vlaanderen organiseert Jeugdolympiades in elke provincie en is daarvoor op zoek naar helpers. Indien je interesse hebt, laat dit dan zo snel mogelijk weten aan Tamara Geeraerts ([tamara@badmintonvlaanderen.be](mailto:tamara@badmintonvlaanderen.be)).
 

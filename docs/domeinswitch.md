@@ -9,7 +9,7 @@ De nieuwe site komt op dezelfde shared hosting als WordPress (Apache + PHP). Wer
    - **Categorieën**: klopt de indeling? Anders `CATEGORIE_REGELS` in `scripts/migreer-wordpress.mjs` aanpassen en opnieuw draaien.
    - **Interne links zonder nieuwe bestemming**: een redirect toevoegen aan `OUDE_PAGINAS` in `scripts/oude-site.mjs` (de migratie, de `.htaccess` en de controle lezen die lijst), of een pagina die haar pad houdt aan `PAGINA_MAP` in het migratiescript.
    - **Uploads die niet te downloaden waren**: zelf opzoeken of de link in het bericht aanpassen.
-   - **pbo.kwal.org**: die links zijn al vervangen door relatieve paden. Kijk na of de bestanden bestaan.
+   - **pbo.kwal.org**: die links worden relatieve paden onder `/pbo/wp/`, maar de bestanden van die oude site bestaan niet meer (geen back-up). Draai daarom na elke migratie `node scripts/dode-links.mjs --verwijder`: dode links verdwijnen (de tekst blijft), dode afbeeldingen ook, en links naar oude pagina's krijgen hun nieuwe adres. Wat er stond, staat in `scripts/uitvoer/dode-links.md`. Zonder `--verwijder` toont het script enkel wat dood is; handig als controle na een reeks nieuwe berichten.
 3. Kijk een paar oude berichten na op de testversie (GitHub Pages).
 
 ## 2. Login voor /admin

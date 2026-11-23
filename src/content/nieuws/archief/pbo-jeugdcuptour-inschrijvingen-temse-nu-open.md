@@ -6,7 +6,7 @@ excerpt: Vanaf nu tot en met 14 april 2013 kan je inschrijven voor de PBO Jeugdc
 legacyUrl: /2013/02/23/pbo-jeugdcuptour-inschrijvingen-temse-nu-open/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2013/02/Banner-Temse.jpg "Banner Temse")](/pbo/wp/jeugd/pbo-jeugdcuptour-inschrijvingen-temse-nu-open/attachment/banner-temse/)Vanaf nu tot en met 14 april 2013 kan je inschrijven voor de PBO Jeugdcuptour in Temse.
+Vanaf nu tot en met 14 april 2013 kan je inschrijven voor de PBO Jeugdcuptour in Temse.
 
 De Jeugdcup bij BC Temse is er eentje in dubbel en gemengd. Aangezien Minibad dubbel en gemengd niet voorziet, kunnen spelers in de categorie U9 niet deelnemen.
 

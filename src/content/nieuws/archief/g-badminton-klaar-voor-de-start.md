@@ -20,4 +20,4 @@ G-badminton of badminton voor personen met een handicap verdient in dit badminto
 
 **Inschrijven of vragen?** mail naar [secretariaat@badminton-pbo.be](<mailto: secretariaat@badminton-pbo.be>)
 
-**Meer info:** in [deze folder](/pbo/wp/wp-content/uploads/2012/03/Folder_opleiding_G-sport.pdf).
+**Meer info:** in deze folder.

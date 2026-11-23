@@ -10,4 +10,4 @@ Op 2 en 3 januari 2014 organiseert Lokerse BC, samen met BC Zwijndrecht, een 2-d
 
 Zowel beginners als meer gevorderde spelers zijn welkom.
 
-Meer informatie en hoe je inschrijven kan je terugvinden in [deze folder](/pbo/wp/wp-content/uploads/2013/12/Kerststage-2014-Uitnodiging.jpg).
+Meer informatie en hoe je inschrijven kan je terugvinden in deze folder.

@@ -6,7 +6,7 @@ excerpt: Op zaterdag 20 december 2014 organiseert men in Verviers een deel van h
 legacyUrl: /2014/09/24/ybjmc-brons-in-verviers/
 ---
 
-![YonexBJMC\_logo](/wp-content/uploads/2014/09/YonexBJMC_logo-300x135.jpg)Op zaterdag 20 december 2014 organiseert men in Verviers een deel van het Yonex Belgium Junior Master Circuit.
+![YonexBJMC\_logo](/wp-content/uploads/2014/09/YonexBJMC_logo-300x136.jpg)Op zaterdag 20 december 2014 organiseert men in Verviers een deel van het Yonex Belgium Junior Master Circuit.
 
 Jeugdspelers van U9 tot en met U15 kunnen er in hun eigen leeftijdscategorie aan de slag.
 

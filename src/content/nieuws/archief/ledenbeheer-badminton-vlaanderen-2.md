@@ -10,4 +10,4 @@ legacyUrl: /2012/02/16/ledenbeheer-badminton-vlaanderen-2/
 
 Om vlot te werken is het van belang om in te loggen via deze [link](http://www.badmintonvlaanderen.be/ledenbeheer).
 
-De handleiding kan je eenvoudig [hier](/pbo/wp/wp-content/uploads/2012/02/Handleiding-ledenbeheer-Badminton-Vlaanderen.pdf) terugvinden.
+De handleiding kan je eenvoudig hier terugvinden.

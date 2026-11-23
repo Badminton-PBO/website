@@ -10,6 +10,6 @@ legacyUrl: /2019/12/24/pbo-jeugdcuptour-2019-eindranking/
 
 Bedankt aan alle deelnemers van het afgelopen jaar en uiteraard proficiat aan alle winnaars!
 
-Ook al zin in de Jeugdcups van 2020? De data staan onder de [Jeugdcup planning](/pbo/wp/pbo-jeugdcuptour-kalender/), maar ook op de algemene [PBO kalender](/pbo/wp/pbo-calender/) kunnen jullie hiervoor terecht.
+Ook al zin in de Jeugdcups van 2020? De data staan onder de [Jeugdcup planning](/jeugd/jeugdcuptour/kalender), maar ook op de algemene [PBO kalender](/bestuur#kalender) kunnen jullie hiervoor terecht.
 
 Langs deze weg wensen we iedereen vanuit Team PBO alvast een goed eindejaar en we zien jullie graag terug op de Jeugdcups in 2020!

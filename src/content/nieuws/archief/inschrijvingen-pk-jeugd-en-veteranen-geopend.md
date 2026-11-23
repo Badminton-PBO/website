@@ -6,7 +6,7 @@ excerpt: Vanaf nu kunnen de jeugdspelers en veteranen zich inschrijven voor het 
 legacyUrl: /2012/03/19/inschrijvingen-pk-jeugd-en-veteranen-geopend/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/03/pksite-small.jpg "pksite small")](/pbo/wp/wp-content/uploads/2012/03/pksite-small.jpg)Vanaf nu kunnen de jeugdspelers en veteranen zich inschrijven voor het Provinciaal Kampioenschap 2012.
+Vanaf nu kunnen de jeugdspelers en veteranen zich inschrijven voor het Provinciaal Kampioenschap 2012.
 
 Op 19, en bij grote belangstelling ook op 20 mei kunnen ze strijden in diverse categorieën om de provinciale titels. Dit jaar gaat het PK door in Sporthal De Pit in Buggenhout.
 

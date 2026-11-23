@@ -6,7 +6,7 @@ excerpt: Onze nieuwe PBO coach die het vernieuwde trainers team gaat vervoegen i
 legacyUrl: /2011/11/09/nieuwe-pbo-coach-an-soenens/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2011/11/pbo-coach-ansoenens.png "pbo coach ansoenens")](/pbo/wp/wp-content/uploads/2011/11/pbo-coach-ansoenens.png)Onze nieuwe PBO coach die het vernieuwde trainers team gaat vervoegen is niemand minder dan An Soenens. Ze heeft al heel wat internationale ervaring en het badmintonspel is een manier van leven voor deze prille dertiger. Kortom een madam die zot is van het spelleke en iedereen die dat ook is, come and join the training !
+Onze nieuwe PBO coach die het vernieuwde trainers team gaat vervoegen is niemand minder dan An Soenens. Ze heeft al heel wat internationale ervaring en het badmintonspel is een manier van leven voor deze prille dertiger. Kortom een madam die zot is van het spelleke en iedereen die dat ook is, come and join the training !
 
 Even een opsomming van haar carriere tot nu toe:
 

@@ -10,4 +10,4 @@ Van 17 tot en met 19 augustus 2015 organiseert Badminton Buggenhout een badminto
 
 Op deze 3 dagen kunnen sporters van 4 tot en met 16 jaar terecht voor een kamp onder leiding van ervaren Bloso – trainers.
 
-Meer info kan je terugvinden in [deze flyer](/pbo/wp/wp-content/uploads/2015/06/Flyer-sportkamp-zomer-2015-Badminton-Buggenhout.pdf).
+Meer info kan je terugvinden in deze flyer.

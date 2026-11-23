@@ -52,8 +52,6 @@ archief:
     bestand: /wp-content/uploads/2013/05/Jeugdcupranking-2012-2013-na-Pluimplukkers-enkel.pdf
   - label: Eindstand seizoen 2012-2013 dubbel en gemengd
     bestand: /wp-content/uploads/2013/05/Jeugdcupranking-2012-2013-na-Pluimplukkers-dubbel-en-gemengd.pdf
-  - label: Eindstand 2011-2012
-    bestand: /pbo/wp/wp-content/uploads/2012/05/Ranking-Jeugdcup-2011-2012-na-Pluimplukkers.pdf
 geboortejaren:
   jaar: 2026
   minibad:

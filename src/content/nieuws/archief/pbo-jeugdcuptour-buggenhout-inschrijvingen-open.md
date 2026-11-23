@@ -6,7 +6,7 @@ excerpt: De PBO Jeugdcuptour begint stilaan op gang te komen. Vanaf nu kan je in
 legacyUrl: /2014/10/29/pbo-jeugdcuptour-buggenhout-inschrijvingen-open/
 ---
 
-![Buggenhout](/pbo/wp/wp-content/uploads/2014/10/Buggenhout-300x166.jpg)De PBO Jeugdcuptour begint stilaan op gang te komen.
+De PBO Jeugdcuptour begint stilaan op gang te komen.
 
 Vanaf nu kan je inschrijven voor de PBO Jeugdcuptour bij Badminton Buggenhout op 21 december 2014. Ook hier zal gespeeld worden in A- en B-reeksen, van zodra er voldoende inschrijvingen zijn.
 

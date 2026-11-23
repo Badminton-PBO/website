@@ -11,7 +11,7 @@ Thema van deze bijscholing is High Performance Coaching en ‘Coach de coach’.
 
 U bent hierbij van harte uitgenodigd om deel te nemen aan deze leerrijke avond.  
 De bijscholing gaat door van 19u tot 22u in het sporthotel op het recreatiedomein ‘De Nekker’, Nekkerspoel-Borcht 19, Mechelen .  
-Meer info vindt u in [deze flyer](/pbo/wp/wp-content/uploads/2013/06/PPL_Trainersbijscholing_2013_A5.pdf).
+Meer info vindt u in deze flyer.
 
 Gelieve uw deelname te bevestigen met vermelding naam en club aan [davidhesters@hotmail.com](mailto:davidhesters@hotmail.com "mailto:davidhesters@hotmail.com Druk op CTRL en klik als je de link wilt volgen")
 

@@ -6,7 +6,7 @@ excerpt: Vanaf nu kan je inschrijven voor de grote finaledag van de PBO Jeugdcup
 legacyUrl: /2015/03/23/pbo-jeugdcuptour-inschrijvingen-de-pluimplukkers-nu-open/
 ---
 
-![pluimplukkers](/pbo/wp/wp-content/uploads/2015/03/pluimplukkers-300x166.jpg)Vanaf nu kan je inschrijven voor de grote finaledag van de PBO Jeugdcuptour 2014-2015.
+Vanaf nu kan je inschrijven voor de grote finaledag van de PBO Jeugdcuptour 2014-2015.
 
 Naar jaarlijkse gewoonte zijn we op 10 mei te gast bij De Pluimplukkers in sportcomplex Rozebroeken in Sint-Amandsberg.
 

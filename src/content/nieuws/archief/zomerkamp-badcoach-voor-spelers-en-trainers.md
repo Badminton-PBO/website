@@ -6,7 +6,7 @@ excerpt: Van 23 tot en met 27/7/2012 organiseert Badcoach een tweede zomerkamp v
 legacyUrl: /2012/02/14/zomerkamp-badcoach-voor-spelers-en-trainers/
 ---
 
-[![](/pbo/wp/wp-content/uploads/2012/02/zomerkamp-2.png "zomerkamp Badcoach")](/pbo/wp/wp-content/uploads/2012/02/zomerkamp-2.png)Van 23 tot en met 27/7/2012 organiseert Badcoach een tweede zomerkamp voor spelers en trainers. Het belooft een speciale trainingsstage te worden met een hoge intensiteit voor zowel spelers als trainers. Het zal een week zijn waar aandacht voor het individu centraal staat.
+Van 23 tot en met 27/7/2012 organiseert Badcoach een tweede zomerkamp voor spelers en trainers. Het belooft een speciale trainingsstage te worden met een hoge intensiteit voor zowel spelers als trainers. Het zal een week zijn waar aandacht voor het individu centraal staat.
 
 **Hoe gaan ze te werk?**
 

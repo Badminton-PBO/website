@@ -19,4 +19,3 @@ Jurgen Voet - Sander De Decker - Nathan Gijs - Corneel De Puysseleer - Silke Elo
 Jana Moret - Jolein Van den Bossche - Livio Ossayade - Tijs Duchene - Nathan VD Bruggen
 Mathieu Vanderaspoilden - Sarina Cousement - Steffi Meganck - Hannah Vannut
 
-[![](/pbo/wp/wp-content/uploads/2012/01/Affiche_2kopie.jpeg "Affiche_2kopie")](/pbo/wp/wp-content/uploads/2012/01/Affiche_2kopie.jpeg)
