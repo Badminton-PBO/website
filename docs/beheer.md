@@ -32,6 +32,21 @@ Kom je er niet uit, verwittig dan de webbeheerder; de link **Technische details 
 
 De meeste fouten houdt het beheer al tegen als je op **Publiceer** klikt: een verplicht veld dat leeg is, of een toernooilink zonder "Inschrijven tot". Je krijgt dan een melding en er wordt niets gepubliceerd.
 
+## Punten berekenen na een jeugdcup
+
+De punten van één halte komen uit het TP-bestand van het toernooi (Tournament Planner). De site rekent ze uit; optellen tot de ranking doe je daarna in Excel, zoals altijd.
+
+1. Ga naar `/admin/jeugdcup/punten/`, of klik in het beheer linksonder op **Punten berekenen uit een TP-bestand**. Je gebruikt dezelfde login als in het beheer: ben je niet ingelogd, dan vraagt de pagina dat eerst en gaat ze open zodra je in het beheer ingelogd bent.
+2. Kies het TP-bestand van de halte. Het blijft op je computer: de site stuurt het nergens heen.
+3. Vul het **volgnummer en de naam** van de halte in, bv. `03 Landegem`. Het volgnummer houdt de haltes in de Excel op volgorde.
+4. Vink **Eerste of tweede halte van het jaar** aan als dat zo is: een B-reeks start dan ook op 100 punten in plaats van 97.
+5. Lees **Kijk na**, als dat blok er staat: spelers zonder leeftijdscategorie, spelers zonder lidnummer (ze krijgen een tijdelijk nummer dat met 99 begint) en een gelijke stand in een poule die de site niet kan beslissen.
+6. Klik **Kopieer de csv** en plak ze in het tabblad "import" van de Excel.
+
+De regels: per onderdeel krijgt plaats 1 100 punten (97 in een B-reeks) en elke plaats lager 5 minder. Wie in meerdere onderdelen speelt, houdt zijn beste resultaat. Een onderdeel met minder dan vier teams geeft geen punten, en wie enkel walk-overs had krijgt 0. De leeftijdscategorie en de reeks leest de site uit de naam van het onderdeel in TP ("JE U13 A", "JE U17+U19 B"): houd die namen zo.
+
+Geeft de pagina een fout bij een TP-bestand, verwittig dan de webbeheerder (`src/lib/tp-lezer.ts`, `src/lib/jeugdcup-punten.ts`).
+
 ## Standen toevoegen na een jeugdcup
 
 Eén item per toernooi. Je uploadt de pdf met de rankings en de site leest er de tien standen uit: Minibad, U11, U13, U15 en U17+U19, telkens jongens en meisjes.

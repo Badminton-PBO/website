@@ -1,0 +1,225 @@
+---
+/**
+ * Punten van één halte berekenen uit het TP-bestand, voor de Excel van de ranking. Vervangt de Azure-functie van
+ * github.com/Badminton-PBO/pbo-jeugdcupranking. Alles gebeurt in de browser (src/scripts/admin-punten.ts): het
+ * bestand, met adressen en geboortedata van spelers, wordt nergens heen gestuurd.
+ *
+ * De pagina gaat pas open met de login van het beheer (src/scripts/admin-login.ts). Log je in of uit in een ander
+ * tabblad, dan volgt deze pagina vanzelf.
+ */
+import '@fontsource-variable/bricolage-grotesque/opsz.css';
+import '@fontsource-variable/instrument-sans';
+import '../../../styles/global.css';
+import { u } from '../../../lib/url';
+
+const veld = 'min-h-[52px] w-full rounded-full border-[1.5px] border-edge bg-paper px-5 text-base placeholder:text-muted focus:border-ink';
+const kop = 'px-3 pt-3 pb-3 font-semibold md:px-5';
+const cel = 'px-3 py-3 align-baseline md:px-5';
+---
+
+<!doctype html>
+<html lang="nl-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Punten berekenen · PBO beheer</title>
+    <link rel="icon" type="image/png" href={u('/favicon.png')} />
+  </head>
+  <body>
+    <main class="wrap pt-4 pb-16 md:pt-6">
+      <div class="px-2 md:px-0">
+        <nav aria-label="Kruimelpad" class="mb-4 text-sm text-muted">
+          <ol class="-ml-1 flex flex-wrap items-center gap-x-1">
+            <li class="flex items-center gap-x-1">
+              <a href={u('/admin/jeugdcup/')} class="inline-flex min-h-11 min-w-11 items-center justify-center px-1 hover:text-brand">Beheer jeugdcup</a>
+            </li>
+            <li class="flex items-center gap-x-1">
+              <span aria-hidden="true">/</span>
+              <span aria-current="page" class="px-1 font-semibold text-ink">Punten berekenen</span>
+            </li>
+          </ol>
+        </nav>
+        <h1 class="text-[40px] leading-[1.05] font-extrabold tracking-[-0.02em] md:text-[52px]">Punten berekenen</h1>
+        <p class="mt-3 max-w-[640px] text-lg leading-[1.55] text-muted">
+          Kies het TP-bestand van de halte. Je krijgt de punten per speler en de csv voor de Excel van de ranking. Het bestand blijft op je computer.
+        </p>
+      </div>
+
+      <section id="slot" class="mt-8 rounded-card bg-paper p-6 md:p-8" aria-live="polite">
+        <p data-status="bezig" class="text-muted">Je login wordt nagekeken …</p>
+        <div data-status="uit" hidden>
+          <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Log eerst in</h2>
+          <p class="mt-2 max-w-[640px] text-muted">
+            Deze pagina is voor wie de jeugdcup beheert. Log in het beheer in met je GitHub-account. Het beheer opent in een nieuw tabblad; deze pagina gaat daarna vanzelf open.
+          </p>
+          <a href={u('/admin/jeugdcup/')} target="_blank" class="btn mt-5 w-full bg-ink text-white sm:w-auto">Inloggen in het beheer</a>
+        </div>
+        <div data-status="verlopen" hidden>
+          <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Je login is verlopen</h2>
+          <p class="mt-2 max-w-[640px] text-muted">
+            Log opnieuw in het beheer in. Het beheer opent in een nieuw tabblad; deze pagina gaat daarna vanzelf open.
+          </p>
+          <a href={u('/admin/jeugdcup/')} target="_blank" class="btn mt-5 w-full bg-ink text-white sm:w-auto">Inloggen in het beheer</a>
+        </div>
+        <div data-status="geen-rechten" hidden>
+          <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Geen toegang</h2>
+          <p class="mt-2 max-w-[640px] text-muted">
+            Je bent ingelogd als <span data-naam class="font-semibold text-ink"></span>, maar dat account mag de site niet aanpassen. Vraag de webbeheerder om toegang.
+          </p>
+        </div>
+        <div data-status="fout" hidden>
+          <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Je login is niet na te kijken</h2>
+          <p class="mt-2 max-w-[640px] text-muted">GitHub antwoordt niet. Kijk je internetverbinding na en probeer opnieuw.</p>
+          <button type="button" data-opnieuw class="btn mt-5 w-full cursor-pointer bg-ink text-white sm:w-auto">Opnieuw proberen</button>
+        </div>
+      </section>
+
+      <div id="beheer" hidden>
+        <section class="mt-8 rounded-card bg-paper p-6 md:p-8">
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label for="bestand" class="block font-semibold">TP-bestand van de halte</label>
+              <input
+                id="bestand"
+                type="file"
+                accept=".tp,.TP"
+                class="mt-2 block w-full cursor-pointer text-base file:mr-4 file:min-h-[52px] file:cursor-pointer file:rounded-full file:border-0 file:bg-ink file:px-6 file:font-semibold file:text-white"
+              />
+            </div>
+            <div>
+              <label for="halte" class="block font-semibold">Volgnummer en naam van de halte</label>
+              <input id="halte" type="text" autocomplete="off" placeholder="03 Landegem" aria-describedby="halte-uitleg" class:list={['mt-2', veld]} />
+              <p id="halte-uitleg" class="mt-2 text-sm text-muted">
+                Komt met de datum in de kolom "tournament" van de csv. Het volgnummer houdt de haltes in de Excel op volgorde.
+              </p>
+            </div>
+          </div>
+          <label class="mt-6 flex cursor-pointer items-start gap-3">
+            <input id="dubbel" type="checkbox" class="mt-1 size-5 shrink-0 accent-brand" />
+            <span>
+              <span class="font-semibold">Eerste of tweede halte van het jaar</span>
+              <span class="block text-sm text-muted">Er wordt dan altijd met dubbele schema's gespeeld: ook een B-reeks start op 100 punten in plaats van 97.</span>
+            </span>
+          </label>
+          <p id="melding" role="status" class="mt-6 text-muted">Nog geen bestand gekozen.</p>
+        </section>
+
+        <div id="resultaat" hidden>
+          <section id="nakijken" class="mt-4 rounded-card bg-accent-soft p-6 md:p-8" hidden>
+            <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Kijk na</h2>
+            <ul id="nakijken-lijst" class="mt-3 list-disc space-y-1.5 pl-5"></ul>
+          </section>
+
+          <section class="mt-4 rounded-card bg-paper p-6 md:p-8">
+            <h2 id="titel" class="text-[22px] leading-tight font-bold md:text-[26px]"></h2>
+            <p id="samenvatting" class="mt-2 text-muted"></p>
+            <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button id="kopieer" type="button" class="btn w-full cursor-pointer bg-ink text-white sm:w-auto">Kopieer de csv</button>
+              <button id="download" type="button" class="btn w-full cursor-pointer border-[1.5px] border-edge bg-paper sm:w-auto">Download de csv</button>
+              <span id="gekopieerd" role="status" class="text-sm font-semibold text-brand"></span>
+            </div>
+            <p class="mt-4 max-w-[68ch] text-sm text-muted">
+              Plak de csv in het tabblad "import" van de Excel. Staat alles in één cel, kies dan Gegevens → Tekst naar kolommen, gescheiden door een komma.
+            </p>
+          </section>
+
+          <section class="mt-4 rounded-card bg-paper p-2 md:p-3">
+            <div class="flex flex-col gap-3 px-4 pt-4 pb-3 md:flex-row md:items-center md:justify-between md:px-5">
+              <h2 class="text-[22px] leading-tight font-bold md:text-[26px]">Punten per speler</h2>
+              <div class="md:w-80">
+                <label for="zoek" class="sr-only">Zoek op naam, club of categorie</label>
+                <input id="zoek" type="search" placeholder="Zoek op naam, club of categorie" class={veld} />
+              </div>
+            </div>
+            <p id="aantal" class="px-4 pb-2 text-sm text-muted md:px-5"></p>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="label text-muted">
+                    <th scope="col" class={kop}>Lidnummer</th>
+                    <th scope="col" class={kop}>Speler</th>
+                    <th scope="col" class={kop}>Club</th>
+                    <th scope="col" class={kop}>Categorie</th>
+                    <th scope="col" class:list={[kop, 'w-24 text-right']}>Punten</th>
+                  </tr>
+                </thead>
+                <tbody id="rijen"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <details class="mt-4 rounded-card bg-paper p-2 md:p-3">
+            <summary class="flex min-h-11 cursor-pointer items-center px-4 font-display text-[22px] leading-tight font-bold md:px-5">Onderdelen in dit bestand</summary>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="label text-muted">
+                    <th scope="col" class={kop}>Onderdeel</th>
+                    <th scope="col" class={kop}>Categorie</th>
+                    <th scope="col" class={kop}>Reeks</th>
+                    <th scope="col" class:list={[kop, 'text-right']}>Teams</th>
+                    <th scope="col" class:list={[kop, 'text-right']}>Hoogste punten</th>
+                    <th scope="col" class={kop}>Opmerking</th>
+                  </tr>
+                </thead>
+                <tbody id="onderdelen"></tbody>
+              </table>
+            </div>
+          </details>
+        </div>
+      </div>
+    </main>
+
+    <!-- Rijen die het script invult: de opmaak staat hier, zodat ze bij de rest van de pagina blijft. -->
+    <template id="rij-speler">
+      <tr class="border-t border-wash">
+        <td class:list={[cel, 'num']} data-veld="lidnummer"></td>
+        <td class:list={[cel, 'font-semibold']} data-veld="speler"></td>
+        <td class:list={[cel, 'text-muted']} data-veld="club"></td>
+        <td class={cel} data-veld="categorie"></td>
+        <td class:list={[cel, 'num text-right font-semibold']} data-veld="punten"></td>
+      </tr>
+    </template>
+    <template id="rij-onderdeel">
+      <tr class="border-t border-wash">
+        <td class:list={[cel, 'font-semibold']} data-veld="naam"></td>
+        <td class={cel} data-veld="categorie"></td>
+        <td class={cel} data-veld="reeks"></td>
+        <td class:list={[cel, 'num text-right']} data-veld="teams"></td>
+        <td class:list={[cel, 'num text-right']} data-veld="maximum"></td>
+        <td class:list={[cel, 'text-muted']} data-veld="opmerking"></td>
+      </tr>
+    </template>
+
+    <script>
+      import { bijWijziging, login, type Login } from '../../../scripts/admin-login';
+
+      const slot = document.getElementById('slot')!;
+      const beheer = document.getElementById('beheer')!;
+      let geladen = false;
+
+      function toon(status: Login['status'] | 'bezig') {
+        for (const blok of slot.querySelectorAll<HTMLElement>('[data-status]')) blok.hidden = blok.dataset.status !== status;
+      }
+
+      async function controleer() {
+        toon('bezig');
+        const l = await login();
+        toon(l.status);
+        if (l.status === 'geen-rechten') slot.querySelectorAll('[data-naam]').forEach((e) => (e.textContent = l.naam));
+        slot.hidden = l.status === 'ok';
+        beheer.hidden = l.status !== 'ok';
+        // De rekenmodule (met mdb-reader) laadt pas na de login.
+        if (l.status === 'ok' && !geladen) {
+          geladen = true;
+          await import('../../../scripts/admin-punten');
+        }
+      }
+
+      slot.querySelector('[data-opnieuw]')!.addEventListener('click', controleer);
+      bijWijziging(controleer);
+      controleer();
+    </script>
+  </body>
+</html>

@@ -55,6 +55,7 @@ src/content/
 - De lijst met rankings toont in Decap het id van de halte; `src/scripts/admin-toernooien.ts` zet er de naam voor in de plaats ("Standen na BC De Mintons, 26 september 2026").
 - Het voorbeeld rechts in Decap (nieuws en standen) komt uit `src/scripts/admin-preview.ts`, met de stijl van de site (`src/styles/admin-preview.css`). Collecties zonder eigen sjabloon tonen geen voorbeeld (`editor: { preview: false }`).
 - Bij een ranking leest het voorbeeld de pdf zodra hij gekozen is, nog voor het publiceren: een melding bovenaan (aantal standen gevonden, verkeerd toernooi als de titel "Na ..." in de pdf niet bij de gekozen halte past, geen standen gevonden) en de tien reeksen met aantal spelers en leider, open te klappen tot de volledige stand. `getAsset` van Decap geeft in het voorbeeld enkel het pad: `pdfBronnen()` haalt de pas gekozen pdf uit het concept (`entry.mediaFiles`), en anders van de site of van GitHub. `admin-controle.ts` weigert een ranking met een pdf zonder standen en zonder geplakte stand. In het beheer is de pdf verplicht, in het schema niet.
+- `/admin/jeugdcup/punten` berekent de punten van één halte uit het TP-bestand (Tournament Planner, een Access-database) en geeft de csv voor de Excel van de ranking. Vervangt de Azure-functie uit `Badminton-PBO/pbo-jeugdcupranking` (Java). Geen Decap, wel de login van Decap: `src/scripts/admin-login.ts` leest `decap-cms-user` uit localStorage en vraagt GitHub of dat account naar de repo mag pushen (dezelfde controle als Decap; lokaal volstaat de login van `decap-server`). Een slot in de browser, de code is publiek. Pas na de login laadt de rekenmodule; alles gebeurt in de browser (`src/scripts/admin-punten.ts`), het bestand wordt nergens heen gestuurd. `src/lib/tp-lezer.ts` leest het bestand met mdb-reader, `src/lib/jeugdcup-punten.ts` bevat de regels, ongewijzigd overgenomen uit de Java-versie en nagekeken met de ranking na BC Landegem 2026 (110 van 110 spelers gelijk). mdb-reader vraagt een globale `Buffer` (pakket `buffer`, geladen als `buffer/`) en twee aliassen in `astro.config.mjs` voor zijn crypto-pakketten. Een TP-bestand bevat adressen en geboortedata van spelers: **nooit in de repo zetten** (de repo is publiek), ook niet als testbestand. De link in het beheer komt uit `src/scripts/admin-punten-link.ts`.
 - Markdown draait op Sätteri (Astro 7). `src/lib/markdown-basis.mjs` zet het basispad voor interne links in Markdown.
 
 - Nieuwscategorieën: `jeugd`, `selectie`, `evenement` (+ eventueel `competitie`, `recreanten`; WordPress-categorieën nog mappen)
@@ -71,6 +72,7 @@ src/content/
 /jeugd, /jeugd/jeugdcuptour, /jeugd/jeugdcuptour/kalender, /jeugd/jeugdcuptour/ranking
 /bestuur, /competitie, /pk, /recreanten, /vacatures
 /admin, /admin/jeugdcup             Decap CMS (beheerders, gewone users)
+/admin/jeugdcup/punten              punten van een halte uit het TP-bestand (geen Decap, geen login)
 ```
 
 ## Migratie en redirects

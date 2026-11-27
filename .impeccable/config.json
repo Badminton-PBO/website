@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/styles/global.css"
+        ],
+        "createdAt": "2026-11-27T13:26:41.492Z",
+        "reason": "Claude triage: border-left on .prose-pbo blockquote (Markdown quotes in news articles) is standard quote typography, not a card side-tab; present since initial commit"
+      }
+    ]
+  }
+}
