@@ -1,7 +1,10 @@
 ---
 title: Bestuur
-lead: "PBO vzw, voluit Provinciale Badmintonraad Oost-Vlaanderen vzw, ondersteunt badminton in de provincie: recreatief en competitief, met de jeugdwerking en de competitie voorop."
-description: Het bestuur en de medewerkers van PBO vzw, lidmaatschap voor clubs, statuten en de PBO-kalender.
+lead: "PBO vzw, voluit Provinciale Badmintonraad Oost-Vlaanderen vzw,
+  ondersteunt badminton in de provincie: recreatief en competitief, met de
+  jeugdwerking en de competitie voorop."
+description: Het bestuur en de medewerkers van PBO vzw, lidmaatschap voor clubs,
+  statuten en de PBO-kalender.
 bestuurders:
   - naam: Thierry De Decker
     rol: Voorzitter
@@ -42,7 +45,6 @@ documenten:
     tekst: Wie doet wat binnen PBO (pdf)
     bestand: /wp-content/uploads/2017/07/Taakomschrijving-PBO-bestuur.pdf
 ---
-
 ## Werking en lidmaatschap
 
 Elke Oost-Vlaamse club die lid is van [Badminton Vlaanderen](https://www.badmintonvlaanderen.be/) kan aansluiten bij PBO vzw. Dat geldt voor recreantenclubs en competitieclubs.
@@ -51,4 +53,4 @@ Een club zoeken in je buurt? Alle aangesloten clubs staan op de website van Badm
 
 ### Provinciale bijdrage
 
-Per speler per jaar. Het eerste seizoen is gratis.
+Per speler per jaar. Het eerste seizoen is gratis, daarna betalend.

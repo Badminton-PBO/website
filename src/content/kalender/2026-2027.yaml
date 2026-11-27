@@ -27,6 +27,8 @@ haltes:
     club: Badminton Buggenhout
     sporthal: Sportcentrum De Pit
     prijsuitreiking: true
+    toernooilink: https://badvla.tournamentsoftware.com/tournament/0EF3F41D-B018-41E3-949E-F53930C92EFA
+    inschrijvenTot: 2026-12-13
   - datum: 2027-01-23
     club: BC Denderleeuw
     sporthal: Sporthal Ottoy
@@ -34,7 +36,7 @@ haltes:
     club: PK Jeugd
   - datum: 2027-02-27
     club: Wit-Wit Ronse
-    sporthal: "Sporthal 't Rosco"
+    sporthal: Sporthal 't Rosco
   - datum: 2027-03-14
     club: BC Landegem
     sporthal: Sporthal Oostbroek Nevele
