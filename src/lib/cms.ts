@@ -423,11 +423,11 @@ const mailadres = (label: string, name: string) => ({
   pattern: ['^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$', 'Geen geldig mailadres'],
 });
 
-/** Mailadressen, sociale media, sponsors en competitielinks. src/data/site.ts geeft ze door aan de pagina's. */
+/** Mailadressen, sociale media, sponsors, partners en competitielinks. src/data/site.ts geeft ze door aan de pagina's. */
 const instellingenCollectie = {
   name: 'instellingen',
   label: 'Site-instellingen',
-  description: 'Mailadressen, sociale media, sponsors en competitielinks. Ze staan in de header, de footer en op meerdere pagina\'s.',
+  description: 'Mailadressen, sociale media, sponsors, partners en competitielinks. Ze staan in de header, de footer en op meerdere pagina\'s.',
   editor: { preview: false },
   files: [
     {
@@ -478,6 +478,28 @@ const instellingenCollectie = {
               public_folder: '../../assets/sponsors',
               choose_url: false,
               hint: 'Png of jpg, minstens 800 px breed.',
+            },
+          ],
+        },
+        {
+          label: 'Partners',
+          label_singular: 'partner',
+          name: 'partners',
+          widget: 'list',
+          required: false,
+          summary: '{{fields.naam}}',
+          hint: 'Op de home, boven Nieuws, na "Partners":de federatie en de overheid, geen sponsors. De volgorde hier is de volgorde op de site. Leeg = geen blok.',
+          fields: [
+            { label: 'Naam', name: 'naam', widget: 'string' },
+            { label: 'Website', name: 'link', widget: 'string', ...https },
+            {
+              label: 'Logo',
+              name: 'logo',
+              widget: 'image',
+              media_folder: '/src/assets/partners',
+              public_folder: '../../assets/partners',
+              choose_url: false,
+              hint: 'Png of jpg op een witte of doorzichtige achtergrond, zonder brede witrand, minstens 300 px breed.',
             },
           ],
         },

@@ -157,7 +157,7 @@ const nieuws = defineCollection({
 
 const https = z.url({ protocol: /^https$/ });
 
-/** Eén bestand (site.yaml): mailadressen, sociale media, sponsors en competitielinks. Gelezen via src/data/site.ts. */
+/** Eén bestand (site.yaml): mailadressen, sociale media, sponsors, partners en competitielinks. Gelezen via src/data/site.ts. */
 const instellingen = defineCollection({
   loader: glob({ pattern: 'site.yaml', base: './src/content/instellingen' }),
   schema: ({ image }) =>
@@ -165,6 +165,7 @@ const instellingen = defineCollection({
       mail: z.object({ secretariaat: z.email(), jeugdcup: z.email(), recreanten: z.email(), voorzitter: z.email() }),
       social: z.array(z.object({ naam: z.string(), link: https })).default([]),
       sponsors: z.array(z.object({ naam: z.string(), link: https, logo: image() })).default([]),
+      partners: z.array(z.object({ naam: z.string(), link: https, logo: image() })).default([]),
       competitie: z.object({ agenda: https, uitslagen: https }),
     }),
 });

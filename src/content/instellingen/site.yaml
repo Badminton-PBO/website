@@ -14,6 +14,13 @@ sponsors:
   - naam: Mobi-sports
     link: https://mobi-sports.be/
     logo: ../../assets/sponsors/mobi-sports.png
+partners:
+  - naam: Badminton Vlaanderen
+    link: https://badminton.vlaanderen/
+    logo: ../../assets/partners/badminton-vlaanderen.png
+  - naam: Sport Vlaanderen
+    link: https://www.sport.vlaanderen/
+    logo: ../../assets/partners/sport-vlaanderen.png
 competitie:
   agenda: https://competitie.badminton-pbo.be/agenda/
   uitslagen: https://badvla.tournamentsoftware.com/sport/league?id=F4D8C93E-D12D-4116-86CF-A63A6B9B6046

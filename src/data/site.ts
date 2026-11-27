@@ -11,14 +11,14 @@ export const nav = [
 ];
 
 /**
- * Mailadressen, sociale media, sponsors en competitielinks. Beheerders passen ze aan in /admin → Site-instellingen
+ * Mailadressen, sociale media, sponsors, partners en competitielinks. Beheerders passen ze aan in /admin → Site-instellingen
  * (src/content/instellingen/site.yaml).
  */
 const instellingen = await getEntry('instellingen', 'site');
 if (!instellingen) throw new Error('src/content/instellingen/site.yaml ontbreekt');
 
 /** `competitie`: de agenda (enkel die van de PBO-competitie-app is nog in gebruik) en de uitslagen bij Badminton Vlaanderen. */
-export const { mail, social, sponsors, competitie } = instellingen.data;
+export const { mail, social, sponsors, partners, competitie } = instellingen.data;
 
 /** Cijfers en weetjes over de IPJO, bij Badminton Vlaanderen. */
 export const ipjoLink = 'https://badminton.vlaanderen/ipjo/';

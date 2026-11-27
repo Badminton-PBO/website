@@ -33,7 +33,7 @@ src/content/
   paginas/<pagina>.md       vaste pagina's: title, lead, description, lijsten (bestuur, documenten, ...) + lopende tekst
   pk/pk.md                  provinciaal kampioenschap: tonen (blok op de home, tot twee weken na het PK), datum, datumTot?, plaats, sporthal?,
                             adres?, organisatie?, toernooilink?, inschrijvenTot?, affiche? + tekst (reeksen, uurschema)
-  instellingen/site.yaml    mailadressen, sociale media, sponsors (lijst met logo), competitielinks
+  instellingen/site.yaml    mailadressen, sociale media, sponsors en partners (lijsten met logo), competitielinks
                             (gelezen via src/data/site.ts; menu en Google-agenda blijven in de code)
 ```
 
@@ -113,6 +113,7 @@ De ontwerpen gebruiken nog voorlopige kleuren (donkerblauw). De site gebruikt de
 
 - Logo: `src/assets/logo/pbo-mark.png` (kleur, transparant) en `pbo-mark-light.png` (wit en limoen, voor diepgroen). Gemaakt uit `wp-content/uploads/2011/05/LOGOKLEU.jpg`.
 - Sponsors staan in de header van elke pagina (`src/components/Sponsors.astro`), zoals op de oude site: vanaf tablet rechts naast het PBO-logo, op de telefoon als strook onder het menu. Het hoofdmenu staat op desktop op een eigen rij eronder. Niet meer in de footer.
+- Partners (Badminton Vlaanderen, Sport Vlaanderen: federatie en overheid, geen sponsors) staan enkel op de home, als witte strook boven Nieuws (`src/components/Partners.astro`; onderaan vond de klant te laag, een zijbalk komt er niet), in hun eigen kleuren. De breedte van elk logo volgt uit zijn verhouding, zodat een vierkant en een breed logo even zwaar wegen.
 
 - Fonts: Bricolage Grotesque (titels, 700/800), Instrument Sans (tekst, 400–600)
 - Radius: kaarten 24–32px, knoppen en filters volledig rond

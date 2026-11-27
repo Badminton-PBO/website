@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import { partners } from '../data/site';
+
+/**
+ * Partners (federatie, overheid) op de home, tussen "Voor clubs en competitie" en Nieuws. Geen sponsors: die staan in de header (Sponsors.astro).
+ * Op wit, in hun eigen kleuren: de logo's hebben een lichte achtergrond nodig.
+ */
+
+/**
+ * Logo's wegen even zwaar, wat hun vorm ook is: de breedte volgt de verhouding breedte/hoogte tot de macht 0,6.
+ * Bij 0,5 heeft elk logo dezelfde oppervlakte, maar een breed woordmerk oogt dan lichter dan een vol vierkant.
+ * Begrensd, voor een heel breed of heel smal logo.
+ */
+const logos = partners.map((p) => ({
+  ...p,
+  schaal: Math.min(2.4, Math.max(0.75, (p.logo.width / p.logo.height) ** 0.6)),
+}));
+---
+
+{
+  logos.length > 0 && (
+    <section class="wrap mt-3 lg:mt-5" aria-labelledby="partners-titel">
+      <div class="rounded-card bg-paper px-6 py-5 sm:flex sm:items-center sm:justify-between sm:gap-8 lg:px-10 lg:py-6">
+        <h2 id="partners-titel" class="text-xl font-extrabold">
+          Partners
+        </h2>
+        <ul class="mt-3 flex flex-wrap items-center gap-x-8 gap-y-3 sm:mt-0 sm:justify-end lg:gap-x-12">
+          {logos.map((p) => (
+            <li>
+              <a href={p.link} class="flex min-h-11 items-center rounded-lg" rel="noopener">
+                <Image
+                  src={p.logo}
+                  alt={p.naam}
+                  width={Math.round(78 * p.schaal)}
+                  densities={[1, 2, 3]}
+                  class="h-auto w-[calc(var(--schaal)*64px)] lg:w-[calc(var(--schaal)*78px)]"
+                  style={`--schaal:${p.schaal.toFixed(3)}`}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
